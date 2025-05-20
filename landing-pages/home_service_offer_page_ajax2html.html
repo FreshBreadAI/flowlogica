@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David, Upgrade Your Ajax Roofing Website & Book More Dublin Jobs - FlowLogica</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: #fff;
+            padding: 15px 0;
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            display: flex; /* For vertical alignment of logo image */
+            align-items: center; /* For vertical alignment of logo image */
+        }
+        .header-logo-img {
+            height: 40px; /* Adjust as needed */
+            margin-right: 10px; /* Space between logo and text if any */
+            vertical-align: middle;
+        }
+
+        header nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+        }
+         header nav a:hover {
+            color: #007bff;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #545b62;
+        }
+        
+        .btn-large {
+            padding: 15px 30px;
+            font-size: 1.1em;
+        }
+
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid #eee;
+        }
+        section:last-child {
+            border-bottom: none;
+        }
+
+        section h1, section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #212529;
+        }
+        section h1 {
+            font-size: 2.8em;
+        }
+        section h2 {
+            font-size: 2.2em;
+        }
+        section h2 .emoji {
+            margin-right: 10px;
+        }
+
+        .hero-section {
+            background-color: #fff;
+            padding: 40px 0;
+        }
+        .hero-section .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .hero-section .hero-text-content {
+            flex: 1 1 45%;
+            min-width: 300px;
+            text-align: left;
+        }
+        .hero-section .hero-image-container {
+            flex: 1 1 50%;
+            min-width: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero-section .hero-image {
+            max-width: 100%;
+            height: auto;
+            max-height: 450px;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .hero-section h1 {
+            font-size: 2.6em;
+            margin-bottom: 0.5em;
+            line-height: 1.2;
+            text-align: left;
+        }
+
+        .hero-section .sub-headline {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 1.5em;
+            text-align: left;
+        }
+        .hero-section .btn-large {
+            padding: 14px 30px;
+            font-size: 1.1em;
+        }
+
+        .pain-points-section ul {
+            list-style: none;
+            padding: 0;
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+        }
+
+        .pain-points-section li {
+            background-color: #fff;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #e0e0e0;
+            font-size: 1.1em;
+        }
+        .pain-points-section li .emoji {
+            margin-right: 10px;
+        }
+
+        .summary-pain {
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #dc3545;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #dee2e6;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background-color: #f1f3f5;
+            font-weight: bold;
+        }
+
+        .comparison-table td:nth-child(2) {
+            color: #dc3545; /* Red for old website disadvantages */
+        }
+        .comparison-table td:nth-child(3) {
+            color: #28a745; /* Green for new website advantages */
+        }
+        .comparison-table .emoji {
+            margin-right: 5px;
+        }
+
+        .roi-calculator-section .container > p {
+            text-align:center; 
+            max-width: 700px; 
+            margin: 0 auto 30px auto;
+        }
+
+        .roi-calculator {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .roi-calculator .input-group {
+            margin-bottom: 20px;
+        }
+
+        .roi-calculator label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #495057;
+        }
+
+        .roi-calculator input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+        .roi-calculator .tooltip-text {
+            font-size: 0.85em;
+            color: #6c757d;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .roi-calculator .output-group {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px dashed #ced4da;
+        }
+
+        .roi-calculator .output-group p {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .roi-calculator .output-group strong {
+            color: #007bff;
+            font-size: 1.3em;
+        }
+        .roi-calculator .output-group .payback-time strong {
+             font-size: 1.6em;
+             color: #28a745;
+        }
+
+        .reinforcement-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        .testimonials-section .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center align items like image and cite */
+        }
+        .testimonial-card img {
+            width: 100px; /* Increased size slightly */
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+        .testimonial-card .img-placeholder {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #e9ecef;
+            margin-bottom: 15px;
+            align-self: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            color: #6c757d;
+        }
+        .testimonial-card blockquote {
+            font-style: italic;
+            color: #555;
+            margin: 0 0 15px 0;
+            flex-grow: 1;
+        }
+        .testimonial-card cite {
+            font-weight: bold;
+            color: #333;
+            text-align: right;
+            align-self: flex-end; /* Align cite to the right */
+        }
+        .case-study-snippet {
+            background-color: #e9f5ff;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+            border: 1px solid #b8d8ff; 
+        }
+        .case-study-snippet h4 {
+            margin-top: 0;
+            color: #0056b3;
+        }
+
+        .offer-section .countdown-timer {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #dc3545;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .offer-section .countdown-timer-label {
+            text-align: center;
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .offer-section .package-details ul {
+            list-style: none;
+            padding: 0;
+            margin: 30px auto;
+            max-width: 700px;
+        }
+
+        .offer-section .package-details li {
+            padding: 10px 0;
+            font-size: 1.1em;
+            border-bottom: 1px solid #f0f0f0;
+        }
+         .offer-section .package-details li:last-child {
+            border-bottom: none;
+        }
+        .offer-section .package-details li .emoji {
+            margin-right: 10px;
+            color: #28a745;
+        }
+        .offer-section .cta-buttons {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .offer-section .secondary-cta {
+            display: block;
+            margin-top: 15px;
+            color: #007bff;
+            text-decoration: underline;
+        }
+
+        .guarantee-section .container > p {
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            margin-bottom: 20px;
+        } 
+        .guarantee-section .options {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        .guarantee-section .option {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #e0e0e0;
+            flex: 1;
+            max-width: 350px;
+            text-align: center; 
+        }
+        .guarantee-section .option h4 {
+            margin-top: 0;
+            color: #007bff;
+        }
+        .guarantee-section .final-cta {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: #f8f9fa;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        footer .footer-logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex; /* For vertical alignment of logo image */
+            align-items: center; /* For vertical alignment of logo image */
+            justify-content: center; /* Center logo in footer */
+        }
+        .footer-logo-img {
+            height: 40px; /* Adjust as needed */
+            margin-right: 10px; /* If text follows */
+        }
+
+        footer p {
+            margin-bottom: 10px;
+            color: #adb5bd;
+        }
+
+        footer .social-links a {
+            color: #f8f9fa;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+        footer .social-links a:hover {
+            color: #007bff;
+        }
+
+        footer .footer-links {
+            margin-top: 10px;
+        }
+        footer .footer-links a {
+            color: #adb5bd;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+         footer .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-section .hero-text-content,
+            .hero-section .hero-image-container {
+                flex-basis: 100%;
+                text-align: center;
+            }
+            .hero-section .hero-image-container {
+                 margin-top: 20px;
+            }
+            .hero-section h1,
+            .hero-section .sub-headline {
+                text-align: center;
+            }
+            .hero-section h1 {
+                font-size: 2.2em;
+            }
+            section h1 {
+                font-size: 2.2em;
+            }
+            section h2 {
+                font-size: 1.8em;
+            }
+             header nav {
+                display: none; /* Simple hide for mobile, could be a burger menu */
+            }
+            .comparison-table th, .comparison-table td {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+            .guarantee-section .options {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="http://flowlogica.com/wp-content/uploads/2025/05/logo.com-flowlogica-logo-2.png" alt="FlowLogica Logo" class="header-logo-img">
+            </div>
+            <nav>
+                <a href="#hero">Home</a>
+                <a href="#pain-points">Your Current Challenges, David</a>
+                <a href="#transformation">Our Solution for You</a>
+                <a href="#roi-calculator">Your ROI, David</a>
+                <a href="#testimonials">Reviews</a>
+                <a href="#offer">David, Your Offer</a>
+                <a href="#guarantee">Your Guarantee</a>
+            </nav>
+             <a href="#offer" class="btn btn-secondary">David, Get Your Offer</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text-content">
+                        <h1>David, Get a Dublin-Focused Website for Ajax Roofing That Converts Visitors into Customers – For Just $500!</h1>
+                        <p class="sub-headline">Turn your online presence into a 24/7 lead generator for your roofing services in Dublin, Dun Laoghaire, and Coolmine. David, you can attract more enquiries for New Roofs, Repairs, Fascias, Dry Ridge systems, and more – without expensive monthly retainers.</p>
+                        <a href="#offer" class="btn btn-large">David, Claim Your $250 Discount Now!</a>
+                    </div>
+                    <div class="hero-image-container">
+                        <img src="http://flowlogica.com/wp-content/uploads/2025/05/Screenshot-2025-05-11-at-21.35.58.png" alt="Website comparison showing an old site vs a new, modern roofing website for David" class="hero-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pain-points" class="pain-points-section">
+            <div class="container">
+                <h2><span class="emoji">😫</span> David, Is Your Current Online Presence Costing You Jobs for Ajax Roofing in Dublin?</h2>
+                <p class="sub-headline">If your website is text-heavy, hard to navigate, or doesn't clearly showcase your expertise in services like Dry Ridge, UPVC Fascias, and emergency Roof Repairs, David, potential Dublin customers might be slipping through your cracks every month.</p>
+                <ul>
+                    <li><span class="emoji">💸</span> <strong>Losing Credibility (and Cash):</strong> An unprofessional or confusing online presence can make Dublin homeowners question your quality, sending them to competitors even if you, David, offer superior service through Ajax Roofing.</li>
+                    <li><span class="emoji">📱</span> <strong>Invisible on Mobile in Dublin?:</strong> David, over 60% of Dubliners search for roofing services on their phones. If your site isn't easy to use on mobile, you're missing out on leads from areas like Dun Laoghaire to Coolmine.</li>
+                    <li><span class="emoji">❓</span> <strong>Confusing Customers Away?:</strong> Can visitors quickly find your full range of services (from New Roofs to Guttering), your service areas, and how to get a free estimate from you, David? If not, they'll leave.</li>
+                    <li><span class="emoji">🐌</span> <strong>Slow Site Turning Customers Off?:</strong> If your current page takes too long to load, David, impatient Dubliners looking for urgent roof repairs will simply find a faster competitor.</li>
+                    <li><span class="emoji">🕵️</span> <strong>Hard to Find on Google in Dublin?:</strong> If your website isn't optimized for local searches like "roof repair Dublin" or "fascia replacement Dun Laoghaire," you're missing customers actively seeking your services, David.</li>
+                </ul>
+                <p class="summary-pain">A poorly structured online presence means missed calls, lost quote requests, and untapped revenue for you and Ajax Roofing each month, David.</p>
+            </div>
+        </section>
+
+        <section id="transformation" class="transformation-section">
+            <div class="container">
+                <h2><span class="emoji">↔️</span> From Text-Heavy to Lead-Machine: The Ajax Roofing Website Transformation for You, David.</h2>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Your Current Online Presence <span class="emoji">👎</span></th>
+                            <th>Our New $500 High-Converting Website (Your New Asset, David) <span class="emoji">👍</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Conversion Rate</td>
+                            <td>Low, potential Dublin leads lost</td>
+                            <td>High: Turns Clicks into Calls & Booked Roofing Jobs for You, David.</td>
+                        </tr>
+                        <tr>
+                            <td>Design</td>
+                            <td>Potentially text-heavy, hard to read, not showcasing expertise (e.g., Dry Ridge, UPVC) effectively.</td>
+                            <td>Modern & Trustworthy: Instills Confidence in Your Customers, Reflects Ajax Roofing's Quality. Clearly presents all your services.</td>
+                        </tr>
+                        <tr>
+                            <td>Mobile Experience</td>
+                            <td>Likely clunky, difficult to read on phones.</td>
+                            <td>Flawless: Looks Perfect & Converts on All Devices for Dublin users seeking your help.</td>
+                        </tr>
+                        <tr>
+                            <td>User Experience</td>
+                            <td>Information potentially buried, frustrating to find specifics (e.g., flat roof options, chimney work).</td>
+                            <td>Intuitive & Effortless: Guides Your Dublin Customers Straight to Action (e.g., "Request Free Estimate from David").</td>
+                        </tr>
+                        <tr>
+                            <td>Lead Capture</td>
+                            <td>Contact info present, but not optimized for easy action. No clear online forms.</td>
+                            <td>Strategic: Clear Calls-to-Action ("Call David at Ajax Roofing Now!") & Easy Forms on Every Page.</td>
+                        </tr>
+                        <tr>
+                            <td>Speed</td>
+                            <td>May be slow, leading to lost local visitors.</td>
+                            <td>Lightning-Fast: Keeps Your Dublin Users Engaged & Ready to Convert with You.</td>
+                        </tr>
+                        <tr>
+                            <td>SEO Foundation</td>
+                            <td>Likely minimal or ineffective for Dublin searches.</td>
+                            <td>Built-in & Localized: Helps You, David, Get Found by Dublin Customers searching for "roofing Coolmine" or "gutter repair Dun Laoghaire".</td>
+                        </tr>
+                        <tr>
+                            <td><strong>RESULT</strong></td>
+                            <td><strong>Losing you Dublin-based jobs & opportunities daily.</strong></td>
+                            <td><strong>Paying for itself & generating profit for you and Ajax Roofing quickly, David.</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="roi-calculator" class="roi-calculator-section">
+            <div class="container">
+                <h2><span class="emoji">💰</span> David: Calculate Your Return on Investment for Ajax Roofing in Under 60 Seconds!</h2>
+                <p>See how quickly a new, higher-converting website can pay for itself and start generating significant profit for your Dublin roofing business, David.</p>
+                <div class="roi-calculator">
+                    <div class="input-group">
+                        <label for="currentVisitors">Your Current Approx. Monthly Website Visitors (Estimate for Ajax Roofing):</label>
+                        <input type="number" id="currentVisitors" value="150">
+                    </div>
+                    <div class="input-group">
+                        <label for="oldConversionRate">Your Current (Old) Website Conversion Rate (% Estimate), David:</label>
+                        <input type="number" id="oldConversionRate" value="0.5" step="0.1">
+                        <span class="tooltip-text">Avg. % of visitors who contact you. For text-heavy sites, 0.5-1% is typical. Use 0.5% if unsure, David.</span>
+                    </div>
+                    <div class="input-group">
+                        <label for="newConversionRate">Our Typical New Roofing Website Conversion Rate (% for you, David):</label>
+                        <input type="number" id="newConversionRate" value="4" step="0.1">
+                        <span class="tooltip-text">Our websites average 3-5% conversion. Let's use 4% as a conservative estimate for you.</span>
+                    </div>
+                    <div class="input-group">
+                        <label for="avgRevenuePerJob">Your Average Revenue Per Job (€), David:</label>
+                        <input type="number" id="avgRevenuePerJob" value="450"> 
+                    </div>
+                    <div class="input-group">
+                        <label for="websiteCostDisplay">Cost of Your New Website, David:</label>
+                        <p>$<span id="websiteCost">500</span> (Discounted Offer)</p> 
+                    </div>
+                    <div class="output-group">
+                        <p>Additional Leads Per Month for You, David: <strong id="additionalLeads">--</strong></p>
+                        <p>Additional Monthly Revenue for You (€), David: <strong id="additionalRevenue">--</strong></p>
+                        <p class="payback-time">Time to Payback Your $500 Investment, David: <strong id="paybackTime">--</strong> Months!</p>
+                    </div>
+                    <div class="reinforcement-text">
+                         Imagine, David: An extra €<span id="calculatedMonthlyRevenueReinforcement">--</span> in your bank account, month after month. That's the power of a $500 website built to win more Dublin roofing jobs for you and Ajax Roofing.
+                    </div>
+                     <a href="#offer" class="btn btn-large" style="display: block; width: 100%; box-sizing: border-box; margin-top: 20px;">Yes David! I Want These Results – Claim My $250 Discount!</a>
+                </div>
+                <div style="max-width: 700px; margin: 40px auto 0 auto;">
+                    <h3 style="text-align:center;">David: Your 12-Month Revenue Projection for Ajax Roofing</h3>
+                    <canvas id="roiChart"></canvas>
+                    <div id="roiSummary12Months" class="reinforcement-text" style="margin-top:20px; font-weight:bold; font-size: 1.2em;"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="testimonials-section">
+            <div class="container">
+                <h2><span class="emoji">⭐</span> Don't Just Take Our Word For It: Hear From Trade Professionals Like You, David</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <img src="https://www.watersafe.org.uk/images/blog_images/for_blog_dave_turnbull.pagespeed.1644577283.jpg/rs-2560x10000a.jpg" alt="Mark P.">
+                        <blockquote>"Before this, we got maybe 3-4 web leads a week, if we were lucky. After FlowLogica launched our new site, we're hitting 10-12 consistently, and I've closed an extra €7,000 in jobs this past month alone! Best $500 I've ever spent on marketing."</blockquote>
+                        <cite>– Mark P., Owner, Precision Plumbing, (Similar Trade Pro)</cite>
+                    </div>
+                    <div class="testimonial-card">
+                        <img src="https://e-ga.com.au/cms/wp-content/uploads/2014/03/sarah-profile-img1.jpg" alt="Sarah L.">
+                        <blockquote>"Our old site was embarrassing, especially on phones. Now, it looks incredibly professional, and customers are actually using the 'Request a Quote' form! We've seen a 150% increase in online quote requests. The team at FlowLogica made it so easy."</blockquote>
+                        <cite>– Sarah L., Manager, Bright Spark Electricians, (Similar Trade Pro)</cite>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="offer" class="offer-section">
+            <div class="container">
+                <h2><span class="emoji">🏷️</span> Limited-Time Offer for You, David: Get Your Professional, Dublin Lead-Generating Website for Ajax Roofing – Normally $750, Now Just $500!</h2>
+                <p style="text-align:center; font-weight:bold; font-size: 1.2em; color: #28a745;">David, You Save $250 Instantly!</p>
+                <div class="countdown-timer" id="countdownTimer">23:59:59</div>
+                <p class="countdown-timer-label">David, don't miss out on turning your website into Ajax Roofing's best salesperson in Dublin!</p>
+                
+                <div class="package-details">
+                    <h3>What You Get, David (The 'No-Brainer' $500 Package):</h3>
+                    <ul>
+                        <li><span class="emoji">✅</span> Professionally Designed & Customised Roofing Website (Showcasing your expertise in New Roofs, Flat Roofs, Repairs, Dry Ridge, UPVC & more – Value $1200+)</li>
+                        <li><span class="emoji">✅</span> Mobile-First Design (Flawless on ALL devices, where most of your Dublin customers search!)</li>
+                        <li><span class="emoji">✅</span> Conversion-Focused Layout & Copywriting Cues (Engineered to turn your Dublin visitors into leads)</li>
+                        <li><span class="emoji">✅</span> Essential On-Page SEO Setup (Helps local Dublin customers find YOU, David, for services like "roofing Dun Laoghaire" or "Ajax Roofing Coolmine")</li>
+                        <li><span class="emoji">✅</span> Prominent Click-to-Call Buttons & Easy-to-Use 'Request a Free Estimate' Forms (For instant leads direct to you)</li>
+                        <li><span class="emoji">✅</span> Lightning-Fast Loading Speeds (Keeps your visitors engaged, Google loves it!)</li>
+                        <li><span class="emoji">✅</span> Secure (SSL Certificate Included) (Builds trust and is essential for SEO)</li>
+                        <li><span class="emoji">✅</span> Our 'Book More Dublin Jobs' 30-Day Satisfaction Guarantee! (100% Risk-Free for you, David – Details Below)</li>
+                    </ul>
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-large" id="claimOfferBtn">YES David! I Want My $500 Lead-Generating Website & $250 Savings Now!</a>
+                    <a href="#" class="secondary-cta" id="scheduleCallLink">Have Questions, David? Schedule Your Free 15-Min Strategy Call</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="guarantee" class="guarantee-section">
+            <div class="container">
+                <h2><span class="emoji">✅</span> David, Your $500 Investment is Protected by Our "Love It or We Fix It OR Refund It" Guarantee!</h2>
+                <p>We're so confident that your new $500 website will be a powerful tool for growing your business, Ajax Roofing, in Dublin that we offer this simple, no-nonsense guarantee for you, David:</p>
+                <p><strong>Launch Your New Website:</strong> Get your professionally designed, high-converting website live.<br>
+                <strong>Experience the Difference for 30 Days:</strong> See how it performs, how it looks, and how much more professional you and Ajax Roofing appear online.<br>
+                <strong>Your Satisfaction is Key, David:</strong> If, after 30 days, you don't genuinely feel your new website is a significant upgrade, looks more professional, and is far better positioned to generate leads in Dublin than your old site, we will:</p>
+                <div class="options">
+                    <div class="option">
+                        <h4>Option A: We Fix It.</h4> 
+                        <p>We'll work with you, David, on one major round of revisions to address your specific concerns, at no extra charge.</p>
+                    </div>
+                    <div class="option">
+                        <h4>OR Option B: We Refund It.</h4>
+                        <p>If you're still not satisfied after the revisions (or prefer not to revise), David, we will refund your $500 investment in full. No hard feelings, no hoops to jump through.</p>
+                    </div>
+                </div>
+                <p>David, you have nothing to lose and a flood of new Dublin customers to gain for Ajax Roofing.</p>
+                <div class="final-cta">
+                    <a href="#" class="btn btn-large" id="claimRiskFreeOfferBtn">David, Claim Your Risk-Free $500 Website Now & Save $250!</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-logo">
+                <img src="http://flowlogica.com/wp-content/uploads/2025/05/logo.com-flowlogica-logo-2.png" alt="FlowLogica Logo" class="footer-logo-img">
+            </div>
+            
+            <div class="social-links">
+            </div>
+            
+            <p>Copyright © <span id="currentYear"></span> FlowLogica. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll for navigation links
+            document.querySelectorAll('header nav a[href^="#"], .hero-section .btn[href^="#"], .roi-calculator .btn[href^="#"], .offer-section .btn[href^="#"], .guarantee-section .btn[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // ROI Calculator Logic
+            const currentVisitorsInput = document.getElementById('currentVisitors');
+            const oldConversionRateInput = document.getElementById('oldConversionRate');
+            const newConversionRateInput = document.getElementById('newConversionRate');
+            const avgRevenuePerJobInput = document.getElementById('avgRevenuePerJob');
+            const websiteCostSpan = document.getElementById('websiteCost');
+
+            const additionalLeadsSpan = document.getElementById('additionalLeads');
+            const additionalRevenueSpan = document.getElementById('additionalRevenue');
+            const paybackTimeSpan = document.getElementById('paybackTime');
+            const calculatedMonthlyRevenueReinforcementSpan = document.getElementById('calculatedMonthlyRevenueReinforcement');
+            const roiSummary12MonthsDiv = document.getElementById('roiSummary12Months');
+            const roiChartCanvas = document.getElementById('roiChart');
+            let roiChart = null; 
+
+            function calculateROI() {
+                const visitors = parseFloat(currentVisitorsInput.value) || 0;
+                const oldRate = parseFloat(oldConversionRateInput.value) / 100 || 0;
+                const newRate = parseFloat(newConversionRateInput.value) / 100 || 0;
+                const avgRevenue = parseFloat(avgRevenuePerJobInput.value) || 0;
+                const cost = parseFloat(websiteCostSpan.textContent) || 500; 
+
+                const oldLeadsPerMonth = visitors * oldRate;
+                const newLeadsPerMonth = visitors * newRate;
+                const additionalLeads = newLeadsPerMonth - oldLeadsPerMonth;
+                
+                const oldRevenuePerMonth = oldLeadsPerMonth * avgRevenue;
+                const newRevenuePerMonth = newLeadsPerMonth * avgRevenue;
+                const additionalRevenue = newRevenuePerMonth - oldRevenuePerMonth; 
+                
+                let paybackMonths = 0;
+                if (additionalRevenue > 0) {
+                    paybackMonths = cost / additionalRevenue; 
+                }
+
+                additionalLeadsSpan.textContent = additionalLeads.toFixed(1);
+                additionalRevenueSpan.textContent = additionalRevenue.toLocaleString('en-IE', { style: 'currency', currency: 'EUR', minimumFractionDigits: 2, maximumFractionDigits: 2 }); 
+                calculatedMonthlyRevenueReinforcementSpan.textContent = additionalRevenue.toLocaleString('en-IE', {minimumFractionDigits: 2, maximumFractionDigits: 2}); 
+
+                if (additionalRevenue <= 0) {
+                    paybackTimeSpan.textContent = "N/A (Needs positive additional revenue)";
+                } else if (paybackMonths === Infinity || paybackMonths <= 0 || paybackMonths < (1/30)) { 
+                     paybackTimeSpan.textContent = "Instantly! (Pays back almost immediately)";
+                } else {
+                    paybackTimeSpan.textContent = paybackMonths.toFixed(1);
+                }
+
+                let cumulativeOldRevenue = 0;
+                let cumulativeNewRevenue = 0;
+                const oldMonthlyData = [];
+                const newMonthlyData = [];
+                const chartLabels = [];
+
+                for (let i = 1; i <= 12; i++) {
+                    chartLabels.push(`Month ${i}`);
+                    cumulativeOldRevenue += oldRevenuePerMonth;
+                    cumulativeNewRevenue += newRevenuePerMonth;
+                    oldMonthlyData.push(cumulativeOldRevenue.toFixed(2));
+                    newMonthlyData.push(cumulativeNewRevenue.toFixed(2));
+                }
+
+                const totalDifference12Months = cumulativeNewRevenue - cumulativeOldRevenue;
+                roiSummary12MonthsDiv.innerHTML = `After 12 months, David, your new website is projected to generate <strong style="color: #28a745;">${totalDifference12Months.toLocaleString('en-IE', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 })}</strong> more revenue for Ajax Roofing.`;
+
+
+                if (roiChart) {
+                    roiChart.destroy(); 
+                }
+                roiChart = new Chart(roiChartCanvas, {
+                    type: 'line',
+                    data: {
+                        labels: chartLabels,
+                        datasets: [
+                            {
+                                label: 'Your Current Online Presence Cumulative Revenue (€), David',
+                                data: oldMonthlyData,
+                                borderColor: '#dc3545',
+                                backgroundColor: 'rgba(220, 53, 69, 0.1)',
+                                fill: true,
+                                tension: 0.1
+                            },
+                            {
+                                label: 'Your New Website Cumulative Revenue (€), David',
+                                data: newMonthlyData,
+                                borderColor: '#28a745',
+                                backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                                fill: true,
+                                tension: 0.1
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value, index, values) {
+                                        return '€' + value.toLocaleString('en-IE');
+                                    }
+                                }
+                            }
+                        },
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.y !== null) {
+                                            label += new Intl.NumberFormat('en-IE', { style: 'currency', currency: 'EUR' }).format(context.parsed.y);
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            [currentVisitorsInput, oldConversionRateInput, newConversionRateInput, avgRevenuePerJobInput].forEach(input => {
+                input.addEventListener('input', calculateROI);
+            });
+            calculateROI(); 
+
+            const countdownTimerDisplay = document.getElementById('countdownTimer');
+            let timeInSeconds = 24 * 60 * 60 -1; 
+
+            function updateCountdown() {
+                if (!countdownTimerDisplay) return;
+                const hours = Math.floor(timeInSeconds / 3600);
+                const minutes = Math.floor((timeInSeconds % 3600) / 60);
+                const seconds = timeInSeconds % 60;
+
+                countdownTimerDisplay.textContent = 
+                    `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+                if (timeInSeconds > 0) {
+                    timeInSeconds--;
+                } else {
+                    countdownTimerDisplay.textContent = "Offer Expired!";
+                    document.getElementById('claimOfferBtn').disabled = true;
+                    document.getElementById('claimRiskFreeOfferBtn').disabled = true;
+                }
+            }
+            
+            if (countdownTimerDisplay) {
+                 setInterval(updateCountdown, 1000);
+                 updateCountdown(); 
+            }
+
+            const currentYearSpan = document.getElementById('currentYear');
+            if(currentYearSpan) {
+                currentYearSpan.textContent = new Date().getFullYear();
+            }
+
+            document.getElementById('claimOfferBtn')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Claim Offer button clicked for David! Implement payment/order form next.');
+            });
+            document.getElementById('scheduleCallLink')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Schedule Call link clicked for David! Integrate Calendly or similar.');
+            });
+            document.getElementById('claimRiskFreeOfferBtn')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Claim Risk-Free Offer button clicked for David! Implement payment/order form next.');
+            });
+        });
+    </script>
+
+</body>
+</html>
