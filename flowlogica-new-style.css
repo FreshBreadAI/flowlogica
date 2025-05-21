@@ -1,0 +1,429 @@
+/* new.css */
+
+/* ----------------------------- */
+/* --- CSS Custom Properties (Variables) --- */
+/* ----------------------------- */
+:root {
+    --font-primary: 'Inter', sans-serif;
+    --font-secondary: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Fallback */
+
+    /* Base Colors */
+    --color-text-primary: #1a202c;       /* Dark Gray/Black for main text */
+    --color-text-secondary: #4a5568;   /* Medium Gray for secondary text */
+    --color-text-light: #ffffff;         /* White for text on dark backgrounds */
+    --color-text-accent: #18B557;       /* Brand color for links or highlights */
+    --color-text-error: #e53e3e;        /* Red for error messages */
+
+    --color-background-body: #f7fafc;  /* Very Light Gray for page background */
+    --color-background-card: #ffffff;   /* White for card backgrounds */
+    --color-background-button: #18B557; /* Brand color for buttons */
+    --color-background-input: #ffffff;  /* White for input fields */
+    --color-background-section-accent-start: #fee2f8; /* Soft pink for accent gradient */
+    --color-background-section-accent-end: #fecba5;   /* Soft peach for accent gradient */
+
+    --color-border: #e2e8f0;           /* Light Gray for borders */
+    --color-border-input-focus: #18B557; /* Brand color for focused input border */
+
+    /* Shadows - more subtle and layered */
+    --shadow-small: 0 2px 4px -1px rgba(0,0,0,0.06), 0 1px 2px -1px rgba(0,0,0,0.04);
+    --shadow-medium: 0 6px 12px -2px rgba(0,0,0,0.08), 0 3px 7px -3px rgba(0,0,0,0.05);
+    --shadow-large: 0 10px 20px -5px rgba(0,0,0,0.1), 0 6px 12px -6px rgba(0,0,0,0.07);
+    --shadow-card-hover: 0 12px 24px -4px rgba(0, 0, 0, 0.1), 0 8px 16px -4px rgba(0, 0, 0, 0.08);
+
+    /* Borders & Radii */
+    --border-radius-small: 4px;
+    --border-radius-medium: 8px;
+    --border-radius-large: 12px;
+
+    /* Spacing */
+    --spacing-unit: 8px; /* Base unit for margins and paddings */
+    --max-width-container: 850px;
+
+    /* FlowLogica Specific Brand Color */
+    --color-brand-primary: #18B557; /* FlowLogica Green */
+    --color-brand-primary-hover: #14a34e; /* Darker Green */
+    --color-brand-primary-rgb: 24, 181, 87; /* For RGBA glow */
+}
+
+/* ----------------------------- */
+/* --- Global Resets & Defaults --- */
+/* ----------------------------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 100%; /* Typically 16px */
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    background-color: var(--color-background-body);
+    font-size: 1rem; /* 16px */
+}
+
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+
+/* ----------------------------- */
+/* --- Typography --- */
+/* ----------------------------- */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary);
+    color: var(--color-text-primary);
+    font-weight: 700; /* Bold for headings */
+    line-height: 1.2;
+    margin-bottom: calc(var(--spacing-unit) * 2); /* 16px */
+}
+
+h1 {
+    font-size: 2.5rem; /* 40px */
+    letter-spacing: -0.5px;
+}
+
+h2 {
+    font-size: 2rem; /* 32px */
+}
+
+h3 {
+    font-size: 1.5rem; /* 24px */
+}
+
+h4 {
+    font-size: 1.25rem; /* 20px */
+}
+
+p {
+    margin-bottom: calc(var(--spacing-unit) * 2); /* 16px */
+    font-size: 1rem; /* 16px */
+}
+
+a {
+    color: var(--color-text-accent);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+    color: var(--color-text-accent);
+}
+
+small {
+    font-size: 0.875rem; /* 14px */
+}
+
+/* ----------------------------- */
+/* --- Layout & Containers --- */
+/* ----------------------------- */
+.container {
+    width: 100%;
+    max-width: var(--max-width-container);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: calc(var(--spacing-unit) * 2); /* 16px */
+    padding-right: calc(var(--spacing-unit) * 2); /* 16px */
+}
+
+.section {
+    padding-top: calc(var(--spacing-unit) * 5.2);    /* Reduced from * 8 (64px to ~41.6px) */
+    padding-bottom: calc(var(--spacing-unit) * 5.2); /* Reduced from * 8 (64px to ~41.6px) */
+}
+
+.section-hero {
+    padding-top: calc(var(--spacing-unit) * 6.5);   /* Reduced from * 10 (80px to 52px) */
+    padding-bottom: calc(var(--spacing-unit) * 6.5); /* Reduced from * 10 (80px to 52px) */
+    text-align: center;
+}
+
+.section-hero.gradient-bg {
+    background-image: linear-gradient(to bottom right, var(--color-background-section-accent-start), var(--color-background-section-accent-end));
+}
+
+.flex-container {
+    display: flex;
+    gap: calc(var(--spacing-unit) * 3); /* 24px */
+}
+
+.flex-container.wrap {
+    flex-wrap: wrap;
+}
+
+.flex-item {
+    flex: 1; /* Distribute space equally */
+}
+
+.grid-container-3col {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: calc(var(--spacing-unit) * 4); /* 32px */
+}
+
+/* ----------------------------- */
+/* --- UI Components --- */
+/* ----------------------------- */
+
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    font-family: var(--font-primary);
+    font-weight: 600;
+    font-size: 0.9375rem; /* 15px */
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3); /* 12px 24px */
+    border-radius: var(--border-radius-medium);
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    line-height: 1.5; /* Ensure text is centered vertically */
+}
+
+.btn-primary {
+    background-color: var(--color-background-button);
+    color: var(--color-text-light);
+    border-color: var(--color-background-button);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-brand-primary-hover);
+    border-color: var(--color-brand-primary-hover);
+    color: var(--color-text-light); /* Ensure text color remains for contrast */
+}
+
+.btn-secondary {
+    background-color: var(--color-background-button-secondary);
+    color: var(--color-text-primary);
+    border-color: var(--color-background-button-secondary);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-background-button-secondary-hover);
+    border-color: var(--color-background-button-secondary-hover);
+    color: var(--color-text-primary);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border);
+}
+.btn-outline:hover {
+    background-color: var(--color-background-button-secondary); /* Light fill on hover */
+    color: var(--color-text-primary);
+}
+
+.btn-link {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--color-text-accent);
+    padding-left: 0;
+    padding-right: 0;
+}
+.btn-link:hover {
+    color: var(--color-text-accent);
+    text-decoration: underline;
+}
+
+/* --- Cards --- */
+.card {
+    background-color: var(--color-background-card);
+    border-radius: var(--border-radius-large); /* 12px */
+    box-shadow: var(--shadow-medium);
+    padding: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 5); /* 32px 40px */
+    margin-bottom: calc(var(--spacing-unit) * 5); /* 40px */
+    opacity: 1; /* TEMP DEBUG - Was 0 for animation */
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out, box-shadow 0.3s ease-out;
+    will-change: opacity, transform, box-shadow;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-card-hover);
+}
+
+.card.first-card {
+    margin-top: 0; /* Remove top margin if it's the very first card in a direct container */
+}
+
+.card.last-card {
+    margin-bottom: 0; /* Remove bottom margin if it's the very last card in a direct container */
+}
+
+.card h1,
+.card h2,
+.card h3,
+.card h4,
+.card h5,
+.card h6 {
+    font-size: 1.5rem; /* 24px */
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: calc(var(--spacing-unit) * 1.5); /* 12px */
+}
+
+.card .hero-image {
+    max-width: 700px; /* Or specific size */
+    margin: calc(var(--spacing-unit) * 3) auto calc(var(--spacing-unit) * 4) auto; /* 24px auto 32px auto */
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--shadow-large);
+}
+
+/* --- Bullet Lists --- */
+.bullet-list {
+    list-style: none;
+    padding-left: 0; /* Reset default padding */
+    margin-top: calc(var(--spacing-unit) * 2.5); /* 20px */
+    margin-bottom: calc(var(--spacing-unit) * 2.5); /* 20px */
+    text-align: left; /* Align list items left by default */
+}
+
+/* Specific style for hero bullet list to keep it centered and constrained */
+.bullet-list--hero {
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bullet-list li {
+    position: relative;
+    padding-left: calc(var(--spacing-unit) * 3.5); /* Space for icon + a bit more */
+    margin-bottom: calc(var(--spacing-unit) * 1.5); /* 12px */
+    font-size: 1rem; /* 16px, was 0.9375rem */
+    line-height: 1.6;
+}
+
+.bullet-list li::before {
+    content: '\2713'; /* Checkmark */
+    color: var(--color-brand-primary);
+    font-weight: bold;
+    font-size: 1.1em; /* Slightly larger checkmark */
+    position: absolute;
+    left: var(--spacing-unit); /* 8px */
+    top: -2px;
+}
+
+/* --- Call to Action Buttons --- */
+.cta-button {
+    display: inline-block;
+    background-color: var(--color-brand-primary);
+    color: var(--color-text-light); /* White text on brand color */
+    padding: calc(var(--spacing-unit) * 1.75) calc(var(--spacing-unit) * 4); /* 14px 32px, slightly taller */
+    border: none; /* Remove border if any */
+    border-radius: var(--border-radius-medium); /* 8px */
+    font-weight: 600;
+    font-size: 1.05rem; /* 17px, slightly larger */
+    text-transform: none; /* Not uppercase, normal sentence case */
+    text-align: center;
+    text-decoration: none; /* Ensure links styled as buttons don't have underlines */
+    box-shadow: 0 4px 18px rgba(var(--color-brand-primary-rgb), 0.25); /* Base shadow for glow - Increased from 12px */
+    transition: background-color 0.2s ease-in-out, transform 0.15s ease-in-out, box-shadow 0.2s ease-in-out;
+    margin-top: calc(var(--spacing-unit) * 2.5); /* 20px */
+    margin-bottom: calc(var(--spacing-unit) * 1.5); /* 12px */
+    cursor: pointer;
+    animation: ctaButtonGlow 2.5s infinite ease-in-out;
+}
+
+@keyframes ctaButtonGlow {
+    0%, 100% {
+        /* Increased blur from 15px to 23px and 8px to 12px */
+        box-shadow: 0 4px 23px rgba(var(--color-brand-primary-rgb), 0.25), 0 0 12px rgba(var(--color-brand-primary-rgb), 0.15);
+    }
+    50% {
+        /* Increased blur from 22px to 33px and 18px to 27px */
+        box-shadow: 0 6px 33px rgba(var(--color-brand-primary-rgb), 0.35), 0 0 27px rgba(var(--color-brand-primary-rgb), 0.25);
+    }
+}
+
+.cta-button:hover {
+    background-color: var(--color-brand-primary-hover);
+    color: var(--color-text-light);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 30px rgba(var(--color-brand-primary-rgb), 0.35); /* Increased blur from 20px to 30px */
+}
+
+/* --- Hero Gradient Background --- */
+.hero-gradient-background {
+    background-image: linear-gradient(160deg, var(--color-background-section-accent-start) 0%, var(--color-background-section-accent-end) 100%);
+    padding-top: calc(var(--spacing-unit) * 10);  /* Generous padding for hero area */
+    padding-bottom: calc(var(--spacing-unit) * 10); /* Generous padding for hero area */
+    margin-bottom: calc(var(--spacing-unit) * 5); /* Space between hero and next container */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero-gradient-background {
+        padding-top: calc(var(--spacing-unit) * 8); /* Adjusted for tablet */
+        padding-bottom: calc(var(--spacing-unit) * 8);
+        margin-bottom: calc(var(--spacing-unit) * 4);
+    }
+    .card h1 {
+        font-size: 2.2rem;
+    }
+    .hero-sub-title {
+        font-size: 1.1rem;
+    }
+    .hero-image {
+        max-width: 90%;
+    }
+    .form-row {
+        flex-direction: column;
+        gap: 0; /* Remove gap if stacking, groups will have margin-bottom */
+    }
+    .form-row .form-group {
+        margin-bottom: calc(var(--spacing-unit) * 2); /* Add back margin for stacked items */
+    }
+    .three-step-process {
+        flex-direction: column;
+    }
+    .testimonial {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --spacing-unit: 7px; /* Slightly reduce spacing unit on small screens */
+    }
+    .container {
+        padding-left: var(--spacing-unit); /* Reduced for mobile */
+        padding-right: var(--spacing-unit); /* Reduced for mobile */
+    }
+    .hero-gradient-background {
+        padding-top: calc(var(--spacing-unit) * 6); /* Adjusted for mobile */
+        padding-bottom: calc(var(--spacing-unit) * 6);
+        margin-bottom: calc(var(--spacing-unit) * 3);
+    }
+    .card {
+        padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 3); /* 21px */
+    }
+    .card h1 {
+        font-size: 1.8rem;
+    }
+    .cta-button {
+        font-size: 1rem; /* 16px */
+        padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3); /* 10.5px 21px */
+    }
+    .solution-icon {
+        font-size: 1.5rem;
+    }
+    .solution-text h3 {
+        font-size: 1.1rem;
+    }
+    .process-steps li {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-unit);
+    }
+}
