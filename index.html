@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,639 +6,661 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Free LinkedIn Ad Page Audit - FlowLogica</title>
     <link rel="icon" href="http://flowlogica.com/wp-content/uploads/2025/05/logo.com-flowlogica-logo-2.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --lp-black: #111111;
-            --lp-dark-red: #453030;
-            --lp-white: #FFFFFF;
-            --lp-green: #18B557;
-            --lp-beige: #EBE1D6;
-            --lp-bg: #494949;
-            --lp-primary: var(--lp-green);
-            --lp-secondary: var(--lp-dark-red);
-            --lp-accent: #14a34e;
-            --lp-body-bg: #fff;
-            --lp-container-bg: var(--lp-white);
-            --lp-text-light: var(--lp-black);
-            --lp-text-dark: var(--lp-beige);
-            --lp-border-light: #e0e0e0;
+            --primary-color: #18B557; /* FlowLogica Green */
+            --primary-rgb: 24, 181, 87;
+            --text-dark: #212529;
+            --text-light: #495057;
+            --background-light: #F8F9FA;
+            --card-background: #FFFFFF;
+            --border-color: #E0E0E0;
+            --shadow-color: rgba(0, 0, 0, 0.08);
+            --font-family: 'Inter', sans-serif;
         }
-        body.lp-embed {
-            font-family: 'Arial', sans-serif;
-            background-color: var(--lp-body-bg);
-            color: var(--lp-text-light);
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--background-light);
+            color: var(--text-dark);
             margin: 0;
             padding: 0;
+            line-height: 1.6;
             display: flex;
             flex-direction: column;
             align-items: center;
+            overflow-x: hidden; /* Prevent horizontal scroll from animations */
         }
-        .lp-container {
+
+        .container {
             width: 100%;
-            max-width: 800px;
-            /* background removed for transparency */
+            max-width: 850px;
             margin: 0 auto;
-            padding: 24px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.07);
+            padding: 20px;
+            box-sizing: border-box;
         }
-        .lp-section {
-            padding: 40px 0 32px 0;
-            border-bottom: 1px solid var(--lp-border-light);
+
+        .card {
+            background-color: var(--card-background);
+            border-radius: 12px;
+            box-shadow: 0 6px 20px var(--shadow-color);
+            padding: 30px 40px;
+            margin-bottom: 35px;
+            opacity: 0; /* Initial state for animation */
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+            will-change: opacity, transform; 
         }
-        .lp-section:last-child {
-            border-bottom: none;
+
+        .card.slide-in-left {
+            transform: translateX(-80px);
         }
-        .lp-hero-pre {
-            font-size: 0.95em;
-            color: var(--lp-secondary);
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+
+        .card.slide-in-right {
+            transform: translateX(80px);
         }
-        .lp-hero-title {
-            font-size: 3.3em;
+
+        .card.is-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .card:last-child {
+            margin-bottom: 20px;
+        }
+
+        h1, h2, h3 {
+            color: var(--text-dark);
+            margin-top: 0;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 2.8em;
             font-weight: 900;
-            color: var(--lp-primary);
-            margin-bottom: 0.5em;
-            line-height: 1.08;
             letter-spacing: -1px;
-            word-break: break-word;
+            line-height: 1.1;
+            margin-bottom: 0.4em;
+            color: var(--primary-color);
         }
-        .lp-hero-sub {
-            font-size: 1.2em;
-            color: var(--lp-text-light);
-            margin-bottom: 16px;
-            max-width: 600px;
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 0.8em;
             text-align: center;
         }
-        .lp-hero-img {
+
+        h3 {
+            font-size: 1.3em;
+            margin-bottom: 0.5em;
+        }
+
+        p {
+            margin-bottom: 1em;
+            color: var(--text-light);
+            font-size: 1.05em;
+        }
+        
+        .hero-pre-title {
+            font-size: 1em;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
+
+        .hero-sub-title {
+            font-size: 1.25em;
+            color: var(--text-light);
+            margin-bottom: 1.5em;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .centered-text {
+            text-align: center;
+        }
+
+        .hero-image {
             max-width: 100%;
             height: auto;
-            margin: 24px 0 40px 0;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.09);
-        }
-        .lp-hero-bullets {
-            margin: 20px 0 16px 0;
-            max-width: 450px;
-            text-align: left !important;
-            list-style: none;
-            padding: 0;
-            width: auto;
-        }
-        .lp-hero-bullets li {
-            position: relative;
-            padding-left: 1.5em;
-            margin-bottom: 0.7em;
-            font-weight: 500;
-            text-align: left !important;
-            width: auto;
+            margin: 20px auto 30px auto;
             display: block;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
         }
-        .lp-hero-bullets li::before {
-            content: '✓';
-            color: var(--lp-primary);
+
+        .bullet-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 20px 0;
+        }
+
+        .bullet-list li {
+            position: relative;
+            padding-left: 2em;
+            margin-bottom: 0.8em;
+            font-size: 1.05em;
+        }
+
+        .bullet-list li::before {
+            content: '✓'; /* Checkmark */
+            color: var(--primary-color);
             font-weight: bold;
             position: absolute;
             left: 0;
-            top: 0.1em;
-            font-size: 1em;
+            font-size: 1.2em;
+            top: -2px;
         }
-        .lp-cta-btn {
+
+        .cta-button {
             display: inline-block;
-            background: var(--lp-primary);
-            color: var(--lp-white);
-            padding: 15px 32px;
-            font-weight: bold;
-            font-size: 1.13em;
-            border-radius: 5px;
+            background-color: var(--primary-color);
+            color: var(--card-background);
+            padding: 14px 30px;
+            font-size: 1.1em;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 8px;
             border: none;
             cursor: pointer;
-            text-decoration: none;
-            transition: background 0.2s;
+            transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            margin-top: 15px;
+            animation: subtleGlow 3s infinite ease-in-out;
+            box-shadow: 0 4px 15px rgba(var(--primary-rgb), 0.2);
+        }
+
+        .cta-button:hover {
+            background-color: #14a34e; /* Darker shade of primary */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(var(--primary-rgb), 0.4);
+        }
+
+        @keyframes subtleGlow {
+            0%, 100% {
+                box-shadow: 0 4px 15px rgba(var(--primary-rgb), 0.2);
+            }
+            50% {
+                box-shadow: 0 6px 25px rgba(var(--primary-rgb), 0.35);
+            }
+        }
+
+        .cta-micro-text {
+            font-size: 0.9em;
+            color: var(--text-light);
             margin-top: 10px;
-            width: auto;
-            max-width: 100%;
-            text-align: center;
-            white-space: normal;
-            box-sizing: border-box;
-        }
-        .lp-cta-btn:hover {
-            background: var(--lp-accent);
-        }
-        .lp-cta-micro {
-            font-size: 0.87em;
-            color: #666;
-            margin-top: 8px;
             display: block;
         }
-        .lp-centered {
-    text-align: center;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-}
-.lp-section.lp-centered > * {
-    text-align: center !important;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    width: 100%;
-    max-width: 100%;
-}
-.lp-section.lp-centered {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-}
-        .lp-three-step {
+
+        .solution-point {
+            margin-bottom: 2em;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .solution-icon {
+            font-size: 1.8em;
+            margin-right: 15px;
+            color: var(--primary-color);
+            line-height: 1;
+        }
+
+        .solution-text h3 {
+            margin-top: 0;
+        }
+
+        .three-step-process {
             display: flex;
             justify-content: space-around;
-            gap: 20px;
-            flex-wrap: wrap;
+            gap: 25px;
             margin: 30px 0;
-        }
-        .lp-three-step-item {
-            flex: 1;
-            min-width: 160px;
-            text-align: center;
-        }
-        .lp-solution-point {
-            margin-bottom: 1.5em;
-        }
-        .lp-solution-point h3 {
-            display: flex;
-            align-items: center;
-            font-size: 1.15em;
-            color: var(--lp-secondary);
-            flex-wrap: nowrap;
-        }
-        .lp-solution-icon {
-            font-size: 1.4em;
-            margin-right: 10px;
-            color: var(--lp-primary);
-            white-space: nowrap;
-            display: inline-block;
-        }
-        .lp-solution-point p {
-            margin-left: 35px;
-            color: var(--lp-text-light);
-        }
-        .lp-logos {
-            display: flex;
-            justify-content: center;
-            align-items: center;
             flex-wrap: wrap;
-            gap: 18px;
-            margin: 18px 0 10px 0;
         }
-        .lp-logo-img {
-    max-height: 180px;
-    max-width: 440px;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    filter: grayscale(100%);
-    opacity: 0.8;
-    transition: filter 0.3s, opacity 0.3s;
-}
-        .lp-logo-img:hover {
-            filter: grayscale(0%);
-            opacity: 1;
+
+        .step-item {
+            flex: 1;
+            min-width: 220px;
+            text-align: center;
+            padding: 15px;
         }
-        .lp-testimonial {
-            background: var(--lp-beige);
-            padding: 20px;
-            border-radius: 5px;
-            margin: 20px 0;
-            border-left: 5px solid var(--lp-primary);
-            color: var(--lp-text-light);
+
+        .step-item .emoji {
+            font-size: 2.5em;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .step-item strong {
+            font-size: 1.15em;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .logos-container {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .client-logo-banner {
+            max-width: 100%;
+            height: auto;
+            filter: grayscale(30%);
+            opacity: 0.9;
+        }
+
+        .testimonial {
+            background-color: #F0F9F4; /* Light green tint */
+            padding: 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border-left: 5px solid var(--primary-color);
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 20px;
         }
-        .lp-testimonial blockquote {
+
+        .testimonial-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+        }
+
+        .testimonial blockquote {
             font-style: italic;
-            margin-bottom: 8px;
+            margin: 0 0 10px 0;
+            font-size: 1.05em;
         }
-        .lp-testimonial cite {
-            font-weight: bold;
-            display: block;
-            color: var(--lp-secondary);
-        }
-        .lp-testimonial-img {
-            width: 60px;
-            height: 60px;
-            border-radius: 30px;
-            margin-right: 15px;
-            object-fit: cover; /* Ensures image covers the area */
-            border: 2px solid var(--lp-primary);
+
+        .testimonial cite {
+            font-weight: 600;
+            color: var(--text-dark);
         }
 
         /* Form Styles */
-        .lp-form {
-            max-width: 600px;
-            margin: 30px auto;
-            padding: 25px;
-            background: #f9f9f9; /* Light grey background for the form */
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        .lp-form-row {
-            display: flex;
-            gap: 20px; /* Increased gap for better spacing */
-            margin-bottom: 20px; /* Increased margin */
-        }
-        .lp-form-group {
-            flex: 1; /* Each group takes equal space in a row */
-            /* Removed margin-bottom as it's now on lp-form-row or individual groups if not in a row */
-        }
-        .lp-form-group:not(:last-child) {
-             margin-bottom: 20px; /* Add margin to all but the last group if they are stacked */
-        }
-        .lp-form-row .lp-form-group {
-            margin-bottom: 0; /* No bottom margin for groups within a row */
+        .lead-form {
+            margin-top: 20px;
         }
 
-        .lp-form-group label {
-            display: block;
-            margin-bottom: 8px; /* Increased space below label */
-            font-weight: 500;
-            color: var(--lp-secondary);
-            font-size: 0.95em;
+        .form-group {
+            margin-bottom: 20px;
         }
-        .lp-form-group input[type="text"],
-        .lp-form-group input[type="email"] {
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+            color: var(--text-dark);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"] {
             width: 100%;
-            padding: 12px 15px; /* Adjusted padding */
-            border: 1px solid var(--lp-border-light);
-            border-radius: 5px; /* Slightly more rounded corners */
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
             font-size: 1em;
             box-sizing: border-box;
             transition: border-color 0.2s, box-shadow 0.2s;
         }
-        .lp-form-group input[type="text"]:focus,
-        .lp-form-group input[type="email"]:focus {
-            border-color: var(--lp-primary);
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus {
+            border-color: var(--primary-color);
             outline: none;
-            box-shadow: 0 0 0 2px rgba(24, 181, 87, 0.2); /* Subtle focus ring */
+            box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.15);
         }
-        .lp-form-submit {
-            text-align: center;
-            margin-top: 25px; /* Increased top margin */
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
         }
-        .lp-form-success {
-            text-align: center;
-            padding: 20px;
-            background-color: #e6ffed; /* Lighter green for success */
-            border: 1px solid var(--lp-primary);
-            border-radius: 5px;
-            color: var(--lp-black);
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .form-submit-button {
+            width: 100%;
+        }
+        
+        .form-message {
+            padding: 15px;
+            border-radius: 6px;
             margin-top: 20px;
+            text-align: center;
+            font-size: 1em;
         }
-        .lp-form-success h3 {
-            margin-top: 0;
-            margin-bottom: 10px;
+        .form-success {
+            background-color: #e6ffed;
+            border: 1px solid var(--primary-color);
+            color: #006421;
+        }
+        .form-error {
+            background-color: #ffe6e6;
+            border: 1px solid #cc0000;
+            color: #990000;
         }
 
         @media (max-width: 768px) {
-    .lp-container { padding: 14px; }
-    .lp-hero-title { font-size: 2.2em; }
-    .lp-section { padding: 28px 0 22px 0; }
-    .lp-cta-btn { padding: 12px 20px; font-size: 1em; }
-}
+            h1 { font-size: 2.2em; }
+            h2 { font-size: 1.7em; }
+            .card { padding: 25px; margin-bottom: 25px; }
+            .hero-sub-title { font-size: 1.1em; }
+            .solution-point { flex-direction: column; align-items: center; text-align: center; }
+            .solution-icon { margin-right: 0; margin-bottom: 10px; }
+            .testimonial { flex-direction: column; text-align: center; }
+            .testimonial-img { margin-right: 0; margin-bottom: 15px; }
+            .form-row { flex-direction: column; gap: 0; }
+        }
 
         @media (max-width: 480px) {
-    body.lp-embed {
-        padding: 0;
-        overflow-x: hidden;
-        width: 100vw;
-        box-sizing: border-box;
-    }
-    .lp-container {
-        padding: 6px;
-        max-width: 100vw;
-        box-sizing: border-box;
-        margin: 0;
-    }
-    .lp-section {
-        padding: 18px 0 12px 0;
-    }
-    .lp-hero-title {
-        font-size: 3.15em;
-        line-height: 1.07;
-        padding: 0 2vw;
-        word-break: break-word;
-        font-weight: 900;
-        letter-spacing: -1px;
-    }
-    .lp-hero-img {
-        margin: 16px 0 22px 0;
-        max-width: 98vw;
-        border-radius: 6px;
-    }
-    .lp-hero-bullets {
-        padding-left: 4vw;
-        margin-left: 0;
-        margin-right: 0;
-        max-width: 98vw;
-    }
-    .lp-three-step {
-        flex-direction: column;
-        gap: 10px;
-        width: 100%;
-    }
-    .lp-three-step-item {
-        min-width: 0;
-        width: 100%;
-        padding: 0 2vw;
-    }
-    .lp-logo-img {
-        max-width: 90vw;
-        max-height: 80px;
-        height: auto;
-        width: auto;
-    }
-    .lp-testimonial {
-        flex-direction: column;
-        padding: 12px;
-        gap: 8px;
-    }
-    .lp-solution-point p {
-        margin-left: 0;
-    }
-    .lp-solution-point h3 {
-        flex-direction: row;
-        align-items: center;
-    }
-    .lp-solution-icon {
-        margin-right: 6px;
-        margin-bottom: 0;
-    }
-    .lp-centered, .lp-section.lp-centered > * {
-        padding-left: 0;
-        padding-right: 0;
-        max-width: 100vw;
-        box-sizing: border-box;
-    }
-    .lp-cta-btn {
-        font-size: 1em;
-        padding: 10px 8vw;
-        width: auto;
-        max-width: 90vw;
-        white-space: normal;
-    }
-    .lp-cta-micro {
-        font-size: 0.92em;
-        padding: 0 2vw;
-    }
-}
-@media (max-width: 375px) {
-    .lp-hero-title {
-        font-size: 2.5em;
-    }
-    .lp-hero-img {
-        max-width: 96vw;
-    }
-    .lp-logo-img {
-        max-width: 85vw;
-        max-height: 60px;
-    }
-}
+            .container { padding: 15px; }
+            .card { padding: 20px; }
+            h1 { font-size: 1.9em; }
+            h2 { font-size: 1.5em; }
+            .cta-button { font-size: 1em; padding: 12px 25px; }
+            .bullet-list li { font-size: 1em; padding-left: 1.8em;}
+        }
+
     </style>
 </head>
-<body class="lp-embed">
-    <div class="lp-container">
+<body>
+    <div class="container">
         <!-- HERO SECTION -->
-        <section class="lp-section lp-hero-section lp-centered" style="width:100%;">
-            <p class="lp-hero-pre">Want To Turn More LinkedIn Clicks Into Leads?</p>
-            <h1 class="lp-hero-title">Double Your LinkedIn Ad Leads (Free Audit)</h1>
-            <p class="lp-hero-sub" style="text-align:center!important;display:block;width:100%;margin-left:auto;margin-right:auto;">Get a personalized video review of your landing page—see exactly how to boost conversions, 100% free.</p>
-            <img src="https://cdn.prod.website-files.com/67d97ee04d10ce1c0adb4193/681b49363d8a045c3399396a_landingpage-score.png" alt="Landing Page Score Example" class="lp-hero-img">
-            <ul class="lp-hero-bullets">
+        <section class="card animate-on-scroll slide-in-left centered-text">
+            <p class="hero-pre-title">Want To Turn More LinkedIn Clicks Into Leads?</p>
+            <h1>Double Your LinkedIn Ad Leads (Free Audit)</h1>
+            <p class="hero-sub-title">Get a personalized video review of your landing page—see exactly how to boost conversions, 100% free.</p>
+            <img src="https://cdn.prod.website-files.com/67d97ee04d10ce1c0adb4193/681b49363d8a045c3399396a_landingpage-score.png" alt="Landing Page Score Example" class="hero-image">
+            <ul class="bullet-list" style="max-width: 450px; margin-left:auto; margin-right:auto; text-align:left;">
                 <li><strong>3-5 instant, actionable fixes</strong></li>
                 <li><strong>See real examples & ROI potential</strong></li>
                 <li><strong>No sales pitch, no obligation</strong></li>
             </ul>
-            <a href="#" class="lp-cta-btn">Get My Free Audit Now</a>
-            <span class="lp-cta-micro">Takes 60 seconds. No credit card. No spam.</span>
+            <a href="#lead-form-section" class="cta-button">Get My Free Audit Now</a>
+            <span class="cta-micro-text">Takes 60 seconds. No credit card. No spam.</span>
         </section>
+
         <!-- PAIN SECTION -->
-        <section class="lp-section">
-            <h2 class="lp-centered">Is Your LinkedIn Ad Spend Going Down the Drain?</h2>
-            <p style="text-align:left;width:100%;">
-                You've done the hard work: identified your B2B audience, crafted compelling ad copy, and set your budget.
-                But if those clicks land on a generic homepage, a confusing product page, or a quickly thrown-together landing page, you're likely facing:
-            </p>
-            <ul class="lp-hero-bullets">
+        <section class="card animate-on-scroll slide-in-right">
+            <h2>Is Your LinkedIn Ad Spend Going Down the Drain?</h2>
+            <p>You've done the hard work: identified your B2B audience, crafted compelling ad copy, and set your budget. But if those clicks land on a generic homepage, a confusing product page, or a quickly thrown-together landing page, you're likely facing:</p>
+            <ul class="bullet-list">
                 <li><strong>Wasted Ad Budget:</strong> Paying for clicks that don't convert.</li>
                 <li><strong>Low Lead Quality:</strong> Attracting browsers, not buyers.</li>
                 <li><strong>Uncertain ROI:</strong> No clear picture of how your ads are truly performing.</li>
                 <li><strong>Frustration & Missed Opportunities:</strong> Knowing you <em>could</em> be getting more from your investment.</li>
             </ul>
-            <p class="lp-centered">Sending LinkedIn ad traffic to a page not <strong>specifically designed</strong> to convert that traffic is one of the most common (and costly) mistakes B2B advertisers make.</p>
+            <p class="centered-text" style="font-weight:500;">Sending LinkedIn ad traffic to a page not <strong>specifically designed</strong> to convert that traffic is one of the most common (and costly) mistakes B2B advertisers make.</p>
         </section>
+
         <!-- SOLUTION SECTION -->
-        <section class="lp-section">
-            <h2 class="lp-centered">Here’s Exactly What Your Free Audit Delivers:</h2>
-            <div class="lp-solution-point">
-                <h3><span class="lp-solution-icon">📹</span>A Personalized Video Review (2-5 min):</h3>
-                <p>No generic checklists. We'll record a brief video walking you through <em>your specific ad's current destination page</em>, showing you what we see.</p>
+        <section class="card animate-on-scroll slide-in-left">
+            <h2>Here’s Exactly What Your Free Audit Delivers:</h2>
+            <div class="solution-point">
+                <span class="solution-icon">📹</span>
+                <div class="solution-text">
+                    <h3>A Personalized Video Review (2-5 min):</h3>
+                    <p>No generic checklists. We'll record a brief video walking you through <em>your specific ad's current destination page</em>, showing you what we see.</p>
+                </div>
             </div>
-            <div class="lp-solution-point">
-                <h3><span class="lp-solution-icon">🎯</span>The "5-Point Conversion Check":</h3>
-                <p>We'll analyze: Message Match, Clarity of Offer, Compelling Call-to-Action (CTA), Trust & Credibility, and Distraction Removal.</p>
+            <div class="solution-point">
+                <span class="solution-icon">🎯</span>
+                <div class="solution-text">
+                    <h3>The "5-Point Conversion Check":</h3>
+                    <p>We'll analyze: Message Match, Clarity of Offer, Compelling Call-to-Action (CTA), Trust & Credibility, and Distraction Removal.</p>
+                </div>
             </div>
-            <div class="lp-solution-point">
-                <h3><span class="lp-solution-icon">💡</span>3-5 Actionable, High-Impact Recommendations:</h3>
-                <p>Forget vague advice. You'll get concrete, easy-to-understand suggestions you (or your team) can implement to see improvements.</p>
+            <div class="solution-point">
+                <span class="solution-icon">💡</span>
+                <div class="solution-text">
+                    <h3>3-5 Actionable, High-Impact Recommendations:</h3>
+                    <p>Forget vague advice. You'll get concrete, easy-to-understand suggestions you (or your team) can implement to see improvements.</p>
+                </div>
             </div>
-            <div class="lp-solution-point">
-                <h3><span class="lp-solution-icon">📈</span>Potential Uplift Insights:</h3>
-                <p>We'll explain <em>how</em> these changes can lead to better conversion rates, more qualified leads, and a stronger return on your LinkedIn ad spend.</p>
+            <div class="solution-point">
+                <span class="solution-icon">📈</span>
+                <div class="solution-text">
+                    <h3>Potential Uplift Insights:</h3>
+                    <p>We'll explain <em>how</em> these changes can lead to better conversion rates, more qualified leads, and a stronger return on your LinkedIn ad spend.</p>
+                </div>
             </div>
-            <div class="lp-solution-point">
-                <h3><span class="lp-solution-icon">🚫</span>Zero Obligation, Pure Value:</h3>
-                <p>This audit is genuinely free. Our goal is to show you the potential. If you love our insights, great. If not, you still get valuable, actionable advice.</p>
+            <div class="solution-point">
+                <span class="solution-icon">🚫</span>
+                <div class="solution-text">
+                    <h3>Zero Obligation, Pure Value:</h3>
+                    <p>This audit is genuinely free. Our goal is to show you the potential. If you love our insights, great. If not, you still get valuable, actionable advice.</p>
+                </div>
             </div>
         </section>
+
         <!-- 3-STEP PROCESS SECTION -->
-        <section class="lp-section">
-            <h2 class="lp-centered">Ready to Unlock More Leads from Your LinkedIn Ads?</h2>
-            <p class="lp-centered">Here's how easy it is to get your free audit:</p>
-            <div class="lp-three-step">
-                <div class="lp-three-step-item">
-                    <div style="font-size:2.2em;">1️⃣</div>
-                    <div style="font-weight:bold;margin:8px 0;">Share Your Page</div>
-                    <div style="font-size:0.98em;">Paste your current ad landing page URL.</div>
+        <section class="card animate-on-scroll slide-in-right">
+            <h2 class="centered-text">Ready to Unlock More Leads from Your LinkedIn Ads?</h2>
+            <p class="centered-text">Here's how easy it is to get your free audit:</p>
+            <div class="three-step-process">
+                <div class="step-item">
+                    <span class="emoji">1️⃣</span>
+                    <strong>Share Your Page</strong>
+                    <span>Paste your current ad landing page URL.</span>
                 </div>
-                <div class="lp-three-step-item">
-                    <div style="font-size:2.2em;">2️⃣</div>
-                    <div style="font-weight:bold;margin:8px 0;">We Analyze & Record</div>
-                    <div style="font-size:0.98em;">We review your page and record a personalized video.</div>
+                <div class="step-item">
+                    <span class="emoji">2️⃣</span>
+                    <strong>We Analyze & Record</strong>
+                    <span>We review your page and record a personalized video.</span>
                 </div>
-                <div class="lp-three-step-item">
-                    <div style="font-size:2.2em;">3️⃣</div>
-                    <div style="font-weight:bold;margin:8px 0;">Get Actionable Fixes</div>
-                    <div style="font-size:0.98em;">Receive your video and 3-5 instant, high-impact fixes.</div>
+                <div class="step-item">
+                    <span class="emoji">3️⃣</span>
+                    <strong>Get Actionable Fixes</strong>
+                    <span>Receive your video and 3-5 instant, high-impact fixes.</span>
                 </div>
             </div>
-            <div class="lp-centered" style="margin-top:30px;">
-                <a href="#" class="lp-cta-btn" style="font-size:1.2em;padding:18px 40px;">Get My Free Audit Now</a>
-                <span class="lp-cta-micro">Takes 60 seconds. No credit card. No spam.</span>
+            <div class="centered-text" style="margin-top:30px;">
+                <a href="#lead-form-section" class="cta-button">Get My Free Audit Now</a>
+                <span class="cta-micro-text">Takes 60 seconds. No credit card. No spam.</span>
             </div>
         </section>
+
         <!-- CREDIBILITY SECTION -->
-        <section class="lp-section">
-            <h2 class="lp-centered">We Live & Breathe High-Converting B2B Landing Pages</h2>
-            <p class="lp-centered">We're FlowLogica.com, specialists in designing and building landing pages for B2B companies that turn ad clicks into customers. We know what works on LinkedIn because we see it every day.</p>
-            <div class="lp-logos">
-                <img src="https://cdn.prod.website-files.com/67d97ee04d10ce1c0adb4193/681b39bee451e978c3b9a3cb_Screenshot%202025-05-07%20at%2011.44.54.png" alt="Client Logos Banner" class="lp-logo-img">
+        <section class="card animate-on-scroll slide-in-left">
+            <h2 class="centered-text">We Live & Breathe High-Converting B2B Landing Pages</h2>
+            <p class="centered-text">We're FlowLogica.com, specialists in designing and building landing pages for B2B companies that turn ad clicks into customers. We know what works on LinkedIn because we see it every day.</p>
+            <div class="logos-container">
+                <img src="https://cdn.prod.website-files.com/67d97ee04d10ce1c0adb4193/681b39bee451e978c3b9a3cb_Screenshot%202025-05-07%20at%2011.44.54.png" alt="Client Logos Banner" class="client-logo-banner">
             </div>
-            <div class="lp-centered" style="margin:18px 0 10px;font-size:1.1em;font-weight:bold;color:var(--lp-primary);">
-                <span>Our clients see an average 33% lift in conversions after implementing our fixes.</span>
-            </div>
-            <div class="lp-testimonial">
-                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Testimonial Photo" class="lp-testimonial-img">
+            <p class="centered-text" style="font-size:1.2em; font-weight:bold; color:var(--primary-color); margin:15px 0;">
+                Our clients see an average 33% lift in conversions after implementing our fixes.
+            </p>
+            <div class="testimonial">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Testimonial Photo" class="testimonial-img">
                 <div>
                     <blockquote>"The insights from their audit were eye-opening! We implemented two changes and saw our ad conversions jump by 37%."</blockquote>
                     <cite>– Maggie Ha, Marketing Manager, Tappt</cite>
                 </div>
             </div>
         </section>
+
         <!-- FORM SECTION -->
-        <section class="lp-section" id="email-form">
-            <h2 class="lp-centered">Get Your Free LinkedIn Ad Page Audit</h2>
-            <p class="lp-centered" style="margin-bottom:30px;">Submit your details below. We'll analyze your page and email your personalized video audit & actionable fixes.</p>
-            <form id="lead-form" class="lp-form" novalidate>
-                <div class="lp-form-row">
-                    <div class="lp-form-group">
+        <section id="lead-form-section" class="card animate-on-scroll slide-in-right">
+            <h2 class="centered-text">Get Your Free LinkedIn Ad Page Audit</h2>
+            <p class="centered-text" style="margin-bottom:30px;">Submit your details below. We'll analyze your page and email your personalized video audit & actionable fixes.</p>
+            
+            <form id="cta-lead-form" class="lead-form" novalidate>
+                <div class="form-row">
+                    <div class="form-group">
                         <label for="firstName">First Name*</label>
                         <input type="text" id="firstName" name="firstName" placeholder="e.g. Jane" required>
                     </div>
-                    <div class="lp-form-group">
+                    <div class="form-group">
                         <label for="lastName">Last Name*</label>
                         <input type="text" id="lastName" name="lastName" placeholder="e.g. Doe" required>
                     </div>
                 </div>
-                <div class="lp-form-group">
+                <div class="form-group">
                     <label for="email">Email Address*</label>
                     <input type="email" id="email" name="email" placeholder="e.g. jane.doe@example.com" required>
                 </div>
-                <div class="lp-form-submit">
-                    <button type="submit" class="lp-cta-btn">Get My Free Audit Now</button>
-                    <span class="lp-cta-micro">100% Free. No credit card. We respect your privacy.</span>
+                <div class="form-group">
+                    <button type="submit" class="cta-button form-submit-button">Get My Free Audit Now</button>
+                    <span class="cta-micro-text centered-text">100% Free. No credit card. We respect your privacy.</span>
                 </div>
+                <div id="form-response-message"></div> <!-- For success/error messages -->
             </form>
         </section>
     </div>
-<script>
-// Smooth scroll all CTA buttons to the email form section
-window.addEventListener('DOMContentLoaded', function() {
-  var ctas = document.querySelectorAll('.lp-cta-btn');
-  ctas.forEach(function(btn) {
-    // Ensure this is not the form's submit button
-    if (btn.getAttribute('type') !== 'submit') {
-      btn.addEventListener('click', function(e) {
-        var formSection = document.getElementById('email-form');
-        if (formSection) {
-          e.preventDefault();
-          // Scroll to the top of the form section, slightly offset to account for fixed headers if any
-          // Or simply center it if that's preferred.
-          formSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          // Optionally, focus the first field
-          // var firstInput = formSection.querySelector('input, textarea, select');
-          // if (firstInput) { firstInput.focus(); }
-        }
-      });
-    }
-  });
 
-  // Form submission handler
-  const leadForm = document.getElementById('lead-form');
-  if (leadForm) {
-    leadForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const firstNameInput = document.getElementById('firstName');
-      const lastNameInput = document.getElementById('lastName');
-      const emailInput = document.getElementById('email');
-      
-      // Basic client-side validation (though 'required' handles some)
-      let isValid = true;
-      [firstNameInput, lastNameInput, emailInput].forEach(input => {
-        if (!input.value.trim()) {
-          input.style.borderColor = 'red';
-          isValid = false;
-        } else {
-          input.style.borderColor = 'var(--lp-border-light)'; // Reset border
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Scroll Animations
+        const animatedElements = document.querySelectorAll('.animate-on-scroll');
+        if (animatedElements.length > 0) {
+            const observer = new IntersectionObserver((entries, observerInstance) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observerInstance.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            animatedElements.forEach(el => observer.observe(el));
         }
-      });
 
-      if (!isValid) {
-        // Optionally, add a general message near the submit button
-        return;
-      }
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href.length > 1 && document.querySelector(href)) { // Ensure it's not just '#' and element exists
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
 
-      const firstName = firstNameInput.value.trim();
-      const lastName = lastNameInput.value.trim();
-      const email = emailInput.value.trim();
-      
-      const submitButton = this.querySelector('button[type="submit"]');
-      const originalButtonText = submitButton.textContent;
-      submitButton.textContent = 'Submitting...';
-      submitButton.disabled = true;
-      
-      const formData = {
-        firstName: firstName,
-        lastName: lastName,
-        email: email
-      };
-      
-      fetch('https://hook.eu2.make.com/q8a1b43dlyx66fo5rqgvvxcchxy31x7m', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      })
-      .then(response => {
-        if (response.ok) {
-          // Assuming webhook returns JSON or text. If it's just a 200 OK with no body, this might need adjustment.
-          return response.text(); // Use .json() if it returns JSON
+        // Form Submission
+        const form = document.getElementById('cta-lead-form');
+        const formResponseMessage = document.getElementById('form-response-message');
+        const webhookUrl = 'https://hook.eu2.make.com/q8a1b43dlyx66fo5rqgvvxcchxy31x7m';
+
+        if (form) {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                formResponseMessage.innerHTML = ''; // Clear previous messages
+                formResponseMessage.className = 'form-message'; // Reset class
+
+                const firstNameInput = form.querySelector('#firstName');
+                const lastNameInput = form.querySelector('#lastName');
+                const emailInput = form.querySelector('#email');
+                let isValid = true;
+
+                // Basic client-side validation
+                if (!firstNameInput.value.trim()) {
+                    showError(firstNameInput, 'First name is required.');
+                    isValid = false;
+                }
+                if (!lastNameInput.value.trim()) {
+                    showError(lastNameInput, 'Last name is required.');
+                    isValid = false;
+                }
+                if (!emailInput.value.trim()) {
+                    showError(emailInput, 'Email is required.');
+                    isValid = false;
+                } else if (!isValidEmail(emailInput.value.trim())) {
+                    showError(emailInput, 'Please enter a valid email address.');
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    // Add a general error message to the form response area if individual errors aren't enough
+                    if (!formResponseMessage.innerHTML) {
+                         formResponseMessage.innerHTML = '<p>Please correct the errors above.</p>';
+                         formResponseMessage.classList.add('form-error');
+                    }
+                    return;
+                }
+
+                const formData = {
+                    firstName: firstNameInput.value.trim(),
+                    lastName: lastNameInput.value.trim(),
+                    email: emailInput.value.trim()
+                };
+                
+                const submitButton = form.querySelector('button[type="submit"]');
+                const originalButtonText = submitButton.textContent;
+                submitButton.textContent = 'Submitting...';
+                submitButton.disabled = true;
+
+                fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.text(); // Or response.json() if webhook sends JSON
+                    } 
+                    // If response not ok, try to parse error or throw generic
+                    return response.text().then(text => { 
+                        throw new Error(text || 'Network response was not ok'); 
+                    });
+                })
+                .then(data => {
+                    form.reset();
+                    formResponseMessage.innerHTML = '<h3>Thank You!</h3><p>Your audit request has been successfully submitted. We will be in touch shortly.</p><div style="font-size:2em;margin-top:10px;">🎉</div>';
+                    formResponseMessage.classList.remove('form-error');
+                    formResponseMessage.classList.add('form-success');
+                })
+                .catch(error => {
+                    console.error('Form submission error:', error);
+                    formResponseMessage.innerHTML = '<p>Oops! Something went wrong. Please check your details and try again. If the problem persists, please contact support.</p>';
+                    formResponseMessage.classList.remove('form-success');
+                    formResponseMessage.classList.add('form-error');
+                })
+                .finally(() => {
+                    submitButton.textContent = originalButtonText;
+                    submitButton.disabled = false;
+                });
+            });
         }
-        // Try to get error details from response body if possible
-        return response.text().then(text => { throw new Error('Network response was not ok: ' + text) });
-      })
-      .then(data => {
-        console.log('Success:', data); // Log webhook response
-        leadForm.innerHTML = '<div class="lp-form-success"><h3 style="color:var(--lp-primary);">Thank You!</h3><p>Your audit request has been successfully submitted. We will be in touch with your personalized video audit shortly.</p><div style="font-size:3em;margin:15px 0;">🎉</div></div>';
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        submitButton.textContent = originalButtonText;
-        submitButton.disabled = false;
         
-        let errorDisplay = leadForm.querySelector('.lp-form-error-message');
-        if (!errorDisplay) {
-          errorDisplay = document.createElement('p');
-          errorDisplay.className = 'lp-form-error-message';
-          errorDisplay.style.color = 'red';
-          errorDisplay.style.marginTop = '10px';
-          errorDisplay.style.textAlign = 'center';
-          // Insert after the submit button or at the end of the form
-          const submitDiv = leadForm.querySelector('.lp-form-submit');
-          if (submitDiv) submitDiv.appendChild(errorDisplay);
-          else leadForm.appendChild(errorDisplay);
+        function isValidEmail(email) {
+            // Basic email validation regex
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
         }
-        errorDisplay.textContent = 'Oops! Something went wrong. Please check your details and try again.';
-        
-        // Remove error message after a few seconds or on next input focus
-        setTimeout(() => { if(errorDisplay) errorDisplay.remove(); }, 7000);
-      });
+
+        function showError(inputElement, message) {
+            // Remove existing error message for this field
+            const existingError = inputElement.parentNode.querySelector('.field-error-message');
+            if (existingError) {
+                existingError.remove();
+            }
+            // Add new error message
+            const error = document.createElement('p');
+            error.className = 'field-error-message';
+            error.style.color = 'red';
+            error.style.fontSize = '0.85em';
+            error.style.marginTop = '5px';
+            error.textContent = message;
+            inputElement.parentNode.appendChild(error);
+            inputElement.style.borderColor = 'red'; // Highlight field
+
+            // Clear error on input
+            inputElement.addEventListener('input', function clearError() {
+                error.remove();
+                inputElement.style.borderColor = ''; // Reset border
+                inputElement.removeEventListener('input', clearError); // Clean up listener
+            }, { once: true });
+        }
     });
-  }
-});
-</script>
+    </script>
 </body>
 </html>
