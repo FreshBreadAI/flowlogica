@@ -4,663 +4,371 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free LinkedIn Ad Page Audit - FlowLogica</title>
-    <link rel="icon" href="http://flowlogica.com/wp-content/uploads/2025/05/logo.com-flowlogica-logo-2.png" type="image/png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <title>FlowLogica | LinkedIn Landing Page Audit Offer</title>
+    <link rel="icon" href="https://github.com/FreshBreadAI/flowlogica/blob/main/assets/F%20icon.png?raw=true" type="image/png">
+    <link rel="stylesheet" href="flowlogica-new-style.css">
     <style>
-        :root {
-            --primary-color: #18B557; /* FlowLogica Green */
-            --primary-rgb: 24, 181, 87;
-            --text-dark: #212529;
-            --text-light: #495057;
-            --background-light: #F8F9FA;
-            --card-background: #FFFFFF;
-            --border-color: #E0E0E0;
-            --shadow-color: rgba(0, 0, 0, 0.08);
-            --font-family: 'Inter', sans-serif;
-        }
-
-        body {
-            font-family: var(--font-family);
-            background-color: var(--background-light);
-            color: var(--text-dark);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
+        .cta-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow-x: hidden; /* Prevent horizontal scroll from animations */
         }
-
-        .container {
-            width: 100%;
-            max-width: 850px;
-            margin: 0 auto;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .card {
-            background-color: var(--card-background);
-            border-radius: 12px;
-            box-shadow: 0 6px 20px var(--shadow-color);
-            padding: 30px 40px;
-            margin-bottom: 35px;
-            opacity: 0; /* Initial state for animation */
-            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-            will-change: opacity, transform; 
-        }
-
-        .card.slide-in-left {
-            transform: translateX(-80px);
-        }
-
-        .card.slide-in-right {
-            transform: translateX(80px);
-        }
-
-        .card.is-visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .card:last-child {
-            margin-bottom: 20px;
-        }
-
-        h1, h2, h3 {
-            color: var(--text-dark);
-            margin-top: 0;
-            font-weight: 700;
-        }
-
-        h1 {
-            font-size: 2.8em;
-            font-weight: 900;
-            letter-spacing: -1px;
-            line-height: 1.1;
-            margin-bottom: 0.4em;
-            color: var(--primary-color);
-        }
-
-        h2 {
-            font-size: 2em;
-            margin-bottom: 0.8em;
-            text-align: center;
-        }
-
-        h3 {
-            font-size: 1.3em;
-            margin-bottom: 0.5em;
-        }
-
-        p {
-            margin-bottom: 1em;
-            color: var(--text-light);
-            font-size: 1.05em;
-        }
-        
-        .hero-pre-title {
-            font-size: 1em;
-            color: var(--text-light);
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 500;
-        }
-
-        .hero-sub-title {
-            font-size: 1.25em;
-            color: var(--text-light);
-            margin-bottom: 1.5em;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .centered-text {
-            text-align: center;
-        }
-
-        .hero-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin: 20px auto 30px auto;
-            display: block;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
-        }
-
-        .bullet-list {
-            list-style: none;
-            padding-left: 0;
-            margin: 20px 0;
-        }
-
-        .bullet-list li {
-            position: relative;
-            padding-left: 2em;
-            margin-bottom: 0.8em;
-            font-size: 1.05em;
-        }
-
-        .bullet-list li::before {
-            content: '✓'; /* Checkmark */
-            color: var(--primary-color);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-            font-size: 1.2em;
-            top: -2px;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: var(--card-background);
-            padding: 14px 30px;
-            font-size: 1.1em;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            margin-top: 15px;
-            animation: subtleGlow 3s infinite ease-in-out;
-            box-shadow: 0 4px 15px rgba(var(--primary-rgb), 0.2);
-        }
-
-        .cta-button:hover {
-            background-color: #14a34e; /* Darker shade of primary */
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(var(--primary-rgb), 0.4);
-        }
-
-        @keyframes subtleGlow {
-            0%, 100% {
-                box-shadow: 0 4px 15px rgba(var(--primary-rgb), 0.2);
-            }
-            50% {
-                box-shadow: 0 6px 25px rgba(var(--primary-rgb), 0.35);
-            }
-        }
-
-        .cta-micro-text {
-            font-size: 0.9em;
-            color: var(--text-light);
-            margin-top: 10px;
-            display: block;
-        }
-
-        .solution-point {
-            margin-bottom: 2em;
+        .process-steps-container {
             display: flex;
-            align-items: flex-start;
+            flex-direction: column;
+            gap: calc(var(--spacing-unit) * 1.5); /* 12px gap */
+            max-width: 700px; 
+            margin-left:auto; 
+            margin-right:auto;
         }
-
-        .solution-icon {
-            font-size: 1.8em;
-            margin-right: 15px;
-            color: var(--primary-color);
-            line-height: 1;
-        }
-
-        .solution-text h3 {
-            margin-top: 0;
-        }
-
-        .three-step-process {
-            display: flex;
-            justify-content: space-around;
-            gap: 25px;
-            margin: 30px 0;
-            flex-wrap: wrap;
-        }
-
         .step-item {
-            flex: 1;
-            min-width: 220px;
-            text-align: center;
-            padding: 15px;
-        }
-
-        .step-item .emoji {
-            font-size: 2.5em;
-            display: block;
-            margin-bottom: 10px;
-        }
-        .step-item strong {
-            font-size: 1.15em;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .logos-container {
-            text-align: center;
-            margin: 25px 0;
-        }
-
-        .client-logo-banner {
-            max-width: 100%;
-            height: auto;
-            filter: grayscale(30%);
-            opacity: 0.9;
-        }
-
-        .testimonial {
-            background-color: #F0F9F4; /* Light green tint */
-            padding: 25px;
-            border-radius: 8px;
-            margin: 25px 0;
-            border-left: 5px solid var(--primary-color);
+            background-color: #f0f4f8; /* Changed from var(--color-background-subtle) to a darker light greyish-blue */
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius-medium);
+            padding: calc(var(--spacing-unit) * 2);
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: calc(var(--spacing-unit) * 2);
+            font-size: 1.05rem;
+        }
+        .step-number-badge {
+            background-color: var(--color-text-secondary); /* Darker grey for badge */
+            color: var(--color-background-body);
+            border-radius: var(--border-radius-small);
+            padding: calc(var(--spacing-unit)*0.75) calc(var(--spacing-unit)*1.25);
+            font-weight: bold;
+            font-size: 0.9rem;
+            line-height: 1;
+        }
+        .step-text strong {
+            color: var(--color-text-primary);
+        }
+        .step-text span { /* For the rest of the text after the strong tag */
+            color: var(--color-text-secondary);
         }
 
-        .testimonial-img {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--primary-color);
-        }
-
-        .testimonial blockquote {
-            font-style: italic;
-            margin: 0 0 10px 0;
-            font-size: 1.05em;
-        }
-
-        .testimonial cite {
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        /* Form Styles */
-        .lead-form {
-            margin-top: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 500;
-            margin-bottom: 8px;
-            font-size: 0.95em;
-            color: var(--text-dark);
-        }
-
-        .form-group input[type="text"],
-        .form-group input[type="email"] {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-size: 1em;
-            box-sizing: border-box;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-
-        .form-group input[type="text"]:focus,
-        .form-group input[type="email"]:focus {
-            border-color: var(--primary-color);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.15);
-        }
-        
-        .form-row {
+        /* Added for new testimonial style */
+        .testimonial-container-styled {
             display: flex;
-            gap: 20px;
-        }
-        .form-row .form-group {
-            flex: 1;
-        }
-
-        .form-submit-button {
-            width: 100%;
-        }
-        
-        .form-message {
-            padding: 15px;
-            border-radius: 6px;
-            margin-top: 20px;
-            text-align: center;
-            font-size: 1em;
-        }
-        .form-success {
-            background-color: #e6ffed;
-            border: 1px solid var(--primary-color);
-            color: #006421;
-        }
-        .form-error {
-            background-color: #ffe6e6;
-            border: 1px solid #cc0000;
-            color: #990000;
+            align-items: flex-start; /* Aligns items to the top */
+            background-color: #F0FAF3; /* Very light mint green from image */
+            border-left: 5px solid var(--color-brand-primary);
+            padding: calc(var(--spacing-unit) * 2.5); /* Approx 20px */
+            border-radius: var(--border-radius-medium); /* Matches other cards */
+            margin-top: calc(var(--spacing-unit) * 3); /* Space below the H2 */
+            box-shadow: var(--shadow-soft); /* Add a subtle shadow */
         }
 
-        @media (max-width: 768px) {
-            h1 { font-size: 2.2em; }
-            h2 { font-size: 1.7em; }
-            .card { padding: 25px; margin-bottom: 25px; }
-            .hero-sub-title { font-size: 1.1em; }
-            .solution-point { flex-direction: column; align-items: center; text-align: center; }
-            .solution-icon { margin-right: 0; margin-bottom: 10px; }
-            .testimonial { flex-direction: column; text-align: center; }
-            .testimonial-img { margin-right: 0; margin-bottom: 15px; }
-            .form-row { flex-direction: column; gap: 0; }
+        .testimonial-image-wrapper {
+            margin-right: calc(var(--spacing-unit) * 2.5); /* Approx 20px */
+            flex-shrink: 0;
         }
 
-        @media (max-width: 480px) {
-            .container { padding: 15px; }
-            .card { padding: 20px; }
-            h1 { font-size: 1.9em; }
-            h2 { font-size: 1.5em; }
-            .cta-button { font-size: 1em; padding: 12px 25px; }
-            .bullet-list li { font-size: 1em; padding-left: 1.8em;}
+        .testimonial-image {
+            width: 100px; 
+            height: 100px; 
+            border-radius: 50%;
+            object-fit: cover; 
+            box-shadow: var(--shadow-light);
         }
 
+        .testimonial-content-wrapper {
+            flex-grow: 1;
+            text-align: left; 
+        }
+
+        .testimonial-content-wrapper blockquote {
+            font-size: 1.1em; 
+            font-style: italic;
+            color: var(--color-text-secondary); 
+            margin: 0 0 calc(var(--spacing-unit) * 1.5) 0; 
+            padding: 0;
+            background-color: transparent; 
+            border: none; 
+        }
+
+        .testimonial-content-wrapper cite {
+            font-size: 0.95em;
+            color: var(--color-text-primary); 
+            font-style: normal; 
+            font-weight: 600; 
+        }
     </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2134MY5NNQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-2134MY5NNQ');
+    </script>
+    <!-- 
+        Note on Card Animations: 
+        The JavaScript below adds a '.fade-in' class to cards when they scroll into view.
+        For this animation to work as intended (fade in and slide up), 
+        'flowlogica-new-style.css' should define:
+        1. Initial state for '.card': e.g., opacity: 0; transform: translateY(20px);
+           (The CSS currently has 'opacity: 1; /* TEMP DEBUG - Was 0 for animation */')
+        2. Definition for '.fade-in': e.g., .card.fade-in { opacity: 1; transform: translateY(0); }
+    -->
 </head>
 <body>
-    <div class="container">
-        <!-- HERO SECTION -->
-        <section class="card animate-on-scroll slide-in-left centered-text">
-            <p class="hero-pre-title">Want To Turn More LinkedIn Clicks Into Leads?</p>
-            <h1>Double Your LinkedIn Ad Leads (Free Audit)</h1>
-            <p class="hero-sub-title">Get a personalized video review of your landing page—see exactly how to boost conversions, 100% free.</p>
-            <img src="https://cdn.prod.website-files.com/67d97ee04d10ce1c0adb4193/681b49363d8a045c3399396a_landingpage-score.png" alt="Landing Page Score Example" class="hero-image">
-            <ul class="bullet-list" style="max-width: 450px; margin-left:auto; margin-right:auto; text-align:left;">
-                <li><strong>3-5 instant, actionable fixes</strong></li>
-                <li><strong>See real examples & ROI potential</strong></li>
-                <li><strong>No sales pitch, no obligation</strong></li>
-            </ul>
-            <a href="#lead-form-section" class="cta-button">Get My Free Audit Now</a>
-            <span class="cta-micro-text">Takes 60 seconds. No credit card. No spam.</span>
+    <main>
+        <section class="section section-hero hero-gradient-background text-center"> 
+            <div class="container">
+                <p class="hero-super-title" style="font-size: 1rem; font-weight: 500; color: var(--color-text-secondary); margin-bottom: calc(var(--spacing-unit)*0.5);">Want To Turn More LinkedIn Clicks Into Leads?</p>
+                <h1>Double Your LinkedIn Ad Leads (Free Audit)</h1>
+                <p class="hero-sub-title">Get a personalized video review of your landing page—see exactly how to boost conversions, 100% free.</p>
+                <img src="https://github.com/FreshBreadAI/flowlogica/blob/main/assets/landingpage-audit.png?raw=true" alt="Landing Page Score Example" class="hero-image" style="max-width: 600px; margin: calc(var(--spacing-unit)*2.5) auto calc(var(--spacing-unit)*3.75) auto; border-radius: var(--border-radius-medium); box-shadow: var(--shadow-large); display: block;">
+                <ul class="bullet-list bullet-list--hero">
+                    <li><strong>3-5 instant, actionable fixes</strong></li>
+                    <li><strong>See real examples & ROI potential</strong></li>
+                    <li><strong>No sales pitch, no obligation</strong></li>
+                </ul>
+                <a href="#form-section" class="cta-button">Get My Free Audit Now</a>
+                <p class="cta-micro-text" style="margin-top: var(--spacing-unit);">Takes 60 seconds. No credit card. No spam.</p>
+            </div>
         </section>
 
-        <!-- PAIN SECTION -->
-        <section class="card animate-on-scroll slide-in-right">
-            <h2>Is Your LinkedIn Ad Spend Going Down the Drain?</h2>
-            <p>You've done the hard work: identified your B2B audience, crafted compelling ad copy, and set your budget. But if those clicks land on a generic homepage, a confusing product page, or a quickly thrown-together landing page, you're likely facing:</p>
-            <ul class="bullet-list">
-                <li><strong>Wasted Ad Budget:</strong> Paying for clicks that don't convert.</li>
-                <li><strong>Low Lead Quality:</strong> Attracting browsers, not buyers.</li>
-                <li><strong>Uncertain ROI:</strong> No clear picture of how your ads are truly performing.</li>
-                <li><strong>Frustration & Missed Opportunities:</strong> Knowing you <em>could</em> be getting more from your investment.</li>
-            </ul>
-            <p class="centered-text" style="font-weight:500;">Sending LinkedIn ad traffic to a page not <strong>specifically designed</strong> to convert that traffic is one of the most common (and costly) mistakes B2B advertisers make.</p>
-        </section>
-
-        <!-- SOLUTION SECTION -->
-        <section class="card animate-on-scroll slide-in-left">
-            <h2>Here’s Exactly What Your Free Audit Delivers:</h2>
-            <div class="solution-point">
-                <span class="solution-icon">📹</span>
-                <div class="solution-text">
-                    <h3>A Personalized Video Review (2-5 min):</h3>
-                    <p>No generic checklists. We'll record a brief video walking you through <em>your specific ad's current destination page</em>, showing you what we see.</p>
-                </div>
-            </div>
-            <div class="solution-point">
-                <span class="solution-icon">🎯</span>
-                <div class="solution-text">
-                    <h3>The "5-Point Conversion Check":</h3>
-                    <p>We'll analyze: Message Match, Clarity of Offer, Compelling Call-to-Action (CTA), Trust & Credibility, and Distraction Removal.</p>
-                </div>
-            </div>
-            <div class="solution-point">
-                <span class="solution-icon">💡</span>
-                <div class="solution-text">
-                    <h3>3-5 Actionable, High-Impact Recommendations:</h3>
-                    <p>Forget vague advice. You'll get concrete, easy-to-understand suggestions you (or your team) can implement to see improvements.</p>
-                </div>
-            </div>
-            <div class="solution-point">
-                <span class="solution-icon">📈</span>
-                <div class="solution-text">
-                    <h3>Potential Uplift Insights:</h3>
-                    <p>We'll explain <em>how</em> these changes can lead to better conversion rates, more qualified leads, and a stronger return on your LinkedIn ad spend.</p>
-                </div>
-            </div>
-            <div class="solution-point">
-                <span class="solution-icon">🚫</span>
-                <div class="solution-text">
-                    <h3>Zero Obligation, Pure Value:</h3>
-                    <p>This audit is genuinely free. Our goal is to show you the potential. If you love our insights, great. If not, you still get valuable, actionable advice.</p>
+        <section class="section">
+            <div class="container">
+                <div class="card text-center">
+                    <h2>Is Your LinkedIn Ad Spend Going Down the Drain?</h2>
+                    <p>You've done the hard work: identified your B2B audience, crafted compelling ad copy, and set your budget. But if those clicks land on a generic homepage, a confusing product page, or a quickly thrown-together landing page, you're likely facing:</p>
+                    <ul class="bullet-list" style="max-width: 600px; margin-left: auto; margin-right: auto;">
+                        <li><strong>Wasted Ad Budget:</strong> Paying for clicks that don't convert.</li>
+                        <li><strong>Low Lead Quality:</strong> Attracting browsers, not buyers.</li>
+                        <li><strong>Uncertain ROI:</strong> No clear picture of how your ads are truly performing.</li>
+                        <li><strong>Frustration & Missed Opportunities:</strong> Knowing you <em>could</em> be getting more from your investment.</li>
+                    </ul>
+                    <p style="font-weight:500; margin-top: calc(var(--spacing-unit)*3);">Sending LinkedIn ad traffic to a page not <strong>specifically designed</strong> to convert that traffic is one of the most common (and costly) mistakes B2B advertisers make.</p>
                 </div>
             </div>
         </section>
 
-        <!-- 3-STEP PROCESS SECTION -->
-        <section class="card animate-on-scroll slide-in-right">
-            <h2 class="centered-text">Ready to Unlock More Leads from Your LinkedIn Ads?</h2>
-            <p class="centered-text">Here's how easy it is to get your free audit:</p>
-            <div class="three-step-process">
-                <div class="step-item">
-                    <span class="emoji">1️⃣</span>
-                    <strong>Share Your Page</strong>
-                    <span>Paste your current ad landing page URL.</span>
-                </div>
-                <div class="step-item">
-                    <span class="emoji">2️⃣</span>
-                    <strong>We Analyze & Record</strong>
-                    <span>We review your page and record a personalized video.</span>
-                </div>
-                <div class="step-item">
-                    <span class="emoji">3️⃣</span>
-                    <strong>Get Actionable Fixes</strong>
-                    <span>Receive your video and 3-5 instant, high-impact fixes.</span>
-                </div>
-            </div>
-            <div class="centered-text" style="margin-top:30px;">
-                <a href="#lead-form-section" class="cta-button">Get My Free Audit Now</a>
-                <span class="cta-micro-text">Takes 60 seconds. No credit card. No spam.</span>
-            </div>
-        </section>
-
-        <!-- CREDIBILITY SECTION -->
-        <section class="card animate-on-scroll slide-in-left">
-            <h2 class="centered-text">We Live & Breathe High-Converting B2B Landing Pages</h2>
-            <p class="centered-text">We're FlowLogica.com, specialists in designing and building landing pages for B2B companies that turn ad clicks into customers. We know what works on LinkedIn because we see it every day.</p>
-            <div class="logos-container">
-                <img src="https://cdn.prod.website-files.com/67d97ee04d10ce1c0adb4193/681b39bee451e978c3b9a3cb_Screenshot%202025-05-07%20at%2011.44.54.png" alt="Client Logos Banner" class="client-logo-banner">
-            </div>
-            <p class="centered-text" style="font-size:1.2em; font-weight:bold; color:var(--primary-color); margin:15px 0;">
-                Our clients see an average 33% lift in conversions after implementing our fixes.
-            </p>
-            <div class="testimonial">
-                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Testimonial Photo" class="testimonial-img">
-                <div>
-                    <blockquote>"The insights from their audit were eye-opening! We implemented two changes and saw our ad conversions jump by 37%."</blockquote>
-                    <cite>– Maggie Ha, Marketing Manager, Tappt</cite>
-                </div>
-            </div>
-        </section>
-
-        <!-- FORM SECTION -->
-        <section id="lead-form-section" class="card animate-on-scroll slide-in-right">
-            <h2 class="centered-text">Get Your Free LinkedIn Ad Page Audit</h2>
-            <p class="centered-text" style="margin-bottom:30px;">Submit your details below. We'll analyze your page and email your personalized video audit & actionable fixes.</p>
-            
-            <form id="cta-lead-form" class="lead-form" novalidate>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="firstName">First Name*</label>
-                        <input type="text" id="firstName" name="firstName" placeholder="e.g. Jane" required>
+        <section class="section"> 
+            <div class="container">
+                <h2 class="text-center" style="margin-bottom: calc(var(--spacing-unit)*5);">Here’s Exactly What Your Free Audit Delivers:</h2>
+                <div class="card">
+                    <div class="audit-feature-item" style="margin-bottom: calc(var(--spacing-unit)*3);">
+                        <h3>📹 A Personalized Video Review (2-5 min):</h3>
+                        <p>No generic checklists. We'll record a brief video walking you through your specific ad's current destination page, showing you what we see.</p>
                     </div>
-                    <div class="form-group">
-                        <label for="lastName">Last Name*</label>
-                        <input type="text" id="lastName" name="lastName" placeholder="e.g. Doe" required>
+                    <div class="audit-feature-item" style="margin-bottom: calc(var(--spacing-unit)*3);">
+                        <h3>🎯 The "5-Point Conversion Check":</h3>
+                        <p>We'll analyze: Message Match, Clarity of Offer, Compelling Call-to-Action (CTA), Trust & Credibility, and Distraction Removal.</p>
+                    </div>
+                    <div class="audit-feature-item" style="margin-bottom: calc(var(--spacing-unit)*3);">
+                        <h3>💡 3-5 Actionable, High-Impact Recommendations:</h3>
+                        <p>Forget vague advice. You'll get concrete, easy-to-understand suggestions you (or your team) can implement to see improvements.</p>
+                    </div>
+                    <div class="audit-feature-item" style="margin-bottom: calc(var(--spacing-unit)*3);">
+                        <h3>📈 Potential Uplift Insights:</h3>
+                        <p>We'll explain how these changes can lead to better conversion rates, more qualified leads, and a stronger return on your LinkedIn ad spend.</p>
+                    </div>
+                    <div class="audit-feature-item" style="margin-bottom: 0;">
+                        <h3>🚫 Zero Obligation, Pure Value:</h3>
+                        <p>This audit is genuinely free. Our goal is to show you the potential. If you love our insights, great. If not, you still get valuable, actionable advice.</p>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email Address*</label>
-                    <input type="email" id="email" name="email" placeholder="e.g. jane.doe@example.com" required>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="cta-button form-submit-button">Get My Free Audit Now</button>
-                    <span class="cta-micro-text centered-text">100% Free. No credit card. We respect your privacy.</span>
-                </div>
-                <div id="form-response-message"></div> <!-- For success/error messages -->
-            </form>
+            </div>
         </section>
-    </div>
+
+        <section class="section text-center">
+            <div class="container">
+                <h2>Ready to Unlock More Leads from Your LinkedIn Ads?</h2>
+                <p style="margin-bottom: calc(var(--spacing-unit)*3); color: var(--color-text-secondary);">Here's how easy it is to get your free audit:</p>
+                <div class="process-steps-container">
+                    <div class="step-item">
+                        <span class="step-number-badge">1</span>
+                        <span class="step-text"><strong>Share Your Page:</strong> Paste your current ad landing page URL.</span>
+                    </div>
+                    <div class="step-item">
+                        <span class="step-number-badge">2</span>
+                        <span class="step-text"><strong>We Analyze & Record:</strong> We review your page and record a personalized video.</span>
+                    </div>
+                    <div class="step-item">
+                        <span class="step-number-badge">3</span>
+                        <span class="step-text"><strong>Get Actionable Fixes:</strong> Receive your video and 3-5 instant, high-impact fixes.</span>
+                    </div>
+                </div>
+                <div class="cta-container" style="margin-top: calc(var(--spacing-unit)*4);">
+                    <a href="#form-section" class="cta-button">Get My Free Audit Now</a>
+                    <p class="cta-micro-text" style="margin-top: var(--spacing-unit);">Takes 60 seconds. No credit card. No spam.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="card" style="max-width: 900px; margin-left:auto; margin-right:auto; padding: calc(var(--spacing-unit)*3) calc(var(--spacing-unit)*2);"> 
+                    
+                    <!-- Content from "We Live & Breathe..." section -->
+                    <div class="combined-card-section text-center" style="padding-bottom: calc(var(--spacing-unit)*3); margin-bottom: calc(var(--spacing-unit)*3); border-bottom: 1px solid var(--color-border);">
+                        <h2>We Live & Breathe High-Converting B2B Landing Pages</h2>
+                        <p>We're FlowLogica.com, specialists in designing and building landing pages for B2B companies that turn ad clicks into customers. We know what works on LinkedIn because we see it every day.</p>
+                        <div class="customer-logos" style="margin-top: calc(var(--spacing-unit)*3); margin-bottom: calc(var(--spacing-unit)*3);">
+                            <!-- Ensure this image is responsive and centered if it isn't already -->
+                            <img src="https://github.com/FreshBreadAI/flowlogica/blob/main/assets/customer-logos.png?raw=true" alt="Customer Logos" style="max-width: 100%; height: auto; margin-left: auto; margin-right: auto; display: block;">
+                        </div>
+                        <p class="highlight-text" style="font-size: 1.25rem; font-weight: 600; color: var(--color-text-primary);">Our clients see an average 33% lift in conversions after implementing our fixes.</p>
+                    </div>
+        
+                    <!-- New Testimonial Structure -->
+                    <div class="testimonial-container-styled">
+                        <div class="testimonial-image-wrapper">
+                            <img src="https://github.com/FreshBreadAI/flowlogica/blob/main/assets/maggie-customer.jpg?raw=true" alt="Maggie Ha, Marketing Manager, Tappt" class="testimonial-image">
+                        </div>
+                        <div class="testimonial-content-wrapper">
+                            <blockquote>
+                                "The insights from their audit were eye-opening! We implemented two changes and saw our ad conversions jump by 37%."
+                            </blockquote>
+                            <p><cite>– Maggie Ha, Marketing Manager, Tappt</cite></p>
+                        </div>
+                    </div>
+        
+                </div> <!-- End single card -->
+            </div>
+        </section>
+
+        <section id="form-section" class="section hero-gradient-background" style="margin-bottom: 0 !important;">
+            <div class="container">
+                <div class="card" style="max-width: 600px; margin-left:auto; margin-right:auto;">
+                    <h2 class="text-center">Get Your Free LinkedIn Ad Page Audit</h2>
+                    <p class="text-center" style="margin-bottom: calc(var(--spacing-unit)*3);">Submit your details below. We'll analyze your page and email your personalized video audit & actionable fixes.</p>
+                    <form id="linkedinAuditForm" class="contact-form">
+                        <div class="form-group" style="margin-bottom: calc(var(--spacing-unit)*2);">
+                            <label for="firstName" style="display: block; margin-bottom: var(--spacing-unit); font-weight: 500; color: var(--color-text-primary);">First Name*</label>
+                            <input type="text" id="firstName" name="firstName" placeholder="e.g. Jane" required style="width: 100%; padding: calc(var(--spacing-unit)*1.5); border: 1px solid var(--color-border); border-radius: var(--border-radius-medium); font-size: 1rem;">
+                        </div>
+                        <div class="form-group" style="margin-bottom: calc(var(--spacing-unit)*2);">
+                            <label for="lastName" style="display: block; margin-bottom: var(--spacing-unit); font-weight: 500; color: var(--color-text-primary);">Last Name*</label>
+                            <input type="text" id="lastName" name="lastName" placeholder="e.g. Doe" required style="width: 100%; padding: calc(var(--spacing-unit)*1.5); border: 1px solid var(--color-border); border-radius: var(--border-radius-medium); font-size: 1rem;">
+                        </div>
+                        <div class="form-group" style="margin-bottom: calc(var(--spacing-unit)*3);">
+                            <label for="email" style="display: block; margin-bottom: var(--spacing-unit); font-weight: 500; color: var(--color-text-primary);">Email Address*</label>
+                            <input type="email" id="email" name="email" placeholder="e.g. jane.doe@example.com" required style="width: 100%; padding: calc(var(--spacing-unit)*1.5); border: 1px solid var(--color-border); border-radius: var(--border-radius-medium); font-size: 1rem;">
+                        </div>
+                        <button type="submit" class="cta-button" style="width: 100%;">Get My Free Audit Now</button>
+                        <p class="cta-micro-text text-center" style="margin-top: var(--spacing-unit);">100% Free. No credit card. We respect your privacy.</p>
+                        <div id="formMessage" class="form-message" style="margin-top: calc(var(--spacing-unit)*2); text-align: center; font-weight: 500;"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // Scroll Animations
-        const animatedElements = document.querySelectorAll('.animate-on-scroll');
-        if (animatedElements.length > 0) {
-            const observer = new IntersectionObserver((entries, observerInstance) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observerInstance.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            animatedElements.forEach(el => observer.observe(el));
-        }
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href.length > 1 && document.querySelector(href)) { // Ensure it's not just '#' and element exists
-                    e.preventDefault();
-                    document.querySelector(href).scrollIntoView({
-                        behavior: 'smooth'
-                    });
+        // Card animation on scroll
+        const cards = document.querySelectorAll('.card');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in'); 
+                    observer.unobserve(entry.target);
                 }
             });
+        }, { threshold: 0.1 });
+
+        cards.forEach(card => {
+            observer.observe(card);
         });
 
-        // Form Submission
-        const form = document.getElementById('cta-lead-form');
-        const formResponseMessage = document.getElementById('form-response-message');
+        // Form submission logic
+        const form = document.getElementById('linkedinAuditForm');
+        const formMessage = document.getElementById('formMessage');
         const webhookUrl = 'https://hook.eu2.make.com/q8a1b43dlyx66fo5rqgvvxcchxy31x7m';
 
-        if (form) {
-            form.addEventListener('submit', function(event) {
-                event.preventDefault();
-                formResponseMessage.innerHTML = ''; // Clear previous messages
-                formResponseMessage.className = 'form-message'; // Reset class
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            formMessage.textContent = '';
+            formMessage.className = 'form-message'; 
+            formMessage.style.marginTop = 'calc(var(--spacing-unit)*2)'; 
+            formMessage.style.textAlign = 'center';
+            formMessage.style.fontWeight = '500';
 
-                const firstNameInput = form.querySelector('#firstName');
-                const lastNameInput = form.querySelector('#lastName');
-                const emailInput = form.querySelector('#email');
-                let isValid = true;
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
 
-                // Basic client-side validation
-                if (!firstNameInput.value.trim()) {
-                    showError(firstNameInput, 'First name is required.');
-                    isValid = false;
-                }
-                if (!lastNameInput.value.trim()) {
-                    showError(lastNameInput, 'Last name is required.');
-                    isValid = false;
-                }
-                if (!emailInput.value.trim()) {
-                    showError(emailInput, 'Email is required.');
-                    isValid = false;
-                } else if (!isValidEmail(emailInput.value.trim())) {
-                    showError(emailInput, 'Please enter a valid email address.');
-                    isValid = false;
-                }
-
-                if (!isValid) {
-                    // Add a general error message to the form response area if individual errors aren't enough
-                    if (!formResponseMessage.innerHTML) {
-                         formResponseMessage.innerHTML = '<p>Please correct the errors above.</p>';
-                         formResponseMessage.classList.add('form-error');
-                    }
-                    return;
-                }
-
-                const formData = {
-                    firstName: firstNameInput.value.trim(),
-                    lastName: lastNameInput.value.trim(),
-                    email: emailInput.value.trim()
-                };
-                
-                const submitButton = form.querySelector('button[type="submit"]');
-                const originalButtonText = submitButton.textContent;
-                submitButton.textContent = 'Submitting...';
-                submitButton.disabled = true;
-
-                fetch(webhookUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData),
-                })
-                .then(response => {
-                    if (response.ok) {
-                        return response.text(); // Or response.json() if webhook sends JSON
-                    } 
-                    // If response not ok, try to parse error or throw generic
-                    return response.text().then(text => { 
-                        throw new Error(text || 'Network response was not ok'); 
-                    });
-                })
-                .then(data => {
-                    form.reset();
-                    formResponseMessage.innerHTML = '<h3>Thank You!</h3><p>Your audit request has been successfully submitted. We will be in touch shortly.</p><div style="font-size:2em;margin-top:10px;">🎉</div>';
-                    formResponseMessage.classList.remove('form-error');
-                    formResponseMessage.classList.add('form-success');
-                })
-                .catch(error => {
-                    console.error('Form submission error:', error);
-                    formResponseMessage.innerHTML = '<p>Oops! Something went wrong. Please check your details and try again. If the problem persists, please contact support.</p>';
-                    formResponseMessage.classList.remove('form-success');
-                    formResponseMessage.classList.add('form-error');
-                })
-                .finally(() => {
-                    submitButton.textContent = originalButtonText;
-                    submitButton.disabled = false;
-                });
-            });
-        }
-        
-        function isValidEmail(email) {
-            // Basic email validation regex
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
-        }
-
-        function showError(inputElement, message) {
-            // Remove existing error message for this field
-            const existingError = inputElement.parentNode.querySelector('.field-error-message');
-            if (existingError) {
-                existingError.remove();
+            let isValid = true;
+            if (!firstName) {
+                document.getElementById('firstName').style.borderColor = 'var(--color-text-error)';
+                isValid = false;
+            } else {
+                document.getElementById('firstName').style.borderColor = 'var(--color-border)';
             }
-            // Add new error message
-            const error = document.createElement('p');
-            error.className = 'field-error-message';
-            error.style.color = 'red';
-            error.style.fontSize = '0.85em';
-            error.style.marginTop = '5px';
-            error.textContent = message;
-            inputElement.parentNode.appendChild(error);
-            inputElement.style.borderColor = 'red'; // Highlight field
+            if (!lastName) {
+                document.getElementById('lastName').style.borderColor = 'var(--color-text-error)';
+                isValid = false;
+            } else {
+                document.getElementById('lastName').style.borderColor = 'var(--color-border)';
+            }
+            if (!email) {
+                document.getElementById('email').style.borderColor = 'var(--color-text-error)';
+                isValid = false;
+            } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+                document.getElementById('email').style.borderColor = 'var(--color-text-error)';
+                formMessage.textContent = 'Please enter a valid email address.';
+                formMessage.style.color = 'var(--color-text-error)';
+                isValid = false;
+            } else {
+                document.getElementById('email').style.borderColor = 'var(--color-border)';
+            }
 
-            // Clear error on input
-            inputElement.addEventListener('input', function clearError() {
-                error.remove();
-                inputElement.style.borderColor = ''; // Reset border
-                inputElement.removeEventListener('input', clearError); // Clean up listener
-            }, { once: true });
-        }
-    });
+            if (!isValid) {
+                if (!formMessage.textContent) { 
+                    formMessage.textContent = 'Please fill in all required fields.';
+                    formMessage.style.color = 'var(--color-text-error)';
+                }
+                return;
+            }
+
+            const formData = {
+                firstName: firstName,
+                lastName: lastName,
+                email: email
+            };
+            
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+            submitButton.textContent = 'Submitting...';
+            submitButton.disabled = true;
+
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.text(); 
+                } else {
+                    return response.text().then(text => { 
+                        throw new Error(text || 'Submission failed: ' + response.status);
+                    });
+                }
+            })
+            .then(data => {
+                formMessage.textContent = 'Thank you! Your audit request has been submitted successfully.';
+                formMessage.style.color = 'var(--color-brand-primary)';
+                form.reset();
+                ['firstName', 'lastName', 'email'].forEach(id => {
+                    document.getElementById(id).style.borderColor = 'var(--color-border)';
+                });
+            })
+            .catch(error => {
+                console.error('Error submitting form:', error);
+                formMessage.textContent = 'An error occurred: ' + error.message;
+                formMessage.style.color = 'var(--color-text-error)';
+            })
+            .finally(() => {
+                submitButton.textContent = originalButtonText;
+                submitButton.disabled = false;
+            });
+        });
     </script>
 </body>
 </html>
