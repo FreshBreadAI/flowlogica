@@ -1,0 +1,390 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowLogica | LinkedIn Landing Page Audit Offer</title>
+    <link rel="icon" href="https://github.com/FreshBreadAI/flowlogica/blob/main/assets/favicon.ico?raw=true" type="image/png">
+    <link rel="stylesheet" href="flowlogica-new-style.css">
+    <style>
+        .cta-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .process-steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--spacing-unit) * 1.5); /* 12px gap */
+            max-width: 700px; 
+            margin-left:auto; 
+            margin-right:auto;
+        }
+        .step-item {
+            background-color: #f0f4f8; /* Changed from var(--color-background-subtle) to a darker light greyish-blue */
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius-medium);
+            padding: calc(var(--spacing-unit) * 2);
+            display: flex;
+            align-items: center;
+            gap: calc(var(--spacing-unit) * 2);
+            font-size: 1.05rem;
+        }
+        .step-number-badge {
+            background-color: var(--color-text-secondary); /* Darker grey for badge */
+            color: var(--color-background-body);
+            border-radius: var(--border-radius-small);
+            padding: calc(var(--spacing-unit)*0.75) calc(var(--spacing-unit)*1.25);
+            font-weight: bold;
+            font-size: 0.9rem;
+            line-height: 1;
+        }
+        .step-text strong {
+            color: var(--color-text-primary);
+        }
+        .step-text span { /* For the rest of the text after the strong tag */
+            color: var(--color-text-secondary);
+        }
+
+        /* Added for new testimonial style */
+        .testimonial-container-styled {
+            display: flex;
+            align-items: flex-start; /* Aligns items to the top */
+            background-color: #F0FAF3; /* Very light mint green from image */
+            border-left: 5px solid var(--color-brand-primary);
+            padding: calc(var(--spacing-unit) * 2.5); /* Approx 20px */
+            border-radius: var(--border-radius-medium); /* Matches other cards */
+            margin-top: calc(var(--spacing-unit) * 3); /* Space below the H2 */
+            box-shadow: var(--shadow-soft); /* Add a subtle shadow */
+        }
+
+        .testimonial-image-wrapper {
+            margin-right: calc(var(--spacing-unit) * 2.5); /* Approx 20px */
+            flex-shrink: 0;
+        }
+
+        .testimonial-image {
+            width: 100px; 
+            height: 100px; 
+            border-radius: 50%;
+            object-fit: cover; 
+            box-shadow: var(--shadow-light);
+        }
+
+        .testimonial-content-wrapper {
+            flex-grow: 1;
+            text-align: left; 
+        }
+
+        .testimonial-content-wrapper blockquote {
+            font-size: 1.1em; 
+            font-style: italic;
+            color: var(--color-text-secondary); 
+            margin: 0 0 calc(var(--spacing-unit) * 1.5) 0; 
+            padding: 0;
+            background-color: transparent; 
+            border: none; 
+        }
+
+        .testimonial-content-wrapper cite {
+            font-size: 0.95em;
+            color: var(--color-text-primary); 
+            font-style: normal; 
+            font-weight: 600; 
+        }
+    </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2134MY5NNQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-2134MY5NNQ');
+    </script>
+    <!-- 
+        Note on Card Animations: 
+        The JavaScript below adds a '.fade-in' class to cards when they scroll into view.
+        For this animation to work as intended (fade in and slide up), 
+        'flowlogica-new-style.css' should define:
+        1. Initial state for '.card': e.g., opacity: 0; transform: translateY(20px);
+           (The CSS currently has 'opacity: 1; /* TEMP DEBUG - Was 0 for animation */')
+        2. Definition for '.fade-in': e.g., .card.fade-in { opacity: 1; transform: translateY(0); }
+    -->
+</head>
+<body>
+    <main>
+        <section class="section section-hero hero-gradient-background text-center"> 
+            <div class="container">
+                <p class="hero-super-title" style="font-size: 1rem; font-weight: 500; color: var(--color-text-secondary); margin-bottom: calc(var(--spacing-unit)*0.5);">Want To Turn More LinkedIn Clicks Into Leads?</p>
+                <h1>Double Your LinkedIn Ad Leads (Free Audit)</h1>
+                <p class="hero-sub-title">Get a personalized video review of your landing page—see exactly how to boost conversions, 100% free.</p>
+                <img src="https://github.com/FreshBreadAI/flowlogica/blob/main/assets/landingpage-audit.png?raw=true" alt="Landing Page Score Example" class="hero-image" style="max-width: 600px; margin: calc(var(--spacing-unit)*2.5) auto calc(var(--spacing-unit)*3.75) auto; border-radius: var(--border-radius-medium); box-shadow: var(--shadow-large); display: block;">
+                <ul class="bullet-list bullet-list--hero">
+                    <li><strong>3-5 instant, actionable fixes</strong></li>
+                    <li><strong>See real examples & ROI potential</strong></li>
+                    <li><strong>No sales pitch, no obligation</strong></li>
+                </ul>
+                <a href="#form-section" class="cta-button">Get My Free Audit Now</a>
+                <p class="cta-micro-text" style="margin-top: var(--spacing-unit);">Takes 60 seconds. No credit card. No spam.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="card text-center">
+                    <h2>Is Your LinkedIn Ad Spend Going Down the Drain?</h2>
+                    <p>You've done the hard work: identified your B2B audience, crafted compelling ad copy, and set your budget. But if those clicks land on a generic homepage, a confusing product page, or a quickly thrown-together landing page, you're likely facing:</p>
+                    <ul class="bullet-list" style="max-width: 600px; margin-left: auto; margin-right: auto;">
+                        <li><strong>Wasted Ad Budget:</strong> Paying for clicks that don't convert.</li>
+                        <li><strong>Low Lead Quality:</strong> Attracting browsers, not buyers.</li>
+                        <li><strong>Uncertain ROI:</strong> No clear picture of how your ads are truly performing.</li>
+                        <li><strong>Frustration & Missed Opportunities:</strong> Knowing you <em>could</em> be getting more from your investment.</li>
+                    </ul>
+                    <p style="font-weight:500; margin-top: calc(var(--spacing-unit)*3);">Sending LinkedIn ad traffic to a page not <strong>specifically designed</strong> to convert that traffic is one of the most common (and costly) mistakes B2B advertisers make.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section"> 
+            <div class="container">
+                <h2 class="text-center" style="margin-bottom: calc(var(--spacing-unit)*5);">Here’s Exactly What Your Free Audit Delivers:</h2>
+                <div class="card">
+                    <div class="audit-feature-item" style="margin-bottom: calc(var(--spacing-unit)*3);">
+                        <h3>📹 A Personalized Video Review (2-5 min):</h3>
+                        <p>No generic checklists. We'll record a brief video walking you through your specific ad's current destination page, showing you what we see.</p>
+                    </div>
+                    <div class="audit-feature-item" style="margin-bottom: calc(var(--spacing-unit)*3);">
+                        <h3>🎯 The "5-Point Conversion Check":</h3>
+                        <p>We'll analyze: Message Match, Clarity of Offer, Compelling Call-to-Action (CTA), Trust & Credibility, and Distraction Removal.</p>
+                    </div>
+                    <div class="audit-feature-item" style="margin-bottom: calc(var(--spacing-unit)*3);">
+                        <h3>💡 3-5 Actionable, High-Impact Recommendations:</h3>
+                        <p>Forget vague advice. You'll get concrete, easy-to-understand suggestions you (or your team) can implement to see improvements.</p>
+                    </div>
+                    <div class="audit-feature-item" style="margin-bottom: calc(var(--spacing-unit)*3);">
+                        <h3>📈 Potential Uplift Insights:</h3>
+                        <p>We'll explain how these changes can lead to better conversion rates, more qualified leads, and a stronger return on your LinkedIn ad spend.</p>
+                    </div>
+                    <div class="audit-feature-item" style="margin-bottom: 0;">
+                        <h3>🚫 Zero Obligation, Pure Value:</h3>
+                        <p>This audit is genuinely free. Our goal is to show you the potential. If you love our insights, great. If not, you still get valuable, actionable advice.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section text-center">
+            <div class="container">
+                <h2>Ready to Unlock More Leads from Your LinkedIn Ads?</h2>
+                <p style="margin-bottom: calc(var(--spacing-unit)*3); color: var(--color-text-secondary);">Here's how easy it is to get your free audit:</p>
+                <div class="process-steps-container">
+                    <div class="step-item">
+                        <span class="step-number-badge">1</span>
+                        <span class="step-text"><strong>Share Your Page:</strong> Paste your current ad landing page URL.</span>
+                    </div>
+                    <div class="step-item">
+                        <span class="step-number-badge">2</span>
+                        <span class="step-text"><strong>We Analyze & Record:</strong> We review your page and record a personalized video.</span>
+                    </div>
+                    <div class="step-item">
+                        <span class="step-number-badge">3</span>
+                        <span class="step-text"><strong>Get Actionable Fixes:</strong> Receive your video and 3-5 instant, high-impact fixes.</span>
+                    </div>
+                </div>
+                <div class="cta-container" style="margin-top: calc(var(--spacing-unit)*4);">
+                    <a href="#form-section" class="cta-button">Get My Free Audit Now</a>
+                    <p class="cta-micro-text" style="margin-top: var(--spacing-unit);">Takes 60 seconds. No credit card. No spam.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="card" style="max-width: 900px; margin-left:auto; margin-right:auto; padding: calc(var(--spacing-unit)*3) calc(var(--spacing-unit)*2);"> 
+                    
+                    <!-- Content from "We Live & Breathe..." section -->
+                    <div class="combined-card-section text-center" style="padding-bottom: calc(var(--spacing-unit)*3); margin-bottom: calc(var(--spacing-unit)*3); border-bottom: 1px solid var(--color-border);">
+                        <h2>We Live & Breathe High-Converting B2B Landing Pages</h2>
+                        <p>We're FlowLogica.com, specialists in designing and building landing pages for B2B companies that turn ad clicks into customers. We know what works on LinkedIn because we see it every day.</p>
+                        <div class="customer-logos" style="margin-top: calc(var(--spacing-unit)*3); margin-bottom: calc(var(--spacing-unit)*3);">
+                            <!-- Ensure this image is responsive and centered if it isn't already -->
+                            <img src="https://github.com/FreshBreadAI/flowlogica/blob/main/assets/customer-logos.png?raw=true" alt="Customer Logos" style="max-width: 100%; height: auto; margin-left: auto; margin-right: auto; display: block;">
+                        </div>
+                        <p class="highlight-text" style="font-size: 1.25rem; font-weight: 600; color: var(--color-text-primary);">Our clients see an average 33% lift in conversions after implementing our fixes.</p>
+                    </div>
+        
+                    <!-- New Testimonial Structure -->
+                    <div class="testimonial-container-styled">
+                        <div class="testimonial-image-wrapper">
+                            <img src="https://github.com/FreshBreadAI/flowlogica/blob/main/assets/maggie-customer.jpg?raw=true" alt="Maggie Ha, Marketing Manager, Tappt" class="testimonial-image">
+                        </div>
+                        <div class="testimonial-content-wrapper">
+                            <blockquote>
+                                "The insights from their audit were eye-opening! We implemented two changes and saw our ad conversions jump by 37%."
+                            </blockquote>
+                            <p><cite>– Maggie Ha, Marketing Manager, Tappt</cite></p>
+                        </div>
+                    </div>
+        
+                </div> <!-- End single card -->
+            </div>
+        </section>
+
+        <section id="form-section" class="section hero-gradient-background" style="margin-bottom: 0 !important;">
+            <div class="container">
+                <div class="card" style="max-width: 600px; margin-left:auto; margin-right:auto;">
+                    <h2 class="text-center">Get Your Free LinkedIn Ad Page Audit</h2>
+                    <p class="text-center" style="margin-bottom: calc(var(--spacing-unit)*3);">Submit your details below. We'll analyze your page and email your personalized video audit & actionable fixes.</p>
+                    <form id="linkedinAuditForm" class="contact-form">
+                        <div class="form-group" style="margin-bottom: calc(var(--spacing-unit)*2);">
+                            <label for="firstName" style="display: block; margin-bottom: var(--spacing-unit); font-weight: 500; color: var(--color-text-primary);">First Name*</label>
+                            <input type="text" id="firstName" name="firstName" placeholder="e.g. Jane" required style="width: 100%; padding: calc(var(--spacing-unit)*1.5); border: 1px solid var(--color-border); border-radius: var(--border-radius-medium); font-size: 1rem;">
+                        </div>
+                        <div class="form-group" style="margin-bottom: calc(var(--spacing-unit)*2);">
+                            <label for="lastName" style="display: block; margin-bottom: var(--spacing-unit); font-weight: 500; color: var(--color-text-primary);">Last Name*</label>
+                            <input type="text" id="lastName" name="lastName" placeholder="e.g. Doe" required style="width: 100%; padding: calc(var(--spacing-unit)*1.5); border: 1px solid var(--color-border); border-radius: var(--border-radius-medium); font-size: 1rem;">
+                        </div>
+                        <div class="form-group" style="margin-bottom: calc(var(--spacing-unit)*3);">
+                            <label for="email" style="display: block; margin-bottom: var(--spacing-unit); font-weight: 500; color: var(--color-text-primary);">Email Address*</label>
+                            <input type="email" id="email" name="email" placeholder="e.g. jane.doe@example.com" required style="width: 100%; padding: calc(var(--spacing-unit)*1.5); border: 1px solid var(--color-border); border-radius: var(--border-radius-medium); font-size: 1rem;">
+                        </div>
+                        <button type="submit" class="cta-button" style="width: 100%;">Get My Free Audit Now</button>
+                        <p class="cta-micro-text text-center" style="margin-top: var(--spacing-unit);">100% Free. No credit card. We respect your privacy.</p>
+                        <div id="formMessage" class="form-message" style="margin-top: calc(var(--spacing-unit)*2); text-align: center; font-weight: 500;"></div>
+                    </form>
+
+                    <!-- NEW Success Screen HTML -->
+                    <div id="successScreen" style="display: none;">
+                        <span class="success-emoji">✅</span>
+                        <h2>Submission Successful!</h2>
+                        <p>Thank you! Your audit request has been received.</p>
+                        <p>We'll be in touch within 48 hours with your personalized video audit.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Card animation on scroll
+        const cards = document.querySelectorAll('.card');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in'); 
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        cards.forEach(card => {
+            observer.observe(card);
+        });
+
+        // Form submission logic
+        const form = document.getElementById('linkedinAuditForm');
+        const formMessage = document.getElementById('formMessage');
+        const webhookUrl = 'https://hook.eu2.make.com/q8a1b43dlyx66fo5rqgvvxcchxy31x7m';
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            formMessage.textContent = '';
+            formMessage.className = 'form-message'; 
+            formMessage.style.marginTop = 'calc(var(--spacing-unit)*2)'; 
+            formMessage.style.textAlign = 'center';
+            formMessage.style.fontWeight = '500';
+
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
+
+            let isValid = true;
+            if (!firstName) {
+                document.getElementById('firstName').style.borderColor = 'var(--color-text-error)';
+                isValid = false;
+            } else {
+                document.getElementById('firstName').style.borderColor = 'var(--color-border)';
+            }
+            if (!lastName) {
+                document.getElementById('lastName').style.borderColor = 'var(--color-text-error)';
+                isValid = false;
+            } else {
+                document.getElementById('lastName').style.borderColor = 'var(--color-border)';
+            }
+            if (!email) {
+                document.getElementById('email').style.borderColor = 'var(--color-text-error)';
+                isValid = false;
+            } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+                document.getElementById('email').style.borderColor = 'var(--color-text-error)';
+                formMessage.textContent = 'Please enter a valid email address.';
+                formMessage.style.color = 'var(--color-text-error)';
+                isValid = false;
+            } else {
+                document.getElementById('email').style.borderColor = 'var(--color-border)';
+            }
+
+            if (!isValid) {
+                if (!formMessage.textContent) { 
+                    formMessage.textContent = 'Please fill in all required fields.';
+                    formMessage.style.color = 'var(--color-text-error)';
+                }
+                return;
+            }
+
+            const formData = {
+                firstName: firstName,
+                lastName: lastName,
+                email: email
+            };
+            
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+            submitButton.textContent = 'Submitting...';
+            submitButton.disabled = true;
+
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.text(); 
+                } else {
+                    return response.text().then(text => { 
+                        throw new Error(text || 'Submission failed: ' + response.status);
+                    });
+                }
+            })
+            .then(data => {
+                // Hide the form
+                form.style.display = 'none';
+                
+                // Ensure the old form message (if it was an error message) is also hidden
+                formMessage.style.display = 'none'; 
+                formMessage.textContent = ''; // Clear its content
+                formMessage.className = 'form-message'; // Reset classes
+
+                // Show the new success screen
+                const successScreen = document.getElementById('successScreen');
+                if (successScreen) {
+                    successScreen.style.display = 'block';
+                }
+                // form.reset(); // Form is hidden, so resetting might not be strictly necessary but good practice
+            })
+            .catch(error => {
+                console.error('Error submitting form:', error);
+                formMessage.textContent = 'An error occurred: ' + error.message;
+                formMessage.style.color = 'var(--color-text-error)';
+            })
+            .finally(() => {
+                submitButton.textContent = originalButtonText;
+                submitButton.disabled = false;
+            });
+        });
+    </script>
+</body>
+</html>
