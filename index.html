@@ -253,6 +253,14 @@
                         <p class="cta-micro-text text-center" style="margin-top: var(--spacing-unit);">100% Free. No credit card. We respect your privacy.</p>
                         <div id="formMessage" class="form-message" style="margin-top: calc(var(--spacing-unit)*2); text-align: center; font-weight: 500;"></div>
                     </form>
+
+                    <!-- NEW Success Screen HTML -->
+                    <div id="successScreen" style="display: none;">
+                        <span class="success-emoji">✅</span>
+                        <h2>Submission Successful!</h2>
+                        <p>Thank you! Your audit request has been received.</p>
+                        <p>We'll be in touch within 48 hours with your personalized video audit.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -352,12 +360,20 @@
                 }
             })
             .then(data => {
-                formMessage.textContent = 'Thank you! Your audit request has been submitted successfully.';
-                formMessage.style.color = 'var(--color-brand-primary)';
-                form.reset();
-                ['firstName', 'lastName', 'email'].forEach(id => {
-                    document.getElementById(id).style.borderColor = 'var(--color-border)';
-                });
+                // Hide the form
+                form.style.display = 'none';
+                
+                // Ensure the old form message (if it was an error message) is also hidden
+                formMessage.style.display = 'none'; 
+                formMessage.textContent = ''; // Clear its content
+                formMessage.className = 'form-message'; // Reset classes
+
+                // Show the new success screen
+                const successScreen = document.getElementById('successScreen');
+                if (successScreen) {
+                    successScreen.style.display = 'block';
+                }
+                // form.reset(); // Form is hidden, so resetting might not be strictly necessary but good practice
             })
             .catch(error => {
                 console.error('Error submitting form:', error);
