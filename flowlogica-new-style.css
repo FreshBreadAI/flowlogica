@@ -403,6 +403,12 @@ small {
         padding-bottom: calc(var(--spacing-unit) * 8);
         margin-bottom: calc(var(--spacing-unit) * 4);
     }
+    #form-section {
+        min-height: 90vh; /* Ensure form section takes most viewport height on tablets/large phones */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
     .card h1 {
         font-size: 2.2rem;
     }
@@ -440,6 +446,12 @@ small {
         padding-top: calc(var(--spacing-unit) * 6); /* Adjusted for mobile */
         padding-bottom: calc(var(--spacing-unit) * 6);
         margin-bottom: calc(var(--spacing-unit) * 3);
+    }
+    #form-section {
+        min-height: 95vh; /* Ensure form section takes even more viewport height on smaller mobile */
+        display: flex; /* To allow vertical centering of content if needed */
+        flex-direction: column; /* Stack content vertically */
+        justify-content: center; /* Center content vertically */
     }
     .card {
         padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 3); /* 21px */

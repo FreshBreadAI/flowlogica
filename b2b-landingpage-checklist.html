@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7-Step B2B Landing Page Improvement Checklist | FlowLogica</title>
+    <link rel="stylesheet" href="flowlogica-new-style.css">
+    <style>
+        /* Checklist specific styles */
+        .checklist-item-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            padding-bottom: var(--spacing-unit);
+            border-bottom: 1px solid var(--color-border);
+            margin-bottom: var(--spacing-unit);
+        }
+        .checklist-item-header label {
+            flex-grow: 1;
+            margin-left: var(--spacing-unit);
+            font-weight: 600;
+            color: var(--color-text-primary);
+            font-size: 1.3rem; /* Reduced by 35% from 2.0rem */
+            line-height: 1.4; /* Adjusted for smaller font */
+            margin-right: var(--spacing-unit); /* Add some space before the expand button */
+        }
+        .checklist-item-header input[type="checkbox"] {
+            min-width: 20px; /* Ensure checkbox is easily clickable */
+            min-height: 20px;
+            accent-color: var(--color-brand-primary);
+        }
+        .expand-btn {
+            background: none;
+            border: none;
+            color: var(--color-text-accent);
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0 var(--spacing-unit);
+        }
+        .checklist-item-details {
+            padding-top: var(--spacing-unit);
+            font-size: 0.95rem;
+        }
+        .checklist-item-details p {
+            margin-bottom: var(--spacing-unit);
+        }
+        .score-container {
+            text-align: center;
+            padding: calc(var(--spacing-unit) * 3) 0;
+            margin-bottom: calc(var(--spacing-unit) * 3);
+            background-color: var(--color-background-card);
+            border-radius: var(--border-radius-medium);
+            box-shadow: var(--shadow-medium);
+        }
+        .score-container h2 {
+            margin-bottom: var(--spacing-unit);
+        }
+        #currentScore, #totalScore {
+            font-weight: bold;
+            color: var(--color-brand-primary);
+        }
+        #feedbackText {
+            margin-top: var(--spacing-unit);
+            font-style: italic;
+            color: var(--color-text-secondary);
+        }
+        .reset-button-container {
+            text-align: center;
+            margin-bottom: calc(var(--spacing-unit) * 4);
+        }
+
+        /* Animation helper classes */
+        .card.hidden-card {
+            opacity: 0;
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .card.hidden-left {
+            transform: translateX(-40px);
+        }
+        .card.hidden-right {
+            transform: translateX(40px);
+        }
+        .card.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .checklist-progress-bar-container {
+            width: 100%;
+            background-color: var(--color-border);
+            border-radius: var(--border-radius-small);
+            margin: var(--spacing-unit) 0;
+            height: 12px; /* Slimmer progress bar */
+            overflow: hidden; /* Ensures inner bar respects border radius */
+        }
+
+        .checklist-progress-bar {
+            width: 0%;
+            height: 100%;
+            background-color: var(--color-brand-primary);
+            transition: width 0.5s ease-in-out;
+            border-radius: var(--border-radius-small); /* Match container's radius */
+        }
+
+        .example-pages-section {
+            margin-top: 50px !important; /* Reduced top margin */
+            margin-bottom: 50px !important; /* Reduced bottom margin */
+            background-color: var(--color-background-light-grey); /* Or similar to distinguish */
+            text-align: center;
+        }
+        .example-pages-section .container {
+            padding-top: 65px; /* Reduced by 35% from 100px */
+            padding-bottom: 65px; /* Reduced by 35% from 100px */
+        }
+        .example-pages-container {
+            display: flex;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            justify-content: center;
+            align-items: flex-start; /* Align items to the top */
+            gap: var(--spacing-unit)*8; /* Further substantial increase to horizontal gap */
+            max-width: 1200px; /* Or adjust as needed */
+            margin: 0 auto;
+        }
+        .example-pages-container img {
+            max-width: 100%; /* Responsive within its container */
+            height: auto;
+            border-radius: var(--border-radius-medium);
+            box-shadow: var(--shadow-medium);
+            width: 48%; /* Example: two images side by side with a gap */
+            object-fit: contain; /* Ensure entire image is visible */
+        }
+
+        /* Media query for smaller screens to stack images */
+        @media (max-width: 768px) {
+            .example-pages-container img {
+                width: 90%; /* Take more width when stacked */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="section-hero hero-gradient-background">
+        <div class="container">
+            <h1 style="font-size: 2.8rem; margin-bottom: var(--spacing-unit);">Supercharge Your B2B Landing Pages</h1>
+            <p class="hero-sub-title" style="font-size: 1.3rem; max-width: 700px; margin-left:auto; margin-right:auto;">Use this checklist to identify key improvement areas and boost your conversion rates. Get a dynamic score as you go!</p>
+        </div>
+    </section>
+
+    <!-- Main Checklist Section -->
+    <section class="section">
+        <div class="container">
+            <div id="checklistContainer">
+                <!-- Checklist items will be dynamically inserted here by JS if chosen, or listed statically -->
+            </div>
+
+            <!-- Score Display -->
+            <div class="score-container card" id="scoreCard">
+                 <h2>Your Landing Page Score</h2>
+                <p style="font-size: 1.8rem;"><span id="currentScore">0</span> / <span id="totalScore">7</span> Points</p>
+                <div class="checklist-progress-bar-container">
+                    <div class="checklist-progress-bar" id="progressBar"></div>
+                </div>
+                <p id="feedbackText">Complete the checklist to see how your page stacks up!</p>
+                <div class="reset-button-container" style="margin-top: var(--spacing-unit)*2;">
+                    <button class="btn btn-secondary" id="resetChecklistBtn">Reset Checklist</button>
+                </div>
+            </div>
+
+            <!-- Additional Considerations Section -->
+            <div class="card hidden-card" id="additionalConsiderationsCard">
+                <h2>Beyond the Core: Extra Conversion Boosters</h2>
+                <ul class="bullet-list">
+                    <li><strong>Visual Hierarchy & Design:</strong> Employ a clean, professional design that guides the eye and supports the message. Consistent branding, quality imagery/video, and clear visual flow are crucial.</li>
+                    <li><strong>Offer Relevance & Value:</strong> Ensure the landing page offer (e.g., demo, whitepaper, trial) is highly valuable and directly relevant to your target audience's pressing needs.</li>
+                    <li><strong>Removing Distractions:</strong> Eliminate competing CTAs, unnecessary navigation links, or any elements that might pull visitors away from the primary conversion goal. Focus is key.</li>
+                    <li><strong>A/B Testing & Iteration:</strong> Continuously test and iterate on page elements (headlines, CTAs, copy, forms) to systematically improve conversion rates over time. Data-driven improvements are essential.</li>
+                </ul>
+            </div>
+
+            <!-- Example Landing Pages Section -->
+            <section class="section example-pages-section">
+                <div class="container">
+                    <h2 style="margin-bottom: calc(var(--spacing-unit) * 4); color: var(--color-text-primary);">Examples of High-Converting Landing Pages</h2>
+                    <div class="example-pages-container">
+                        <img src="https://github.com/FreshBreadAI/flowlogica/blob/main/assets/landingpage-example-unbounce.com_saas-optimization-guide_%20sml.jpg?raw=true" alt="Example of Unbounce SaaS Optimization Guide Landing Page">
+                        <img src="https://github.com/FreshBreadAI/flowlogica/blob/main/assets/landingpage-example-flowlogica.com_%20sml.jpg?raw=true" alt="Example of FlowLogica Landing Page">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action Section -->
+            <section class="section text-center" style="padding-top: var(--spacing-unit)*4; padding-bottom: calc(var(--spacing-unit) * 15); background-color: var(--color-background-body); text-align: center;">
+                <div class="container">
+                    <h2 style="font-size: 2.2rem; color: var(--color-text-primary); margin-bottom: var(--spacing-unit)*1.5;">Ready to See Real Results?</h2>
+                    <p class="hero-sub-title" style="font-size: 1.2rem; margin-bottom: var(--spacing-unit)*3; max-width: 650px; margin-left:auto; margin-right:auto;">Let us show you exactly how to turn more LinkedIn ad clicks into leads.</p>
+                    <h3 style="font-weight: 700; font-size: 1.8rem; color: var(--color-text-primary); margin-bottom: var(--spacing-unit);">Double Your LinkedIn Ad Leads (Free Audit)</h3>
+                    <p style="font-size: 1.1rem; color: var(--color-text-secondary); margin-bottom: var(--spacing-unit)*3; max-width: 650px; margin-left: auto; margin-right: auto;">Get a personalized video review of your landing page—see exactly how to boost conversions, 100% free.</p>
+                    <a href="https://www.flowlogica.com/linkedin-offer" target="_blank" class="cta-button" style="margin-left: auto; margin-right: auto;">Get My Free Video Audit</a>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <script>
+        // Inject hidden-header.html
+        fetch('hidden-header.html')
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok for hidden-header.html');
+                return response.text();
+            })
+            .then(data => {
+                if (data.trim()) { // Ensure data is not empty
+                    document.head.insertAdjacentHTML('beforeend', data);
+                }
+            })
+            .catch(error => console.error('Error loading hidden-header.html:', error));
+
+        const checklistItemsData = [
+            {
+                id: "icp",
+                title: "🎯 Define & Document Your Ideal Customer Profile (ICP) & Page-Specific Problem",
+                action: "Clearly identify and document your ICP (role, company type, key challenges). Pinpoint the specific pain point or goal this landing page's offer directly addresses for them.",
+                why: "Ensures laser-focused messaging that resonates directly with your target B2B decision-maker and their immediate needs related to this specific page."
+            },
+            {
+                id: "uvp",
+                title: "📢 Craft a Compelling Headline, Sub-headline & Unique Value Proposition (UVP)",
+                action: "Your headline and supporting sub-headline must instantly communicate your UVP. Visitors should grasp within 5 seconds: 1) What you offer, 2) For whom, 3) The primary benefit/outcome, and 4) What makes you different/better.",
+                why: "Your first impression must be crystal-clear and persuasive, immediately answering 'What's in it for me?' for the B2B buyer and justifying their time on your page."
+            },
+            {
+                id: "copy",
+                title: "✍️ Write Concise, Scannable & Benefit-Driven Copy",
+                action: "Translate features into tangible business benefits (e.g., increased ROI, improved efficiency, reduced risk, time savings). Use clear language, short paragraphs, bullet points, and bolding for key takeaways. Avoid jargon unless it's industry standard for your ICP.",
+                why: "B2B buyers are busy and results-oriented. They need to quickly understand how your solution solves their specific business challenges and delivers measurable value."
+            },
+            {
+                id: "cta_design",
+                title: "🖱️ Design a Single, Prominent & Action-Oriented Call-to-Action (CTA)",
+                action: "Focus on ONE primary conversion goal for the page. Make the CTA button visually distinct (color, size, contrast) with clear, benefit-driven, action-oriented text (e.g., 'Get Your Free Demo Now,' 'Download the Strategic Guide'). Ensure it's easy to find, ideally above the fold or repeated if the page is long.",
+                why: "A clear, compelling, and singular CTA guides the visitor towards the desired conversion, minimizing confusion and reducing friction in their decision-making process."
+            },
+            {
+                id: "social_proof",
+                title: "👍 Strategically Build Trust with Social Proof & Credibility Markers",
+                action: "Strategically place trust signals like client logos (especially well-known brands), specific testimonials (with names, titles, companies, and quantifiable results if possible), relevant industry awards/certifications, security badges (if applicable), or concise case study snippets.",
+                why: "B2B decisions often involve significant investment and perceived risk. Strong, verifiable social proof reassures prospects, validates your claims, and builds confidence in your solution."
+            },
+            {
+                id: "form_optimization",
+                title: "📝 Optimize Your Lead Capture Form for Conversions & Trust",
+                action: "Only ask for absolutely essential information, balancing the value of your offer with the data requested. The fewer fields, generally the better. Clearly state your privacy policy or link to it near the form. Consider progressive profiling for subsequent interactions.",
+                why: "Long, complex, or intrusive forms are major conversion barriers. Make it easy and feel safe for qualified B2B leads to engage and share their information."
+            },
+            {
+                id: "mobile_speed",
+                title: "⚡ Ensure Flawless Mobile Responsiveness & Fast Load Speed Across Devices/Browsers",
+                action: "Thoroughly test and confirm the landing page displays perfectly and functions smoothly on all common devices (desktop, tablet, mobile) and web browsers. Optimize all images, scripts, and code for fast load times (aim for under 3 seconds).",
+                why: "Many B2B professionals research and make initial contact on various devices. A poor mobile experience or a slow-loading page immediately damages credibility, frustrates users, and results in lost opportunities."
+            }
+        ];
+
+        const checklistContainer = document.getElementById('checklistContainer');
+        const currentScoreEl = document.getElementById('currentScore');
+        const totalScoreEl = document.getElementById('totalScore');
+        const feedbackTextEl = document.getElementById('feedbackText');
+        const resetChecklistBtn = document.getElementById('resetChecklistBtn');
+        const progressBarEl = document.getElementById('progressBar');
+        
+        totalScoreEl.textContent = checklistItemsData.length;
+
+        function renderChecklist() {
+            checklistContainer.innerHTML = ''; // Clear existing items
+            checklistItemsData.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.classList.add('card', 'checklist-item', 'hidden-card');
+                if (index % 2 === 0) {
+                    card.classList.add('hidden-left');
+                } else {
+                    card.classList.add('hidden-right');
+                }
+                card.dataset.itemId = item.id;
+
+                card.innerHTML = `
+                    <div class="checklist-item-header">
+                        <input type="checkbox" id="${item.id}" name="${item.id}" value="1">
+                        <label for="${item.id}">${item.title}</label>
+                        <button class="expand-btn" aria-expanded="false" aria-controls="details-${item.id}">+</button>
+                    </div>
+                    <div class="checklist-item-details" id="details-${item.id}" style="display:none;">
+                        <p><strong>Action:</strong> ${item.action}</p>
+                        <p><strong>Why:</strong> ${item.why}</p>
+                    </div>
+                `;
+                checklistContainer.appendChild(card);
+
+                const header = card.querySelector('.checklist-item-header');
+                const details = card.querySelector('.checklist-item-details');
+                const expandBtn = card.querySelector('.expand-btn');
+                const checkbox = card.querySelector('input[type="checkbox"]');
+
+                header.addEventListener('click', (e) => {
+                    if (e.target === checkbox) return; // Don't toggle if checkbox itself is clicked
+                     const isExpanded = details.style.display === 'block';
+                    details.style.display = isExpanded ? 'none' : 'block';
+                    expandBtn.textContent = isExpanded ? '+' : '−';
+                    expandBtn.setAttribute('aria-expanded', !isExpanded);
+                });
+                checkbox.addEventListener('change', updateScoreAndFeedback);
+            });
+            setupScrollAnimations(); // Re-setup animations for new items
+        }
+
+        function updateScoreAndFeedback() {
+            let score = 0;
+            const checkboxes = checklistContainer.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => {
+                if (cb.checked) {
+                    score++;
+                }
+            });
+            currentScoreEl.textContent = score;
+            const percentage = (score / checklistItemsData.length) * 100;
+            progressBarEl.style.width = percentage + '%';
+
+            if (score === 0) {
+                feedbackTextEl.textContent = "Start the checklist to gauge your landing page's strength!";
+            } else if (score < checklistItemsData.length / 2) {
+                feedbackTextEl.textContent = "Looks like there's significant room for improvement. Keep going!";
+            } else if (score < checklistItemsData.length) {
+                feedbackTextEl.textContent = "You're on the right track! A few more tweaks can make a big difference.";
+            } else {
+                feedbackTextEl.textContent = "Excellent! Your landing page is likely performing very well. Consider the 'Extra Boosters' below for even more power!";
+            }
+        }
+
+        resetChecklistBtn.addEventListener('click', () => {
+            const checkboxes = checklistContainer.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => cb.checked = false);
+            
+            const detailsSections = checklistContainer.querySelectorAll('.checklist-item-details');
+            detailsSections.forEach(section => section.style.display = 'none');
+            const expandBtns = checklistContainer.querySelectorAll('.expand-btn');
+            expandBtns.forEach(btn => {
+                btn.textContent = '+';
+                btn.setAttribute('aria-expanded', 'false');
+            });
+            updateScoreAndFeedback();
+        });
+
+        function setupScrollAnimations() {
+            // Query all cards that need animation. 
+            // This includes checklist items and additionalConsiderationsCard as they all have .card and .hidden-card initially.
+            const allCardsToAnimate = document.querySelectorAll('.card.hidden-card');
+            
+            const observer = new IntersectionObserver((entries, observerInstance) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Debug log to check if intersection is detected
+                        const cardIdentifier = entry.target.id || entry.target.querySelector('label')?.textContent || 'Unknown card';
+                        console.log('Card intersecting:', cardIdentifier);
+                        
+                        entry.target.classList.add('visible');
+                        entry.target.classList.remove('hidden-left', 'hidden-right', 'hidden-card'); 
+                        observerInstance.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
+
+            allCardsToAnimate.forEach((card, index) => {
+                // Ensure alternating slide-in directions are applied if not already set by renderChecklist
+                // This primarily targets additionalConsiderationsCard or any other statically placed hidden cards.
+                if (!card.classList.contains('hidden-left') && !card.classList.contains('hidden-right')) {
+                    if (index % 2 === 0) {
+                        card.classList.add('hidden-left');
+                    } else {
+                        card.classList.add('hidden-right');
+                    }
+                }
+                observer.observe(card);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderChecklist();
+            updateScoreAndFeedback(); // Initial score check
+            setupScrollAnimations();
+        });
+
+    </script>
+</body>
+</html>
