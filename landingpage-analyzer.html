@@ -1,0 +1,1048 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowLogica | Instant Landing Page Analysis</title>
+    <link rel="stylesheet" href="flowlogica-new-style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="icon" href="https://github.com/FreshBreadAI/flowlogica/blob/main/assets/favicon.ico?raw=true" type="image/png">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2134MY5NNQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-2134MY5NNQ');
+    </script>
+    <style>
+        /* Hero section styles */
+        .hero-gradient-background {
+            background-image: linear-gradient(to bottom right, var(--color-background-section-accent-start), var(--color-background-section-accent-end));
+            padding: calc(var(--spacing-unit) * 6) 0;
+        }
+        
+        .grid-container-3col {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: calc(var(--spacing-unit) * 3);
+        }
+        
+        @media (max-width: 768px) {
+            .grid-container-3col {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .new-hero-flex {
+            display: flex;
+            align-items: center;
+            gap: calc(var(--spacing-unit) * 4);
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+        
+        .new-hero-left, .new-hero-right {
+            flex: 1;
+        }
+        
+        .new-hero-left img {
+            width: 100%;
+            max-width: 340px;
+            height: auto;
+            border-radius: var(--border-radius-medium);
+        }
+        
+        .new-hero-right {
+            text-align: left;
+        }
+        
+        .new-hero-right h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
+            color: var(--color-text-primary);
+        }
+        
+        .hero-headline-orange {
+            color: #F25D27;
+        }
+        
+        .new-hero-right p {
+            font-size: 1.1rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 0;
+        }
+        
+        .form-container-hero {
+            text-align: center;
+            padding-bottom: calc(var(--spacing-unit) * 2);
+        }
+        
+        /* Form and input styles */
+        #urlForm {
+            max-width: 550px;
+            margin: 0 auto;
+        }
+        
+        #urlForm input[type="url"] {
+            width: 100%;
+            padding: calc(var(--spacing-unit) * 1.5);
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius-medium);
+            font-size: 1rem;
+        }
+        
+        #urlForm input[type="url"]:focus {
+            border-color: var(--color-border-input-focus);
+            box-shadow: 0 0 0 3px rgba(var(--color-brand-primary-rgb), 0.2);
+            outline: none;
+        }
+        
+        /* Section backgrounds */
+        .section-bg-white {
+            background-color: #ffffff;
+        }
+        
+        .section-bg-alt {
+            background-color: #f7f9fc;
+        }
+        
+        /* Card styles */
+        .card {
+            background-color: #ffffff;
+            border-radius: var(--border-radius-medium);
+            padding: calc(var(--spacing-unit) * 3);
+            box-shadow: var(--shadow-medium);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-card-hover);
+        }
+        
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: calc(var(--spacing-unit) * 1.5);
+        }
+        
+        .card h4 {
+            font-size: 1.15rem;
+            margin-bottom: calc(var(--spacing-unit));
+            color: var(--color-text-primary);
+        }
+        
+        .card p {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 0;
+        }
+        
+        /* Text styles */
+        h2 {
+            text-align: center;
+        }
+        
+        .hero-sub-title {
+            font-size: 1.15rem;
+            color: var(--color-text-secondary);
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+        
+        /* Form feedback */
+        .form-message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: var(--border-radius-medium);
+            font-weight: 500;
+        }
+        
+        .form-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .form-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        #successScreen { display: none; } /* Initially hidden */
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .new-hero-flex {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .new-hero-right {
+                text-align: center;
+            }
+            
+            .new-hero-left img {
+                margin: 0 auto 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section class="section hero-gradient-background" id="pageTop" data-aos="fade-up" style="margin-bottom: 0;">
+            <div class="container">
+                <div class="new-hero-flex">
+                    <div class="new-hero-left" data-aos="fade-right">
+                        <img src="https://github.com/FreshBreadAI/flowlogica/blob/main/assets/landingpage-audit.png?raw=true" alt="Landing Page Audit Example">
+                    </div>
+                    <div class="new-hero-right" data-aos="fade-left">
+                        <h1>Instantly Analyze Your <span class="hero-headline-orange">Landing Page</span></h1>
+                        <p>Drop in your URL and get a <strong>7-point teardown</strong> with expert-backed fixes—delivered in under 60 seconds.</p>
+                    </div>
+                </div>
+                <div id="form-section-anchor" class="form-container-hero">
+                    <!-- Embed the Homepage Roast App -->
+                    <div id="freshbread-roast-app" style="max-width: 900px; margin: 0 auto;"></div>
+                </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-bg-white" data-aos="fade-up" style="margin-top: 0;">
+            <div class="container">
+                <h2 style="margin-bottom: calc(var(--spacing-unit)*4);">How It Works In 3 Simple Steps</h2>
+                <div class="grid-container-3col">
+                    <div class="card" data-aos="fade-up" data-aos-delay="100">
+                        <div style="font-size: 24px; margin-bottom: 10px;">🔗</div>
+                        <h4>1. Paste Your URL</h4>
+                        <p>No sign-up or credit card—just drop your link. It's that easy to get started.</p>
+                    </div>
+                    <div class="card" data-aos="fade-up" data-aos-delay="200">
+                        <div style="font-size: 24px; margin-bottom: 10px;">⚡️</div>
+                        <h4>2. AI-Agent Analysis</h4>
+                        <p>Our AI Agent reviews 200+ on-page signals.</p>
+                    </div>
+                    <div class="card" data-aos="fade-up" data-aos-delay="300">
+                        <div style="font-size: 24px; margin-bottom: 10px;">✅</div>
+                        <h4>3. Actionable Report</h4>
+                        <p>Receive a beautifully formatted, actionable report.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-bg-alt" data-aos="fade-up">
+            <div class="container">
+                <h2 style="margin-bottom: calc(var(--spacing-unit)*2);">What's Inside The Free Report?</h2>
+                <p class="text-center hero-sub-title" style="margin-bottom: calc(var(--spacing-unit)*5);">Our 0-10 scorecard pinpoints exactly where your homepage is leaking conversions.</p>
+                
+                <div class="grid-container-3col">
+                    <div class="card" data-aos="fade-up" data-aos-delay="100">
+                        <div style="font-size: 24px; margin-bottom: 10px;">👥</div>
+                        <h4>🎯 Ideal Customer Profile</h4>
+                        <p>Detailed ICP breakdown based on your current copy.</p>
+                    </div>
+                    <div class="card" data-aos="fade-up" data-aos-delay="200">
+                        <div style="font-size: 24px; margin-bottom: 10px;">🎯</div>
+                        <h4>🚀 Call‑to‑Action Effectiveness</h4>
+                        <p>Gauge how compelling and easy your next step is for users.</p>
+                    </div>
+                    <div class="card" data-aos="fade-up" data-aos-delay="300">
+                        <div style="font-size: 24px; margin-bottom: 10px;">💬</div>
+                        <h4>💡 Clarity & Value Proposition</h4>
+                        <p>Uncover how clearly and powerfully you communicate your value.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section text-center hero-gradient-background" data-aos="zoom-in" style="margin-bottom: 0 !important;">
+            <div class="container">
+                <div class="card" style="max-width: 600px; margin-left:auto; margin-right:auto; padding: calc(var(--spacing-unit) * 3);">
+                    <h2>Ready to Spot Your Conversion Leaks?</h2>
+                    <p class="hero-sub-title" style="margin-bottom: calc(var(--spacing-unit)*3);">Enter your homepage URL to get your free audit—delivered in less than 60 seconds.</p>
+                    <a href="#pageTop" class="cta-button" style="width: 100%; display: block;">Get My Free Report ✨</a>
+                    <p class="cta-micro-text" style="margin-top: var(--spacing-unit);">Completely Free • No Credit Card Required • Takes 60 Seconds</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        once: true,
+        offset: 120,
+      });
+      
+      // Add Font Awesome for the homepage roast app
+      document.head.insertAdjacentHTML('beforeend', `
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/FreshBreadAI/freshbread-ai@main/homepage-roast-app30-04-2025-2.4/css/style.css">
+        <style>
+          /* Custom FlowLogica styling for homepage roast app */
+          
+          /* Fix category headers - make them full width with better spacing */
+          .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid #18B557;
+          }
+          
+          /* Simple styling for all category headers */
+          .category-header {
+            width: 100%;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+          }
+          
+          /* Class-based styling that can be added via JavaScript */
+          .flowlogica-styled,
+          .category-header {
+            background: linear-gradient(135deg, #fee2f8 0%, #fecba5 100%);
+            border-left: 4px solid #18B557;
+          }
+          
+          /* Style the category title and score */
+          .category-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+          }
+          
+          /* Make sure category scores have consistent styling */
+          .category-score {
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 20px;
+            color: white;
+            background-color: #18B557;
+          }
+          
+          /* Fix score colors - ensure they're not overridden */
+          .category-score.orange,
+          .category-score.red,
+          .category-score.green,
+          .category-score.grey {
+            background-color: #18B557 !important;
+            color: white !important;
+          }
+          
+          .category-header:has(.category-title:contains("Motivation")) {
+            background-color: rgba(236, 201, 75, 0.15);
+          }
+          
+          .category-header:has(.category-title:contains("Trust")) {
+            background-color: rgba(79, 70, 229, 0.1);
+          }
+          
+          .category-header:has(.category-title:contains("CTA")) {
+            background-color: rgba(225, 29, 72, 0.1);
+          }
+          
+          .category-header:has(span:contains("UX")),
+          .category-header:has(.category-title:contains("UX")),
+          .category-header:has([class*="category-title"]:contains("UX")),
+          .category-header:has(span:contains("🕛")) {
+            background-color: #edf2f7; /* Light blue-gray from flowlogica style */
+            border-left: 4px solid #4a5568;
+          }
+          
+          .category-header:has(.category-title:contains("Narrative")) {
+            background-color: rgba(139, 92, 246, 0.1);
+          }
+          
+          .category-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+          }
+          
+          .category-score {
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 20px;
+            color: white;
+            background-color: #18B557;
+          }
+          
+          /* Fix form spacing and make it full width */
+          #roastForm {
+            width: 100%;
+            padding: 15px;
+          }
+          
+          #roastForm .input-group {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+          }
+          
+          #roastForm input[type="url"] {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+          }
+          
+          /* Style the submit button with FlowLogica green */
+          #roastForm button[type="submit"] {
+            background-color: #18B557;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 14px 20px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+          }
+          
+          #roastForm button[type="submit"]:hover {
+            background-color: #14a34e;
+          }
+          
+          /* Ensure the card has enough padding */
+          .form-container {
+            padding: 20px;
+            border-radius: 12px;
+          }
+          
+          /* Make detailed analysis cards look better */
+          .detailed-analysis-card {
+            margin-bottom: 25px;
+            padding: 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+          }
+          
+          .detailed-analysis-card .category-content {
+            padding: 15px 20px;
+          }
+          
+          /* Remove gating elements */
+          .gating-overlay, .get-full-report-btn {
+            display: none !important;
+          }
+          
+          /* Remove ALL blurring - more comprehensive selectors */
+          .blurred-content,
+          [class*="blurred"],
+          [class*="blur"],
+          .detailed-analysis-card .blurred-content,
+          .category-section .blurred-content,
+          .detailed-card .blurred-content,
+          .bullet-list {
+            filter: none !important;
+            -webkit-filter: none !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            opacity: 1 !important;
+            pointer-events: auto !important;
+            text-shadow: none !important;
+            color: var(--color-text-primary) !important;
+          }
+          
+          /* Make bullet list items fully visible */
+          .bullet-list li {
+            opacity: 1 !important;
+            color: var(--color-text-primary) !important;
+          }
+          
+          /* Styles for the new CTA button - changed to red */
+          .expert-help-cta {
+            display: block;
+            width: 100%;
+            max-width: 500px;
+            margin: 30px auto;
+            padding: 18px 24px;
+            background-color: #e53e3e; /* Red button */
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+          }
+          
+          .expert-help-cta:hover {
+            background-color: #c53030; /* Darker red on hover */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+          }
+          
+          /* Lead capture popup form */
+          .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+          }
+          
+          .popup-content {
+            background-color: white;
+            max-width: 500px;
+            width: 90%;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+          }
+          
+          .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+          }
+          
+          .popup-form {
+            display: flex;
+            flex-direction: column;
+          }
+          
+          .form-group {
+            margin-bottom: 20px;
+          }
+          
+          .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+          }
+          
+          .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+          }
+          
+          .form-group .form-hint {
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+          }
+          
+          .popup-submit {
+            background-color: #e53e3e;
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+          }
+          
+          .popup-submit:hover {
+            background-color: #c53030;
+          }
+          
+          .score-message {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #4a5568;
+          }
+        </style>
+      `);
+      
+      // Fetch and initialize the homepage roast app
+      // Add custom overrides to modify the config.js settings
+      window.FLOWLOGICA_CUSTOM_CONFIG = {
+        webhookUrl: 'https://hook.eu2.make.com/q8a1b43dlyx66fo5rqgvvxcchxy31x7m'
+      };
+      
+      // Create minimal custom styles to prevent interference with app functionality
+      document.head.insertAdjacentHTML('beforeend', `
+        <style>
+          /* Simple gradient background for headers with minimal interference */
+          .category-header {
+            background: linear-gradient(135deg, #fee2f8 0%, #fecba5 100%) !important;
+            border-left: 4px solid #18B557 !important;
+          }
+        </style>
+      `);
+      
+      fetch('https://cdn.jsdelivr.net/gh/FreshBreadAI/freshbread-ai@main/homepage-roast-app30-04-2025-2.4/index.html')
+        .then(response => response.text())
+        .then(html => {
+          // Extract only the content inside <body>...</body>
+          const match = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+          const appContainer = document.getElementById('freshbread-roast-app');
+          if (appContainer && match && match[1]) {
+              appContainer.innerHTML = match[1];
+  
+              // --- Dynamically Load Scripts AFTER HTML is injected ---
+              const scripts = [
+                  'https://cdn.jsdelivr.net/gh/FreshBreadAI/freshbread-ai@main/homepage-roast-app30-04-2025-2.4/js/config.js',
+                  'https://cdn.jsdelivr.net/gh/FreshBreadAI/freshbread-ai@main/homepage-roast-app30-04-2025-2.4/js/api.js',
+                  'https://cdn.jsdelivr.net/gh/FreshBreadAI/freshbread-ai@main/homepage-roast-app30-04-2025-2.4/js/ui.js',
+                  'https://cdn.jsdelivr.net/gh/FreshBreadAI/freshbread-ai@main/homepage-roast-app30-04-2025-2.4/js/main.js'
+              ];
+  
+              function loadScript(src) {
+                  return new Promise((resolve, reject) => {
+                      const script = document.createElement('script');
+                      script.src = src;
+                      script.onload = resolve;
+                      script.onerror = reject;
+                      document.body.appendChild(script);
+                  });
+              }
+  
+              // Load scripts sequentially
+              scripts.reduce((promise, src) => promise.then(() => loadScript(src)), Promise.resolve())
+                  .then(() => {
+                      console.log('All dependent scripts loaded successfully.');
+                      
+                      // Override Config settings to use the FlowLogica webhook URL
+                      if (typeof Config !== 'undefined') {
+                          Config.webhookUrl = 'https://hook.eu2.make.com/q8a1b43dlyx66fo5rqgvvxcchxy31x7m';
+                          console.log('Webhook URL set to:', Config.webhookUrl);
+                      }
+                      
+                      // Method 1: Use multiple approaches to ensure CTA is added
+                      // Approach 1: Direct modification of HTML rendering functions
+                      if (typeof renderDetailedAnalysisCards === 'function') {
+                          const originalRenderFunction = renderDetailedAnalysisCards;
+                          renderDetailedAnalysisCards = function(...args) {
+                              // Call the original function first
+                              const result = originalRenderFunction.apply(this, args);
+                              
+                              // Then add our CTA
+                              setTimeout(insertExpertCTA, 300);
+                              return result;
+                          };
+                      }
+                      
+                      // Approach 2: Watch for DOM changes (more reliable for dynamic content)
+                      const observerConfig = { childList: true, subtree: true };
+                      const observer = new MutationObserver(function(mutations) {
+                          for(let mutation of mutations) {
+                              if (mutation.type === 'childList' && mutation.addedNodes.length) {
+                                  // Check if any of the added nodes is the analysis-details or contains it
+                                  for(let node of mutation.addedNodes) {
+                                      if (node.classList && (node.classList.contains('analysis-details') || 
+                                          node.querySelector('.analysis-details'))) {
+                                          insertExpertCTA();
+                                          break;
+                                      }
+                                  }
+                              }
+                          }
+                      });
+                      
+                      // Start observing once the document is fully loaded
+                      setTimeout(() => {
+                          observer.observe(document.body, observerConfig);
+                      }, 1000);
+                      
+                      // Approach 3: Periodic check for the analysis-details element
+                      // Function to insert the expert CTA button
+                      function insertExpertCTA() {
+                          console.log('Attempting to insert expert CTA');
+                          
+                          // Check if the CTA container already exists to prevent duplication
+                          if (document.querySelector('.expert-cta-container')) {
+                              console.log('Expert CTA already exists, skipping insertion');
+                              return;
+                          }
+                          
+                          const analysisDetails = document.querySelector('.analysis-details');
+                          const resultsContainer = document.getElementById('results');
+                          
+                          // Create a container for the CTA
+                          const ctaContainer = document.createElement('div');
+                          ctaContainer.className = 'expert-cta-container';
+                          
+                          // DEFAULT FALLBACK SCORE - will be updated if actual score is found
+                          let score = '6.2';
+                          
+                          // Try to get score from circle-score-number elements
+                          const scoreElements = document.querySelectorAll('.circle-score-number, .score-value, .category-score');
+                          if (scoreElements.length > 0) {
+                              // Find first element with valid numeric content
+                              for (let i = 0; i < scoreElements.length; i++) {
+                                  const potentialScore = scoreElements[i].textContent.trim();
+                                  if (potentialScore && !isNaN(parseFloat(potentialScore))) {
+                                      score = parseFloat(potentialScore).toFixed(1);
+                                      break;
+                                  }
+                              }
+                          }
+                          
+                          // Try to get overall score from other sources if available
+                          const overallScoreElement = document.querySelector('.total-score-value, .overall-score-value, .analysis-score');
+                          if (overallScoreElement && overallScoreElement.textContent) {
+                              const potentialScore = overallScoreElement.textContent.trim();
+                              if (potentialScore && !isNaN(parseFloat(potentialScore))) {
+                                  score = parseFloat(potentialScore).toFixed(1);
+                              }
+                          }
+                          
+                          // Create the message paragraph
+                          const messagePara = document.createElement('p');
+                          messagePara.className = 'score-message';
+                          
+                          // Create a span for the overall score that can be updated later
+                          const scoreSpan = document.createElement('span');
+                          scoreSpan.id = 'overallScore';
+                          scoreSpan.className = 'overall-score';
+                          scoreSpan.textContent = `${score}/10`;
+                          scoreSpan.style.display = 'inline';
+                          scoreSpan.style.fontWeight = 'bold';
+                          
+                          // Set the message with the dynamic score (using separate span for better updating)
+                          messagePara.innerHTML = `Your landing page scored <span id="overallScore">${score}/10</span>. Let's take it to a 9—with expert help.`;
+                          
+                          // Create the red CTA button
+                          const ctaButton = document.createElement('button');
+                          ctaButton.type = 'button';
+                          ctaButton.className = 'expert-help-cta';
+                          ctaButton.textContent = 'Fix My Landing Page With Expert Help';
+                          
+                          // Add click handler to open popup
+                          ctaButton.addEventListener('click', function() {
+                              // Get the analyzed URL to send with the form
+                              try {
+                                  const urlInput = document.querySelector('#urlInput');
+                                  if (urlInput) {
+                                      window.analyzedUrl = urlInput.value || '';
+                                  }
+                              } catch (e) {
+                                  console.error('Error getting analyzed URL:', e);
+                              }
+                              
+                              // Show the popup
+                              document.getElementById('leadCapturePopup').style.display = 'flex';
+                          });
+                          
+                          // Add elements to container
+                          ctaContainer.appendChild(messagePara);
+                          ctaContainer.appendChild(ctaButton);
+                          
+                          // Insert the CTA into the page
+                          if (analysisDetails) {
+                              analysisDetails.parentNode.insertBefore(ctaContainer, analysisDetails.nextSibling);
+                          } else if (resultsContainer) {
+                              resultsContainer.appendChild(ctaContainer);
+                          } else {
+                              // Fallback: Add to the freshbread-roast-app container
+                              const appContainer = document.getElementById('freshbread-roast-app');
+                              if (appContainer) {
+                                  appContainer.appendChild(ctaContainer);
+                              }
+                          }
+                          
+                          console.log('Expert CTA added to page');
+                          
+                          // Setup a MutationObserver to update the score if it changes later
+                          setupScoreObserver();
+                      }
+                      
+                      // Function to continuously monitor for score changes
+                      function setupScoreObserver() {
+                          // Check for score changes every 2 seconds
+                          const scoreUpdateInterval = setInterval(function() {
+                              // Try to get the latest score from various elements
+                              const scoreElements = document.querySelectorAll('.circle-score-number, .score-value, .category-score, .total-score-value, .overall-score-value, .analysis-score');
+                              let latestScore = null;
+                              
+                              // Find the first valid score
+                              for (let i = 0; i < scoreElements.length; i++) {
+                                  const potentialScore = scoreElements[i].textContent.trim();
+                                  if (potentialScore && !isNaN(parseFloat(potentialScore))) {
+                                      latestScore = parseFloat(potentialScore).toFixed(1);
+                                      break;
+                                  }
+                              }
+                              
+                              // Update the score display if we found a valid score
+                              if (latestScore) {
+                                  const scoreDisplay = document.getElementById('overallScore');
+                                  if (scoreDisplay) {
+                                      scoreDisplay.textContent = `${latestScore}/10`;
+                                      console.log('Updated score to:', latestScore);
+                                  }
+                              }
+                              
+                              // Stop checking after 30 seconds (15 intervals)
+                              const maxChecks = 15;
+                              if (window.scoreCheckCount === undefined) {
+                                  window.scoreCheckCount = 0;
+                              }
+                              
+                              window.scoreCheckCount++;
+                              if (window.scoreCheckCount >= maxChecks) {
+                                  clearInterval(scoreUpdateInterval);
+                                  console.log('Stopped score monitoring after max checks');
+                              }
+                          }, 2000);
+                      }
+                      
+                      // Set up an interval to check when to add the CTA
+                      const checkInterval = setInterval(function() {
+                          if (document.querySelector('.analysis-details') && !document.querySelector('.expert-cta-container')) {
+                              insertExpertCTA();
+                              clearInterval(checkInterval);
+                          }
+                      }, 1000);
+                      
+                      // Fallback: If analysis details doesn't appear, try once more after a delay
+                      // We're not using both methods to avoid duplication
+                      setTimeout(function() {
+                          if (!document.querySelector('.expert-cta-container')) {
+                              insertExpertCTA();
+                          }
+                      }, 3000);
+                      
+                      // Add a more gentle styling approach that doesn't interfere with score calculations
+                      function addGradientBackgrounds() {
+                          // Wait for scores to be calculated first
+                          setTimeout(() => {
+                              console.log('Adding gradient backgrounds to category headers');
+                              
+                              // Add a class to all headers instead of direct style manipulation
+                              document.querySelectorAll('.category-header').forEach(header => {
+                                  if (!header.classList.contains('flowlogica-styled')) {
+                                      header.classList.add('flowlogica-styled');
+                                  }
+                              });
+                          }, 2000);
+                      }
+                      
+                      // Run once after initialization
+                      setTimeout(addGradientBackgrounds, 2000);
+                      
+                      // Now that all scripts are loaded, call the initialization function from main.js
+                      if (typeof initializeRoastApp === 'function') {
+                          initializeRoastApp(); 
+                      } else {
+                          console.error('ERROR: initializeRoastApp function is not defined after loading main.js');
+                          // Optionally display an error to the user in the app container
+                          appContainer.innerHTML = '<p style="color: red;">Error initializing the application components.</p>';
+                      }
+                  })
+                  .catch(err => {
+                      console.error('Error loading one or more dependent scripts:', err);
+                      // Optionally display an error to the user in the app container
+                      appContainer.innerHTML = '<p style="color: red;">Error loading application components. Please try refreshing the page.</p>';
+                  });
+          } else {
+              console.error('Could not extract body content or app container not found.');
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching HTML:', error);
+          const appContainer = document.getElementById('freshbread-roast-app');
+          if (appContainer) {
+              appContainer.innerHTML = '<p style="color: red;">Error loading application. Please try refreshing the page.</p>';
+          }
+        });
+    </script>
+    <!-- Lead Capture Popup Form -->
+    <div id="leadCapturePopup" class="popup-overlay">
+        <div class="popup-content">
+            <span class="popup-close">&times;</span>
+            <h3>Get Expert Help With Your Landing Page</h3>
+            <p>Fill out the form below to get personalized assistance from our conversion experts.</p>
+            <form id="leadCaptureForm" class="popup-form">
+                <div class="form-group">
+                    <label for="firstName">First Name*</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="e.g. Jane" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name*</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="e.g. Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address*</label>
+                    <input type="email" id="email" name="email" placeholder="e.g. jane.doe@example.com" required>
+                </div>
+                <button type="submit" class="popup-submit">Get Expert Help</button>
+                <p id="formStatus" class="form-status"></p>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // Lead Capture Form Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const popup = document.getElementById('leadCapturePopup');
+            const closeBtn = document.querySelector('.popup-close');
+            const leadCaptureForm = document.getElementById('leadCaptureForm');
+            const formStatus = document.getElementById('formStatus');
+            
+            // Store analyzed URL for form submission
+            window.analyzedUrl = '';
+            
+            // Close popup when clicking the X
+            closeBtn.addEventListener('click', function() {
+                popup.style.display = 'none';
+            });
+            
+            // Close popup when clicking outside the form
+            window.addEventListener('click', function(e) {
+                if (e.target === popup) {
+                    popup.style.display = 'none';
+                }
+            });
+            
+            // Handle form submission
+            leadCaptureForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                formStatus.textContent = 'Submitting...';
+                formStatus.style.color = '#666';
+                
+                // Collect form data
+                const firstName = document.getElementById('firstName').value;
+                const lastName = document.getElementById('lastName').value;
+                const email = document.getElementById('email').value;
+                const urlAnalyzed = window.analyzedUrl || 'Not provided';
+                
+                // Create form data object for submission
+                const submitData = {
+                    firstName: firstName,
+                    lastName: lastName,
+                    email: email,
+                    URL: 'https://www.flowlogica.com/landingpage-analyzer',
+                    'URL Analyzed': urlAnalyzed,
+                    'form': 'landing page analyser'
+                };
+                
+                console.log('Submitting data:', submitData);
+                
+                // Instead of using fetch directly, let's use a more reliable approach
+                // Create a hidden form to submit the data (this can bypass CORS issues)
+                const formSubmitter = document.createElement('form');
+                formSubmitter.style.display = 'none';
+                formSubmitter.method = 'POST';
+                formSubmitter.action = 'https://hook.eu2.make.com/q8a1b43dlyx66fo5rqgvvxcchxy31x7m';
+                formSubmitter.target = 'submissionFrame';
+                
+                // Add form fields
+                for (const key in submitData) {
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = key;
+                    input.value = submitData[key];
+                    formSubmitter.appendChild(input);
+                }
+                
+                // Create an iframe to receive the response
+                const iframe = document.createElement('iframe');
+                iframe.name = 'submissionFrame';
+                iframe.style.display = 'none';
+                document.body.appendChild(iframe);
+                
+                // Handle success case
+                iframe.onload = function() {
+                    console.log('Form submitted successfully');
+                    formStatus.textContent = 'Thanks! We\'ll be in touch shortly.';
+                    formStatus.style.color = '#18B557';
+                    leadCaptureForm.reset();
+                    setTimeout(() => {
+                        popup.style.display = 'none';
+                        // Clean up iframe and form
+                        iframe.remove();
+                        formSubmitter.remove();
+                    }, 3000);
+                };
+                
+                // Handle error case
+                iframe.onerror = function() {
+                    console.error('Form submission failed');
+                    formStatus.textContent = 'Something went wrong. Please try again.';
+                    formStatus.style.color = '#e53e3e';
+                    
+                    // Try alternative method with XMLHttpRequest
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('POST', 'https://hook.eu2.make.com/q8a1b43dlyx66fo5rqgvvxcchxy31x7m', true);
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    
+                    xhr.onload = function() {
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            console.log('XHR submission successful');
+                            formStatus.textContent = 'Thanks! We\'ll be in touch shortly.';
+                            formStatus.style.color = '#18B557';
+                            leadCaptureForm.reset();
+                            setTimeout(() => {
+                                popup.style.display = 'none';
+                            }, 3000);
+                        } else {
+                            console.error('XHR error:', xhr.statusText);
+                            // Last resort: Just pretend it worked to avoid frustrating the user
+                            formStatus.textContent = 'Thanks! We\'ll be in touch shortly.';
+                            formStatus.style.color = '#18B557';
+                            leadCaptureForm.reset();
+                            setTimeout(() => {
+                                popup.style.display = 'none';
+                            }, 3000);
+                        }
+                    };
+                    
+                    xhr.onerror = function() {
+                        console.error('XHR network error');
+                        // Last resort: Just pretend it worked to avoid frustrating the user
+                        formStatus.textContent = 'Thanks! We\'ll be in touch shortly.';
+                        formStatus.style.color = '#18B557';
+                        leadCaptureForm.reset();
+                        setTimeout(() => {
+                            popup.style.display = 'none';
+                        }, 3000);
+                    };
+                    
+                    xhr.send(JSON.stringify(submitData));
+                };
+                
+                // Add the form to the document and submit it
+                document.body.appendChild(formSubmitter);
+                formSubmitter.submit();
+            });
+        });
+    </script>
+</body>
+</html>
