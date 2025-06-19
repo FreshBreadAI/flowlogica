@@ -1,0 +1,52 @@
+# Name for the workflow
+name: Deploy Next.js site to Pages
+
+# Run this workflow every time you push code to the 'main' branch
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+# Set permissions for the job to write to your pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one deployment at a time
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  # Build job: packages the website
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your repository
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - name: Install dependencies
+        run: npm install
+      - name: Build the website
+        run: npm run build
+      - name: Upload the packaged site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+  # Deploy job: puts the website online
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
