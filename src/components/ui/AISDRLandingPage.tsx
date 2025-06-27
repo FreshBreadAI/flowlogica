@@ -433,29 +433,6 @@ const AISDRLandingPage = () => {
   const [closeRate, setCloseRate] = useState([20]);
   const [contactFormOpen, setContactFormOpen] = useState(false);
   const [formType, setFormType] = useState('Get Started');
-  
-  // Use useEffect to set the favicon.ico from the root directory
-  useEffect(() => {
-    // Create a link element for the favicon
-    const link = document.createElement('link');
-    link.rel = 'icon';
-    link.type = 'image/x-icon'; // For .ico files
-    link.href = '/favicon.ico'; // Path to the favicon in the public directory
-    
-    // Remove any existing favicon
-    const existingLink = document.querySelector('link[rel="icon"]');
-    if (existingLink) {
-      existingLink.remove();
-    }
-    
-    // Add the new favicon to the document head
-    document.head.appendChild(link);
-    
-    // Clean up when the component unmounts
-    return () => {
-      link.remove();
-    };
-  }, []);
 
   const calculateROI = () => {
     const currentMeetings = meetings[0];
@@ -512,7 +489,7 @@ const AISDRLandingPage = () => {
         formType={formType} 
       />
       {/* Navigation */}
-      <motion.nav
+            <motion.nav
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
@@ -522,9 +499,8 @@ const AISDRLandingPage = () => {
           <div className="font-bold text-lg md:text-xl text-center md:whitespace-nowrap">
             <div className="md:hidden">
               <div>FlowLogica</div>
-              <div className="text-sm">AI SDRs</div>
             </div>
-            <div className="hidden md:block">FlowLogica - AI SDRs</div>
+            <div className="hidden md:block">FlowLogica</div>
           </div>
           <div className="hidden md:flex items-center gap-6">
             <a href="#features" className="text-sm hover:text-primary transition-colors">Features</a>
@@ -555,15 +531,15 @@ const AISDRLandingPage = () => {
             className="max-w-4xl mx-auto mt-8 md:mt-0"
           >
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              Generate{" "}
+              {" "}
               <TextShimmer className="text-5xl md:text-7xl font-bold">
                 3x More Qualified
               </TextShimmer>{" "}
-              Meetings in 30 Days
+              <br />Leads in 30 Days
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-              Our AI-powered outbound engine books qualified sales meetings while you focus on closing deals. 
-              No SDR management, no hiring headaches, no complex software to learn.
+              Our AI-powered outbound engine generates warm leads and  qualified meetings while you focus on closing deals. 
+              No hiring, no management, no complex software.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
@@ -603,7 +579,7 @@ const AISDRLandingPage = () => {
               viewport={{ once: true }}
               className="text-4xl md:text-5xl font-bold mb-8"
             >
-              Your Sales Team Is Drowning in Manual Outreach
+              The Old Cold Outreach Systems Don't Work 
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -612,8 +588,7 @@ const AISDRLandingPage = () => {
               viewport={{ once: true }}
               className="text-xl text-muted-foreground mb-12"
             >
-              While your competitors book 10-15 qualified meetings per month, your team struggles with 
-              inconsistent pipeline and expensive SDR turnover.
+               Your prospects' inboxes are overflowing with generic, templated messages. The old playbook of hiring more SDRs to send more emails no longer works—it just creates more noise. You're not just fighting for attention; you're fighting against spam filters and a sea of irrelevance. To win today, you need a smarter system.
             </motion.p>
 
                         <div className="grid md:grid-cols-3 gap-8 items-stretch">
@@ -724,7 +699,7 @@ const AISDRLandingPage = () => {
                 viewport={{ once: true }}
                 className="text-4xl md:text-5xl font-bold mb-4"
               >
-                How We 3x Your Qualified Meetings
+                Cold Outreach Today
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -733,7 +708,7 @@ const AISDRLandingPage = () => {
                 viewport={{ once: true }}
                 className="text-xl text-muted-foreground"
               >
-                Our proven 4-step system runs your entire outbound engine while you focus on what matters most - closing deals.
+                We've replaced the outdated manual playbook with an intelligent, data-driven engine. Our process is built on two core principles: technical precision to ensure your message always gets delivered, and deep personalization to ensure it always gets a response. Here's how it works:
               </motion.p>
             </div>
 
@@ -754,6 +729,70 @@ const AISDRLandingPage = () => {
                       <div>
                         <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
                         <p className="text-muted-foreground">{feature.description}</p>
+                      </div>
+                    </div>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Who It's For Section */}
+      <section id="who-its-for" className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-5xl font-bold mb-4"
+            >
+              Is This You?
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="text-lg text-muted-foreground"
+            >
+              Our system is designed for B2B companies in a few specific situations:
+            </motion.p>
+          </div>
+          <div className="max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-1 gap-8">
+              {[
+                {
+                  title: "Your AEs are Prospecting",
+                  description: "Your expensive closers are wasting half their time on low-leverage tasks instead of selling."
+                },
+                {
+                  title: "Your SDR Team is Underperforming",
+                  description: "You're tired of the high costs, long ramp times, and constant turnover of an in-house team."
+                },
+                {
+                  title: "You're the Founder-Led Sales Bottleneck",
+                  description: "You're the only one generating pipeline, and it's holding back your company's growth."
+                }
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
+                  viewport={{ once: true }}
+                >
+                  <Card className="p-6 h-full">
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                        <Check className="w-5 h-5 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                        <p className="text-muted-foreground">{item.description}</p>
                       </div>
                     </div>
                   </Card>
@@ -896,7 +935,7 @@ const AISDRLandingPage = () => {
               }, {
                 icon: "📋",
                 title: "No Long-Term Contracts",
-                description: "Month-to-month agreements. Cancel anytime with 30 days notice."
+                description: "Month-to-month agreements. Cancel anytime with 30 days notice"
               }, {
                 icon: "🏗️",
                 title: "You Own The Data",
@@ -961,7 +1000,7 @@ const AISDRLandingPage = () => {
                   <div className="text-center mb-6">
                     <h3 className="text-2xl font-bold mb-2">Standard</h3>
                     <div className="text-4xl font-bold mb-2">$3,000<span className="text-lg text-muted-foreground">/mo</span></div>
-                    <p className="text-sm text-muted-foreground">For scaling and segmentation</p>
+                    <p className="text-sm text-muted-foreground">For building a consistent pipeline <br /> Includes complete campaign setup <br /> Managed AI-powered outreach sequences <br /><br /></p>
                   </div>
 
                   <div className="mb-6">
@@ -1023,7 +1062,7 @@ const AISDRLandingPage = () => {
                   <div className="text-center mb-6">
                     <h3 className="text-2xl font-bold mb-2">Growth</h3>
                     <div className="text-4xl font-bold mb-2">$5,000<span className="text-lg text-muted-foreground">/mo</span></div>
-                    <p className="text-sm text-muted-foreground">For scaling and segmentation</p>
+                    <p className="text-sm text-muted-foreground">For aggressive growth & scaling <br /> Managed by a dedicated success manager <br /> Includes advanced testing & optimization</p>
                   </div>
 
                   <div className="mb-6">
@@ -1136,7 +1175,7 @@ const AISDRLandingPage = () => {
       {/* Footer */}
       <footer className="py-12 bg-muted/50 border-t border-border">
         <div className="container mx-auto px-4 text-center">
-          <div className="text-2xl font-bold mb-4">FlowLogica - AI SDRs</div>
+          <div className="text-2xl font-bold mb-4">FlowLogica - Done-For-You Lead Generation</div>
           <p className="text-muted-foreground mb-6">
             Trusted by B2B SaaS companies to generate $50M+ in pipeline
           </p>
