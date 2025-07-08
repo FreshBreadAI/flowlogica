@@ -538,7 +538,7 @@ const AISDRLandingPage = () => {
               <br />Consistant Revenue Growth.
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-            Salesforce data shows 64% of sales rep time is lost to admin. We change that. Our outbound system fills your pipeline with qualified leads — so your team spends less time on busywork and more time selling.
+            64% of sales rep time is lost to non-selling activities. We change that. Our outbound system fills your pipeline with qualified leads — so your team spends less time on busywork and more time selling.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
