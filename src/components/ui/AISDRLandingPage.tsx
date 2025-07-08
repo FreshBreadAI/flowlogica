@@ -533,13 +533,12 @@ const AISDRLandingPage = () => {
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
               {" "}
               <TextShimmer className="text-5xl md:text-7xl font-bold">
-                3x More Qualified
+                Predictable Pipeline.
               </TextShimmer>{" "}
-              <br />Leads in 30 Days
+              <br />Consistant Revenue Growth.
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-              Our AI-powered outbound engine generates warm leads and  qualified meetings while you focus on closing deals. 
-              No hiring, no management, no complex software.
+            Salesforce data shows 64% of sales rep time is lost to admin. We change that. Our outbound system fills your pipeline with qualified leads — so your team spends less time on busywork and more time selling.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
@@ -559,11 +558,13 @@ const AISDRLandingPage = () => {
               </Button>
             </div>
 
+            {/*
             <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-4 max-w-md mx-auto">
               <p className="text-sm font-medium text-destructive">
                 🔥 Limited capacity: Only accepting 2 new clients this month
               </p>
             </div>
+            */}
           </motion.div>
         </div>
       </section>
@@ -579,7 +580,8 @@ const AISDRLandingPage = () => {
               viewport={{ once: true }}
               className="text-4xl md:text-5xl font-bold mb-8"
             >
-              The Old Cold Outreach Systems Don't Work 
+              Why Old School Cold Outreach Is Failing — And What You Can Do About It
+
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -588,19 +590,19 @@ const AISDRLandingPage = () => {
               viewport={{ once: true }}
               className="text-xl text-muted-foreground mb-12"
             >
-               Your prospects' inboxes are overflowing with generic, templated messages. The old playbook of hiring more SDRs to send more emails no longer works—it just creates more noise. You're not just fighting for attention; you're fighting against spam filters and a sea of irrelevance. To win today, you need a smarter system.
+               Outbound outreach is often generic and forgettable — it doesn’t give prospects a reason to reply. We flip that script by delivering personalized, value-packed messages that cut through the noise, spark real conversations, and drive genuine engagement.
             </motion.p>
 
                         <div className="grid md:grid-cols-3 gap-8 items-stretch">
               {[{
-                value: "$120k+",
-                description: "Average cost to hire, train, and retain just ONE SDR for a year"
+                value: "64%",
+                description: "Of sales reps spend time on non revenue generating activities (Salesforce)"
               }, {
-                value: "3-6 months",
-                description: "Time wasted ramping up new SDRs before they start producing results"
+                value: "67%",
+                description: "Of sales reps don’t expect to meet their quota this year (Salesforce)"
               }, {
-                value: "68%",
-                description: "Of B2B companies miss their revenue targets due to inconsistent pipeline"
+                value: "71%",
+                description: "Of sales reps say they spend too much time on data entry (Salesforce)"
               }].map((item, index) => (
                 <motion.div
                   key={index}
