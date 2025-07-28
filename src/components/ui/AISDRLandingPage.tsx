@@ -428,40 +428,24 @@ const ContactFormModal = ({ isOpen, onClose, formType }: ContactFormModalProps) 
 };
 
 const AISDRLandingPage = () => {
-  const [meetings, setMeetings] = useState([5]);
-  const [dealSize, setDealSize] = useState([25000]);
-  const [closeRate, setCloseRate] = useState([20]);
   const [contactFormOpen, setContactFormOpen] = useState(false);
   const [formType, setFormType] = useState('Get Started');
-
-  const calculateROI = () => {
-    const currentMeetings = meetings[0];
-    const newMeetings = currentMeetings * 3;
-    const additionalMeetings = newMeetings - currentMeetings;
-    const additionalRevenue = additionalMeetings * dealSize[0] * (closeRate[0] / 100) * 12;
-    return Math.round(additionalRevenue);
-  };
 
   const features = [
     {
       icon: Target,
-      title: "AI-Powered Prospect Research",
-      description: "We identify your ideal customers using 47+ data points and behavioral triggers"
+      title: "Upload Contacts",
+      description: "Send us 100–1,000+ past buyers or users. No setup, no CRM integration."
     },
     {
       icon: Mail,
-      title: "Hyper-Personalized Outreach",
-      description: "Custom messaging that speaks directly to each prospect's pain points and goals"
+      title: "We Monitor",
+      description: "We track job changes across LinkedIn and enrich new roles, titles, and companies."
     },
     {
       icon: Bot,
-      title: "Automated Follow-Up Sequences",
-      description: "Multi-channel campaigns that nurture prospects until they're ready to buy"
-    },
-    {
-      icon: Calendar,
-      title: "Qualified Meeting Delivery",
-      description: "Pre-qualified prospects show up to your calendar ready to discuss their needs"
+      title: "You Get Alerts",
+      description: "Receive weekly updates on champions who switch to ICP-fit companies—ready for outreach."
     }
   ];
 
@@ -498,21 +482,20 @@ const AISDRLandingPage = () => {
                 <div className="flex items-center gap-4 md:gap-8"> {/* Responsive gap */}
           <div className="font-bold text-lg md:text-xl text-center md:whitespace-nowrap">
             <div className="md:hidden">
-              <div>FlowLogica</div>
+              <div>Champion Signals</div>
             </div>
-            <div className="hidden md:block">FlowLogica</div>
+            <div className="hidden md:block">Champion Signals</div>
           </div>
           <div className="hidden md:flex items-center gap-6">
-            <a href="#features" className="text-sm hover:text-primary transition-colors">Features</a>
-            <a href="#results" className="text-sm hover:text-primary transition-colors">Results</a>
+            <a href="#features" className="text-sm hover:text-primary transition-colors">How It Works</a>
             <a href="#pricing" className="text-sm hover:text-primary transition-colors">Pricing</a>
           </div>
           <Button 
             size="sm" 
             className="bg-primary text-primary-foreground"
-            onClick={() => openContactForm('Book Free Audit')}
+            onClick={() => openContactForm('Run a Free Scan')}
           >
-            Book Free Audit
+            Run a Free Scan
           </Button>
         </div>
       </motion.nav>
@@ -531,40 +514,32 @@ const AISDRLandingPage = () => {
             className="max-w-4xl mx-auto mt-8 md:mt-0"
           >
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              {" "}
-              <TextShimmer className="text-5xl md:text-7xl font-bold">
-                Predictable Pipeline.
-              </TextShimmer>{" "}
-              <br />Consistant Revenue Growth.
+              Turn Past Customers Into Your Next Pipeline
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-            64% of sales rep time is lost to non-selling activities. We change that. Our outbound system fills your pipeline with qualified leads — so your team spends less time on busywork and more time selling.
+            Track when your closed-won buyers change jobs—reconnect at the perfect time and close faster. No CRM required.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Button 
                 size="lg" 
                 className="bg-primary text-primary-foreground"
-                onClick={() => scrollToSection('roi-calculator')}
+                onClick={() => openContactForm('Run a Free Scan')}
               >
-                Calculate Your ROI
+                Run a Free Scan
               </Button>
               <Button 
                 size="lg" 
                 variant="outline"
-                onClick={() => scrollToSection('results')}
+                onClick={() => scrollToSection('pricing')}
               >
-                See Client Results
+                See Pricing
               </Button>
             </div>
-
-            {/*
-            <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-4 max-w-md mx-auto">
-              <p className="text-sm font-medium text-destructive">
-                🔥 Limited capacity: Only accepting 2 new clients this month
-              </p>
-            </div>
-            */}
+            <ul className="flex flex-col sm:flex-row gap-4 justify-center text-muted-foreground">
+                <li>Upload a contact list in seconds</li>
+                <li>Get alerts when champions switch companies</li>
+            </ul>
           </motion.div>
         </div>
       </section>
@@ -580,8 +555,7 @@ const AISDRLandingPage = () => {
               viewport={{ once: true }}
               className="text-4xl md:text-5xl font-bold mb-8"
             >
-              Why Old School Cold Outreach Is Failing — And What You Can Do About It
-
+              Why You're Missing Pipeline
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -590,106 +564,13 @@ const AISDRLandingPage = () => {
               viewport={{ once: true }}
               className="text-xl text-muted-foreground mb-12"
             >
-               Outbound outreach is often generic and forgettable — it doesn’t give prospects a reason to reply. We flip that script by delivering personalized, value-packed messages that cut through the noise, spark real conversations, and drive genuine engagement.
+               Your old buyers are changing jobs every day—and you're not following them. Up to 20% of B2B contacts switch roles every year, many to new companies in your ICP. Most teams lose that signal entirely. We turn those job changes into warm leads—so you're not starting from scratch every time.
             </motion.p>
-
-                        <div className="grid md:grid-cols-3 gap-8 items-stretch">
-              {[{
-                value: "64%",
-                description: "Of sales reps spend time on non revenue generating activities (Salesforce)"
-              }, {
-                value: "67%",
-                description: "Of sales reps don’t expect to meet their quota this year (Salesforce)"
-              }, {
-                value: "71%",
-                description: "Of sales reps say they spend too much time on data entry (Salesforce)"
-              }].map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="flex"
-                >
-                  <Card className="p-6 text-center flex flex-col justify-center w-full">
-                    <div className="text-4xl font-bold text-destructive mb-2">{item.value}</div>
-                    <p className="text-sm text-muted-foreground">
-                      {item.description}
-                    </p>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
 
-      {/* Results Section */}
-      <section id="results" className="py-20 relative">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-                className="text-4xl md:text-5xl font-bold mb-4"
-              >
-                Real Results From Companies Like Yours
-              </motion.h2>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                viewport={{ once: true }}
-                className="text-xl text-muted-foreground"
-              >
-                See how we've helped companies generate predictable pipeline and achieve remarkable growth.
-              </motion.p>
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="max-w-4xl mx-auto"
-            >
-              <Card className="p-8">
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold mb-2">AdTech Company Success Story</h3>
-                  <p className="text-muted-foreground">Scaled from €20M to €38M revenue, leading to successful private equity exit</p>
-                </div>
-                
-                <div className="grid md:grid-cols-3 gap-8 mb-6">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-primary mb-2">€8M</div>
-                    <div className="text-sm text-muted-foreground">New ARR Added in 12 Months</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-primary mb-2">23</div>
-                    <div className="text-sm text-muted-foreground">High-Quality Meetings/Month</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-primary mb-2">€20M → €38M</div>
-                    <div className="text-sm text-muted-foreground">Revenue Growth</div>
-                  </div>
-                </div>
-                
-                <div className="text-center p-4 bg-primary/10 rounded-lg">
-                  <p className="text-sm font-medium">
-                    🏆 Recognized in the Financial Times Top 1,000 fastest-growing companies in Europe
-                  </p>
-                </div>
-              </Card>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
+      {/* How It Works Section */}
       <section id="features" className="py-20 bg-muted/30 relative">
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-6xl mx-auto">
@@ -701,20 +582,11 @@ const AISDRLandingPage = () => {
                 viewport={{ once: true }}
                 className="text-4xl md:text-5xl font-bold mb-4"
               >
-                Cold Outreach Today
+                How It Works
               </motion.h2>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                viewport={{ once: true }}
-                className="text-xl text-muted-foreground"
-              >
-                We've replaced the outdated manual playbook with an intelligent, data-driven engine. Our process is built on two core principles: technical precision to ensure your message always gets delivered, and deep personalization to ensure it always gets a response. Here's how it works:
-              </motion.p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-3 gap-8">
               {features.map((feature, index) => (
                 <motion.div
                   key={index}
@@ -741,8 +613,8 @@ const AISDRLandingPage = () => {
         </div>
       </section>
 
-      {/* Who It's For Section */}
-      <section id="who-its-for" className="py-20">
+      {/* Why It Works Section */}
+      <section id="why-it-works" className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <motion.h2
@@ -752,32 +624,23 @@ const AISDRLandingPage = () => {
               viewport={{ once: true }}
               className="text-4xl md:text-5xl font-bold mb-4"
             >
-              Is This You?
+              Why It Works
             </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="text-lg text-muted-foreground"
-            >
-              Our system is designed for B2B companies in a few specific situations:
-            </motion.p>
           </div>
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-1 gap-8">
               {[
                 {
-                  title: "Your AEs are Prospecting",
-                  description: "Your expensive closers are wasting half their time on low-leverage tasks instead of selling."
+                  title: "They Already Know You",
+                  description: "Your old buyers trust your brand—outreach hits warmer, converts faster."
                 },
                 {
-                  title: "Your SDR Team is Underperforming",
-                  description: "You're tired of the high costs, long ramp times, and constant turnover of an in-house team."
+                  title: "Buyers in Motion = Buyers With Budget",
+                  description: "New hires are 3x more likely to buy in their first 90 days."
                 },
                 {
-                  title: "You're the Founder-Led Sales Bottleneck",
-                  description: "You're the only one generating pipeline, and it's holding back your company's growth."
+                  title: "No More Missed Timing",
+                  description: "Be the first to reach out—before competitors do."
                 }
               ].map((item, index) => (
                 <motion.div
@@ -805,166 +668,6 @@ const AISDRLandingPage = () => {
         </div>
       </section>
 
-      {/* ROI Calculator */}
-      <section id="roi-calculator" className="py-20 relative">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-                className="text-4xl md:text-5xl font-bold mb-4"
-              >
-                Calculate Your ROI
-              </motion.h2>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                viewport={{ once: true }}
-                className="text-xl text-muted-foreground"
-              >
-                See how much revenue you could generate with our outbound system
-              </motion.p>
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <Card className="p-8">
-                <div className="grid md:grid-cols-3 gap-8 mb-8">
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Current Monthly Meetings</label>
-                    <Slider
-                      value={meetings}
-                      onValueChange={setMeetings}
-                      max={50}
-                      min={1}
-                      step={1}
-                      className="mb-2"
-                    />
-                    <div className="text-center text-2xl font-bold text-primary">{meetings[0]}</div>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Average Deal Size</label>
-                    <Slider
-                      value={dealSize}
-                      onValueChange={setDealSize}
-                      max={100000}
-                      min={1000}
-                      step={1000}
-                      className="mb-2"
-                    />
-                    <div className="text-center text-2xl font-bold text-primary">${dealSize[0].toLocaleString()}</div>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Close Rate (%)</label>
-                    <Slider
-                      value={closeRate}
-                      onValueChange={setCloseRate}
-                      max={50}
-                      min={5}
-                      step={1}
-                      className="mb-2"
-                    />
-                    <div className="text-center text-2xl font-bold text-primary">{closeRate[0]}%</div>
-                  </div>
-                </div>
-
-                <div className="text-center p-6 bg-primary/10 rounded-lg">
-                  <p className="text-lg mb-2">With our system, you could generate:</p>
-                  <div className="text-4xl font-bold text-primary mb-4">
-                    ${calculateROI().toLocaleString()}
-                  </div>
-                  <p className="text-muted-foreground">additional revenue per year</p>
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-                  <Button 
-                    size="lg" 
-                    className="bg-primary text-primary-foreground"
-                    onClick={() => scrollToSection('pricing')}
-                  >
-                    See Pricing Plans
-                  </Button>
-                  <Button 
-                    size="lg" 
-                    variant="outline"
-                    onClick={() => openContactForm('Book Free Audit')}
-                  >
-                    Book Free Audit
-                  </Button>
-                </div>
-              </Card>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Guarantee Section */}
-      <section className="py-20 bg-muted/30 relative">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-bold mb-8"
-            >
-              100% Risk-Free Guarantee
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="text-xl text-muted-foreground mb-12"
-            >
-              We're so confident in our system that we guarantee results or your money back.
-            </motion.p>
-
-                        <div className="grid md:grid-cols-3 gap-8 items-stretch">
-              {[{
-                icon: "💥",
-                title: "Pipeline Promise",
-                description: "We guarantee qualified leads in your pipeline within the first 30 days—or we’ll refund your first month."
-              }, {
-                icon: "📋",
-                title: "No Long-Term Contracts",
-                description: "Month-to-month agreements. Cancel anytime with 30 days notice"
-              }, {
-                icon: "🏗️",
-                title: "You Own The Data",
-                description: "All data in the system belongs to you—no vendor lock-in"
-              }].map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
-                  viewport={{ once: true }}
-                  className="flex"
-                >
-                  <Card className="p-6 text-center flex flex-col h-full w-full">
-                    <div className="text-4xl mb-4">{item.icon}</div>
-                    <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                    <p className="text-muted-foreground flex-grow">
-                      {item.description}
-                    </p>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Pricing Section */}
       <section id="pricing" className="py-20 relative">
         <div className="container mx-auto px-4 relative z-10">
@@ -977,21 +680,12 @@ const AISDRLandingPage = () => {
                 viewport={{ once: true }}
                 className="text-4xl md:text-5xl font-bold mb-4"
               >
-                Subscription Options
+                Pricing
               </motion.h2>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                viewport={{ once: true }}
-                className="text-xl text-muted-foreground"
-              >
-                Choose the package that fits your growth goals. All plans include setup, management, and optimization.
-              </motion.p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8 mb-12 items-stretch"> {/* Added items-stretch for equal height */}
-              {/* Standard Plan */}
+            <div className="grid md:grid-cols-2 gap-8 mb-12 items-stretch"> {/* Added items-stretch for equal height */}
+              {/* Starter Plan */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -1000,41 +694,26 @@ const AISDRLandingPage = () => {
               >
                 <Card className="p-8 flex flex-col h-full"> {/* Added flex flex-col h-full */}
                   <div className="text-center mb-6">
-                    <h3 className="text-2xl font-bold mb-2">Standard</h3>
-                    <div className="text-4xl font-bold mb-2">$3,000<span className="text-lg text-muted-foreground">/mo</span></div>
-                    <p className="text-sm text-muted-foreground">For building a consistent pipeline <br /> Includes complete campaign setup <br /> Managed AI-powered outreach sequences <br /><br /></p>
-                  </div>
-
-                  <div className="mb-6">
-                    <div className="text-lg font-semibold mb-2">500 contacts/mo</div>
-                    <div className="text-lg font-semibold mb-2">10–20 replies/mo</div>
-                    <div className="text-sm text-muted-foreground mb-4">Est. CPL: $150–300</div>
+                    <h3 className="text-2xl font-bold mb-2">Starter</h3>
+                    <div className="text-4xl font-bold mb-2">$30<span className="text-lg text-muted-foreground">/month</span></div>
                   </div>
 
                   <ul className="space-y-3 mb-8 flex-grow"> {/* Added flex-grow */}
                     <li className="flex items-center gap-3">
                       <Check className="w-5 h-5 text-primary" />
-                      <span>Full-funnel setup with messaging & assets</span>
+                      <span>Track up to 200 contacts</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <Check className="w-5 h-5 text-primary" />
-                      <span>AI-powered outreach sequences</span>
+                      <span>Monthly job change alerts</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <Check className="w-5 h-5 text-primary" />
-                      <span>Basic analytics & reporting</span>
+                      <span>ICP-fit lead filtering</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <Check className="w-5 h-5 text-primary" />
-                      <span>Email & LinkedIn integration</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <Check className="w-5 h-5 text-primary" />
-                      <span>Advanced messaging strategy</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <Check className="w-5 h-5 text-primary" />
-                      <span>Custom sales assets</span>
+                      <span>Email report</span>
                     </li>
                   </ul>
 
@@ -1042,15 +721,15 @@ const AISDRLandingPage = () => {
                     className="w-full mt-auto" 
                     variant="outline" 
                     size="lg"
-                    onClick={() => openContactForm('Get Started')}
+                    onClick={() => openContactForm('Start Free')}
                   > 
-                    Get Started
+                    Start Free
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </Card>
               </motion.div>
 
-              {/* Growth Plan */}
+              {/* Pro Plan */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -1058,118 +737,106 @@ const AISDRLandingPage = () => {
                 viewport={{ once: true }}
               >
                 <Card className="p-8 border-2 border-primary relative flex flex-col h-full"> {/* Added flex flex-col h-full */}
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <Badge className="bg-primary text-primary-foreground">🚀 MOST POPULAR</Badge>
-                  </div>
                   <div className="text-center mb-6">
-                    <h3 className="text-2xl font-bold mb-2">Growth</h3>
-                    <div className="text-4xl font-bold mb-2">$5,000<span className="text-lg text-muted-foreground">/mo</span></div>
-                    <p className="text-sm text-muted-foreground">For aggressive growth & scaling <br /> Managed by a dedicated success manager <br /> Includes advanced testing & optimization</p>
-                  </div>
-
-                  <div className="mb-6">
-                    <div className="text-lg font-semibold mb-2">1,500 contacts/mo</div>
-                    <div className="text-lg font-semibold mb-2">30–60 replies/mo</div>
-                    <div className="text-sm text-muted-foreground mb-4">Est. CPL: $83–166</div>
+                    <h3 className="text-2xl font-bold mb-2">Pro</h3>
+                    <div className="text-4xl font-bold mb-2">$99<span className="text-lg text-muted-foreground">/month</span></div>
                   </div>
 
                   <ul className="space-y-3 mb-8 flex-grow"> {/* Added flex-grow */}
                     <li className="flex items-center gap-3">
                       <Check className="w-5 h-5 text-primary" />
-                      <span>Everything in Standard</span>
+                      <span>Track up to 1,000 contacts</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <Check className="w-5 h-5 text-primary" />
-                      <span>Advanced audience segmentation</span>
+                      <span>Bi-weekly alerts</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <Check className="w-5 h-5 text-primary" />
-                      <span>Multi-variant messaging tests</span>
+                      <span>Slack + CSV export</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <Check className="w-5 h-5 text-primary" />
-                      <span>Dedicated success manager</span>
+                      <span>Lead scoring & filters</span>
+                    </li>
+                     <li className="flex items-center gap-3">
+                      <Check className="w-5 h-5 text-primary" />
+                      <span>Support + reactivation templates</span>
                     </li>
                   </ul>
 
                   <Button 
                     className="w-full bg-primary text-primary-foreground mt-auto" 
                     size="lg"
-                    onClick={() => openContactForm('Get Started')}
+                    onClick={() => openContactForm('Upgrade Now')}
                   > 
-                    Get Started
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </Card>
-              </motion.div>
-
-              {/* Enterprise Plan */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                viewport={{ once: true }}
-              >
-                <Card className="p-8 flex flex-col h-full"> {/* Added flex flex-col h-full */}
-                  <div className="text-center mb-6">
-                    <h3 className="text-2xl font-bold mb-2">Enterprise</h3>
-                    <div className="text-4xl font-bold mb-2">$10,000+<span className="text-lg text-muted-foreground">/mo</span></div>
-                    <p className="text-sm text-muted-foreground">For org-wide enablement</p>
-                  </div>
-
-                  <div className="mb-6">
-                    <div className="text-lg font-semibold mb-2">Custom contacts</div>
-                    <div className="text-lg font-semibold mb-2">100+ replies/mo</div>
-                    <div className="text-sm text-muted-foreground mb-4">Custom CPL</div>
-                  </div>
-
-                  <ul className="space-y-3 mb-8 flex-grow"> {/* Added flex-grow */}
-                    <li className="flex items-center gap-3">
-                      <Check className="w-5 h-5 text-primary" />
-                      <span>Everything in Growth</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <Check className="w-5 h-5 text-primary" />
-                      <span>Full CRM integration</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <Check className="w-5 h-5 text-primary" />
-                      <span>Team enablement & training</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <Check className="w-5 h-5 text-primary" />
-                      <span>Custom workflows</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <Check className="w-5 h-5 text-primary" />
-                      <span>Strategic consulting</span>
-                    </li>
-                  </ul>
-
-                  <Button 
-                    className="w-full mt-auto" 
-                    variant="outline" 
-                    size="lg"
-                    onClick={() => openContactForm('Contact Sales')}
-                  > 
-                    Contact Sales
+                    Upgrade Now
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </Card>
               </motion.div>
             </div>
-
-            <motion.div
+            <div className="text-center">
+                <p>Need to track thousands of contacts or sync with Salesforce?</p>
+                <Button variant="link" onClick={() => openContactForm('Talk to Sales')}>Talk to Sales</Button>
+            </div>
+          </div>
+        </div>
+      </section>
+        {/* Free Scan Section */}
+        <section className="py-20 bg-muted/30 relative">
+            <div className="container mx-auto px-4 relative z-10">
+                <div className="max-w-4xl mx-auto text-center">
+                    <motion.h2
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: true }}
+                    className="text-4xl md:text-5xl font-bold mb-8"
+                    >
+                    Run a Free Scan
+                    </motion.h2>
+                    <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    viewport={{ once: true }}
+                    className="text-xl text-muted-foreground mb-12"
+                    >
+                    Upload 200 contacts. We’ll find job changes from the past 6 months. Get a free report—no signup, no strings.
+                    </motion.p>
+                    <Button 
+                        size="lg" 
+                        className="bg-primary text-primary-foreground"
+                        onClick={() => openContactForm('Get My Free Report')}
+                    >
+                        Get My Free Report
+                    </Button>
+                </div>
+            </div>
+        </section>
+        {/* Guarantee Section */}
+      <section className="py-20 bg-muted/30 relative">
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
+              transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="text-center p-6 bg-muted/50 rounded-lg"
+              className="text-4xl md:text-5xl font-bold mb-8"
             >
-              <p className="text-sm text-muted-foreground">
-                💡 <strong>Benchmark:</strong> $100–200 per qualified reply vs $150–350 per meeting from cold outreach agencies or $200–600 CAC from paid ads.
-              </p>
-            </motion.div>
+              No Risk Guarantee
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="text-xl text-muted-foreground mb-12"
+            >
+              No results? No charge. If we don’t find any job changes in your list, you don’t pay a cent.
+            </motion.p>
           </div>
         </div>
       </section>
@@ -1177,13 +844,13 @@ const AISDRLandingPage = () => {
       {/* Footer */}
       <footer className="py-12 bg-muted/50 border-t border-border">
         <div className="container mx-auto px-4 text-center">
-          <div className="text-2xl font-bold mb-4">FlowLogica - Done-For-You Lead Generation</div>
+          <div className="text-2xl font-bold mb-4">Champion Signals</div>
           <p className="text-muted-foreground mb-6">
-            Trusted by B2B SaaS companies to generate $50M+ in pipeline
+            Job change alerts that turn forgotten contacts into warm pipeline.
           </p>
           <div className="flex justify-center gap-8 text-sm text-muted-foreground">
             <a href="/privacy-policy" className="hover:text-foreground transition-colors">Privacy Policy</a>
-            <a href="/terms-of-service" className="hover:text-foreground transition-colors">Terms of Service</a>
+            <a href="/terms-of-service" className="hover:text-foreground transition-colors">Terms</a>
             <button 
               onClick={() => openContactForm('Contact')} 
               className="hover:text-foreground transition-colors text-sm text-muted-foreground"
