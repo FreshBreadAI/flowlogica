@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { useScroll, useTransform, motion, MotionValue, useAnimation } from "framer-motion";
-import { Star, Award, TrendingUp, Target, Mail, Bot, Calendar, ArrowRight, Check, X } from "lucide-react";
+import { Star, Award, TrendingUp, Target, Mail, Bot, Calendar, ArrowRight, Check, X, UploadCloud } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -122,7 +122,7 @@ const TextShimmer = ({
         ease: "linear",
       }}
       style={{
-        backgroundImage: `var(--bg), linear-gradient(var(--base-color), var(--base-color))`,
+        backgroundImage: `var(--bg), linear-gradient(var(--base-color), var(--base-color))`
       }}
     >
       {children}
@@ -254,79 +254,85 @@ function FloatingPaths({ position }: { position: number }) {
   );
 }
 
-// Custom component for Lamp effect (removed as per request)
-// export const LampContainer = ... (removed)
-
-
-// Contact Form Modal Component
-interface ContactFormModalProps {
+// Free Scan Modal Component
+interface FreeScanModalProps {
   isOpen: boolean;
   onClose: () => void;
-  formType: string;
 }
 
-interface FormState {
-  firstName: string;
-  lastName: string;
-  email: string;
-}
-
-const ContactFormModal = ({ isOpen, onClose, formType }: ContactFormModalProps) => {
-  const [formState, setFormState] = useState<FormState>({
-    firstName: '',
-    lastName: '',
-    email: '',
-  });
+const FreeScanModal = ({ isOpen, onClose }: FreeScanModalProps) => {
+  const [file, setFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState('');
+  const [dragging, setDragging] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormState(prev => ({
-      ...prev,
-      [name]: value
-    }));
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
+    }
+  };
+
+  const handleDragEnter = (e: React.DragEvent<HTMLLabelElement>) => {
+    e.preventDefault();
+    setDragging(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent<HTMLLabelElement>) => {
+    e.preventDefault();
+    setDragging(false);
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLLabelElement>) => {
+    e.preventDefault();
+    setDragging(false);
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      setFile(e.dataTransfer.files[0]);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!file) {
+      setError('Please upload a file.');
+      return;
+    }
     setIsSubmitting(true);
     setError('');
 
-    try {
-      const response = await fetch('https://hook.eu2.make.com/q8a1b43dlyx66fo5rqgvvxcchxy31x7m', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...formState,
-          URL: 'https://www.flowlogica.com',
-          form: formType
-        }),
-      });
+    const reader = new FileReader();
+    reader.onload = async (event) => {
+      const csvData = event.target?.result;
+      try {
+        const response = await fetch('https://hook.eu2.make.com/q8a1b43dlyx66fo5rqgvvxcchxy31x7m', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            file: csvData,
+            fileName: file.name,
+            form: 'Free Scan'
+          }),
+        });
 
-      if (response.ok) {
-        setIsSuccess(true);
-        // Reset form after 3 seconds
-        setTimeout(() => {
-          setIsSuccess(false);
-          onClose();
-          setFormState({
-            firstName: '',
-            lastName: '',
-            email: ''
-          });
-        }, 3000);
-      } else {
-        setError('Something went wrong. Please try again.');
+        if (response.ok) {
+          setIsSuccess(true);
+          setTimeout(() => {
+            setIsSuccess(false);
+            onClose();
+            setFile(null);
+          }, 3000);
+        } else {
+          setError('Something went wrong. Please try again.');
+        }
+      } catch (err) {
+        setError('Network error. Please try again.');
+      } finally {
+        setIsSubmitting(false);
       }
-    } catch (err) {
-      setError('Network error. Please try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
+    };
+    reader.readAsText(file);
   };
 
   if (!isOpen) return null;
@@ -337,11 +343,11 @@ const ContactFormModal = ({ isOpen, onClose, formType }: ContactFormModalProps) 
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.9 }}
-        className="bg-background rounded-xl shadow-xl w-full max-w-md relative overflow-hidden"
+        className="bg-background rounded-xl shadow-xl w-full max-w-lg relative overflow-hidden"
       >
         <div className="p-6">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold">{formType}</h2>
+            <h2 className="text-2xl font-bold">Run a Free Scan</h2>
             <button 
               onClick={onClose}
               className="p-1 rounded-full hover:bg-muted transition-colors"
@@ -360,50 +366,47 @@ const ContactFormModal = ({ isOpen, onClose, formType }: ContactFormModalProps) 
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Check className="w-8 h-8 text-green-600" />
               </div>
-              <h3 className="text-xl font-bold mb-2">Thank you!</h3>
-              <p className="text-muted-foreground">Our team will be in touch with you shortly.</p>
+              <h3 className="text-xl font-bold mb-2">Upload Successful!</h3>
+              <p className="text-muted-foreground">We'll analyze your list and send you a free report within 24 hours.</p>
             </motion.div>
           ) : (
             <form onSubmit={handleSubmit}>
               <div className="space-y-4">
-                <div>
-                  <label htmlFor="firstName" className="block text-sm font-medium mb-1">First Name</label>
-                  <input
-                    id="firstName"
-                    name="firstName"
-                    type="text"
-                    required
-                    value={formState.firstName}
-                    onChange={handleChange}
-                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50"
-                  />
+                <div className="p-4 bg-muted/50 rounded-md text-sm">
+                  <p className="font-semibold mb-2">Instructions:</p>
+                  <ul className="list-disc list-inside space-y-1 text-muted-foreground">
+                    <li>Upload a CSV file with up to 200 contacts.</li>
+                    <li>The file must contain the headers: <code className="bg-gray-200 p-1 rounded">name</code>, <code className="bg-gray-200 p-1 rounded">email</code>, <code className="bg-gray-200 p-1 rounded">linkedinURL</code>.</li>
+                    <li>The email should be a work email address.</li>
+                  </ul>
                 </div>
-                
-                <div>
-                  <label htmlFor="lastName" className="block text-sm font-medium mb-1">Last Name</label>
-                  <input
-                    id="lastName"
-                    name="lastName"
-                    type="text"
-                    required
-                    value={formState.lastName}
-                    onChange={handleChange}
-                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50"
-                  />
-                </div>
-                
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-1">Email</label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    value={formState.email}
-                    onChange={handleChange}
-                    className="w-full px-3 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50"
-                  />
-                </div>
+
+                <label
+                  htmlFor="file-upload"
+                  className={cn(
+                    "flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-lg cursor-pointer hover:bg-muted/50 transition-colors",
+                    dragging ? "border-primary bg-primary/10" : "border-border"
+                  )}
+                  onDragEnter={handleDragEnter}
+                  onDragLeave={handleDragLeave}
+                  onDrop={handleDrop}
+                  onDragOver={(e) => e.preventDefault()}
+                >
+                  <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                    <UploadCloud className="w-10 h-10 mb-3 text-muted-foreground" />
+                    <p className="mb-2 text-sm text-muted-foreground">
+                      <span className="font-semibold">Click to upload</span> or drag and drop
+                    </p>
+                    <p className="text-xs text-muted-foreground">CSV (MAX. 200 contacts)</p>
+                  </div>
+                  <input id="file-upload" name="file-upload" type="file" className="hidden" onChange={handleFileChange} accept=".csv" />
+                </label>
+
+                {file && (
+                  <div className="text-sm text-muted-foreground">
+                    Selected file: {file.name}
+                  </div>
+                )}
                 
                 {error && (
                   <div className="p-3 bg-red-50 border border-red-200 rounded-md text-red-600 text-sm">
@@ -414,9 +417,9 @@ const ContactFormModal = ({ isOpen, onClose, formType }: ContactFormModalProps) 
                 <Button 
                   type="submit" 
                   className="w-full bg-primary text-primary-foreground" 
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !file}
                 >
-                  {isSubmitting ? 'Submitting...' : 'Submit'}
+                  {isSubmitting ? 'Submitting...' : 'Get My Free Report'}
                 </Button>
               </div>
             </form>
@@ -427,9 +430,9 @@ const ContactFormModal = ({ isOpen, onClose, formType }: ContactFormModalProps) 
   );
 };
 
+
 const AISDRLandingPage = () => {
-  const [contactFormOpen, setContactFormOpen] = useState(false);
-  const [formType, setFormType] = useState('Get Started');
+  const [freeScanModalOpen, setFreeScanModalOpen] = useState(false);
 
   const features = [
     {
@@ -449,13 +452,12 @@ const AISDRLandingPage = () => {
     }
   ];
 
-  const openContactForm = (type: string) => {
-    setFormType(type);
-    setContactFormOpen(true);
+  const openFreeScanModal = () => {
+    setFreeScanModalOpen(true);
   };
 
-  const closeContactForm = () => {
-    setContactFormOpen(false);
+  const closeFreeScanModal = () => {
+    setFreeScanModalOpen(false);
   };
   
   const scrollToSection = (sectionId: string) => {
@@ -467,10 +469,9 @@ const AISDRLandingPage = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      <ContactFormModal 
-        isOpen={contactFormOpen} 
-        onClose={closeContactForm} 
-        formType={formType} 
+      <FreeScanModal 
+        isOpen={freeScanModalOpen} 
+        onClose={closeFreeScanModal} 
       />
       {/* Navigation */}
             <motion.nav
@@ -493,7 +494,7 @@ const AISDRLandingPage = () => {
           <Button 
             size="sm" 
             className="bg-primary text-primary-foreground"
-            onClick={() => openContactForm('Run a Free Scan')}
+            onClick={openFreeScanModal}
           >
             Run a Free Scan
           </Button>
@@ -524,7 +525,7 @@ const AISDRLandingPage = () => {
               <Button 
                 size="lg" 
                 className="bg-primary text-primary-foreground"
-                onClick={() => openContactForm('Run a Free Scan')}
+                onClick={openFreeScanModal}
               >
                 Run a Free Scan
               </Button>
@@ -721,7 +722,7 @@ const AISDRLandingPage = () => {
                     className="w-full mt-auto" 
                     variant="outline" 
                     size="lg"
-                    onClick={() => openContactForm('Start Free')}
+                    onClick={() => {}}
                   > 
                     Start Free
                     <ArrowRight className="w-4 h-4 ml-2" />
@@ -768,7 +769,7 @@ const AISDRLandingPage = () => {
                   <Button 
                     className="w-full bg-primary text-primary-foreground mt-auto" 
                     size="lg"
-                    onClick={() => openContactForm('Upgrade Now')}
+                    onClick={() => {}}
                   > 
                     Upgrade Now
                     <ArrowRight className="w-4 h-4 ml-2" />
@@ -778,7 +779,7 @@ const AISDRLandingPage = () => {
             </div>
             <div className="text-center">
                 <p>Need to track thousands of contacts or sync with Salesforce?</p>
-                <Button variant="link" onClick={() => openContactForm('Talk to Sales')}>Talk to Sales</Button>
+                <Button variant="link" onClick={() => {}}>Talk to Sales</Button>
             </div>
           </div>
         </div>
@@ -808,7 +809,7 @@ const AISDRLandingPage = () => {
                     <Button 
                         size="lg" 
                         className="bg-primary text-primary-foreground"
-                        onClick={() => openContactForm('Get My Free Report')}
+                        onClick={openFreeScanModal}
                     >
                         Get My Free Report
                     </Button>
@@ -852,7 +853,7 @@ const AISDRLandingPage = () => {
             <a href="/privacy-policy" className="hover:text-foreground transition-colors">Privacy Policy</a>
             <a href="/terms-of-service" className="hover:text-foreground transition-colors">Terms</a>
             <button 
-              onClick={() => openContactForm('Contact')} 
+              onClick={() => {}} 
               className="hover:text-foreground transition-colors text-sm text-muted-foreground"
             >
               Contact
